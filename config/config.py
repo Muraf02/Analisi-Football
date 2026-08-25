@@ -9,7 +9,22 @@ import os
 # Windows (PowerShell):  $env:FOOTBALL_DATA_API_KEY="la_tua_chiave"
 # Mac/Linux (bash):      export FOOTBALL_DATA_API_KEY="la_tua_chiave"
 FOOTBALL_DATA_API_KEY = os.environ.get("FOOTBALL_DATA_API_KEY", "")
-ODDS_API_KEY = os.environ.get("ODDS_API_KEY", "")  # opzionale, per fase 3 (quote)
+ODDS_API_KEY = os.environ.get("ODDS_API_KEY", "")  # da the-odds-api.com (CON i trattini)
+
+# --- The Odds API: chiavi lega -> chiavi ufficiali del servizio quote ---
+# ATTENZIONE: registrarsi su the-odds-api.com (con i trattini), non su
+# theoddsapi.com (senza trattini) — sono due servizi diversi, e solo il
+# primo ha un piano gratuito che include il calcio.
+ODDS_API_LEAGUES = {
+    "SA": "soccer_italy_serie_a",
+    "PL": "soccer_epl",
+    "PD": "soccer_spain_la_liga",
+    "FL1": "soccer_france_ligue_one",
+    "BL1": "soccer_germany_bundesliga",
+}
+ODDS_API_BASE_URL = "https://api.the-odds-api.com/v4"
+ODDS_API_REGIONS = "eu"  # bookmaker europei (include i principali operatori italiani/europei)
+ODDS_API_MARKETS = "h2h,totals"  # h2h = 1X2, totals = Over/Under
 
 # --- LEGHE DA MONITORARE ---
 # Codici competizione di football-data.org (v4)
@@ -43,3 +58,4 @@ FOOTBALL_DATA_REQUEST_DELAY_SECONDS = 7
 # --- LOGGING ---
 LOG_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "logs")
 LOG_FILE = os.path.join(LOG_DIR, "pipeline.log")
+
