@@ -268,6 +268,118 @@
     .card-top { flex-direction: column; }
     .odd-box { align-self: flex-start; }
   }
+
+  /* --- Pannello di controllo --- */
+  .control-panel {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 24px;
+    margin: 0 0 40px;
+  }
+  .control-panel .panel-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0 0 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .token-row {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 18px;
+    flex-wrap: wrap;
+  }
+  .token-row input[type="password"], .token-row input[type="text"] {
+    flex: 1;
+    min-width: 200px;
+  }
+  .field-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 12px;
+    margin-bottom: 18px;
+  }
+  .field-grid label {
+    display: block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 6px;
+  }
+  input[type="number"], input[type="password"], input[type="text"] {
+    width: 100%;
+    background: var(--surface-2);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 10px 12px;
+    color: var(--text);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+  }
+  input:focus { outline: 2px solid var(--gold-dim); outline-offset: 1px; }
+
+  .actions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 10px;
+  }
+  button.action-btn {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 12px 16px;
+    border-radius: 8px;
+    border: 1px solid var(--line);
+    background: var(--surface-2);
+    color: var(--text);
+    cursor: pointer;
+    transition: background 0.15s, transform 0.1s;
+    text-align: left;
+    position: relative;
+  }
+  button.action-btn:hover:not(:disabled) { background: #1D3A28; }
+  button.action-btn:active:not(:disabled) { transform: scale(0.98); }
+  button.action-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+  button.action-btn.primary {
+    background: var(--gold);
+    color: var(--bg);
+    border-color: var(--gold);
+  }
+  button.action-btn.primary:hover:not(:disabled) { background: #E3B65C; }
+  button.small-link {
+    background: none;
+    border: none;
+    color: var(--muted);
+    font-size: 12px;
+    text-decoration: underline;
+    cursor: pointer;
+    padding: 0;
+  }
+
+  .status-log {
+    margin-top: 16px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    max-height: 160px;
+    overflow-y: auto;
+  }
+  .status-log .line { padding: 4px 0; color: var(--muted); border-bottom: 1px dashed var(--line); }
+  .status-log .line.ok { color: var(--teal); }
+  .status-log .line.err { color: var(--red); }
+  .status-log .line.run { color: var(--gold); }
+
+  .help-text {
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 8px;
+    line-height: 1.5;
+  }
+  .help-text a { color: var(--gold); }
 </style>
 </head>
 <body>
@@ -279,9 +391,49 @@
   <div class="meta-line" id="meta-line"></div>
 </header>
 
-<div class="wrap" id="content">
-  <div id="loading">caricamento dati...</div>
+<div class="wrap">
+  <div class="control-panel" id="control-panel">
+    <div class="panel-title">⚙️ Pannello di controllo</div>
+
+    <div id="token-section">
+      <div class="token-row">
+        <input type="password" id="token-input" placeholder="Incolla qui il tuo GitHub token (ghp_...)">
+        <button class="action-btn" onclick="handleSaveToken()">Salva token</button>
+      </div>
+      <div class="help-text">
+        Serve un token per far partire le automazioni da qui. <button class="small-link" onclick="toggleTokenHelp()">Come lo creo?</button>
+        <div id="token-help" style="display:none; margin-top:8px;">
+          Vai su GitHub → foto profilo → Settings → Developer settings → Personal access tokens →
+          Fine-grained tokens → Generate new token. Seleziona SOLO questo repository, e sotto
+          "Repository permissions" imposta <b>Actions: Read and write</b>. Copia il token generato
+          (inizia con "github_pat_") e incollalo qui sopra. Resta salvato solo nel tuo browser.
+        </div>
+      </div>
+    </div>
+
+    <div class="field-grid">
+      <div><label>Capitale iniziale (€)</label><input type="number" id="input-starting" value="20" min="1" step="1"></div>
+      <div><label>Obiettivo (€)</label><input type="number" id="input-target" value="100" min="1" step="1"></div>
+      <div><label>Quota minima</label><input type="number" id="input-odds-min" value="1.5" min="1.01" step="0.01"></div>
+      <div><label>Quota massima</label><input type="number" id="input-odds-max" value="1.8" min="1.01" step="0.01"></div>
+    </div>
+
+    <div class="actions-grid">
+      <button class="action-btn" id="btn-update-data" onclick="runWorkflow('update-data.yml', {}, 'btn-update-data')">1. Aggiorna dati partite</button>
+      <button class="action-btn" id="btn-fetch-odds" onclick="runWorkflow('fetch-odds.yml', {}, 'btn-fetch-odds')">2. Recupera quote</button>
+      <button class="action-btn" id="btn-predict" onclick="runWorkflow('predict.yml', {}, 'btn-predict')">3. Genera previsioni</button>
+      <button class="action-btn primary" id="btn-strategy" onclick="runStrategyWorkflow()">4. Genera strategia →</button>
+    </div>
+
+    <div class="status-log" id="status-log"></div>
+  </div>
+  <!-- fine control-panel -->
+
+  <div id="content">
+    <div id="loading">caricamento dati...</div>
+  </div>
 </div>
+<!-- fine .wrap -->
 
 <footer>
   Un vantaggio stimato positivo significa che il modello vede quella probabilità
@@ -289,6 +441,140 @@
   Il modello può sbagliare.
 </footer>
 
+<script>
+// --- Rilevo automaticamente proprietario/nome del repository dall'URL della pagina
+// (es. https://muraf02.github.io/Analisi-Football/ -> owner=muraf02, repo=Analisi-Football)
+const REPO_OWNER = location.hostname.split('.')[0];
+const REPO_NAME = location.pathname.split('/').filter(Boolean)[0] || '';
+const API_BASE = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}`;
+
+function getToken() { return localStorage.getItem('gh_pat') || ''; }
+function setToken(t) { localStorage.setItem('gh_pat', t); }
+
+function toggleTokenHelp() {
+  const el = document.getElementById('token-help');
+  el.style.display = el.style.display === 'none' ? 'block' : 'none';
+}
+
+function handleSaveToken() {
+  const val = document.getElementById('token-input').value.trim();
+  if (!val) { logStatus('Inserisci un token prima di salvare.', 'err'); return; }
+  setToken(val);
+  document.getElementById('token-input').value = '';
+  document.getElementById('token-input').placeholder = 'Token salvato ✓ (per cambiarlo, incollane uno nuovo)';
+  logStatus('Token salvato nel browser.', 'ok');
+}
+
+function logStatus(msg, cls) {
+  const log = document.getElementById('status-log');
+  const line = document.createElement('div');
+  line.className = 'line' + (cls ? ' ' + cls : '');
+  const time = new Date().toLocaleTimeString('it-IT', {hour:'2-digit', minute:'2-digit', second:'2-digit'});
+  line.textContent = `[${time}] ${msg}`;
+  log.prepend(line);
+}
+
+function setButtonBusy(btnId, busy, labelWhenIdle) {
+  const btn = document.getElementById(btnId);
+  if (!btn) return;
+  btn.disabled = busy;
+  btn.textContent = busy ? '⏳ In esecuzione...' : labelWhenIdle;
+}
+
+async function dispatchWorkflow(filename, inputs) {
+  const token = getToken();
+  if (!token) {
+    throw new Error('Nessun token salvato. Incollalo nel campo qui sopra prima di procedere.');
+  }
+  if (!REPO_NAME) {
+    throw new Error('Non riesco a capire il nome del repository dall\'indirizzo della pagina.');
+  }
+  const res = await fetch(`${API_BASE}/actions/workflows/${filename}/dispatches`, {
+    method: 'POST',
+    headers: {
+      'Authorization': `Bearer ${token}`,
+      'Accept': 'application/vnd.github+json',
+      'X-GitHub-Api-Version': '2022-11-28',
+    },
+    body: JSON.stringify({ ref: 'main', inputs: inputs || {} }),
+  });
+  if (!res.ok) {
+    if (res.status === 401 || res.status === 403) {
+      throw new Error('Token non valido o senza i permessi giusti (serve "Actions: Read and write").');
+    }
+    if (res.status === 404) {
+      throw new Error('Workflow non trovato. Controlla di aver caricato tutti i file .yml su GitHub.');
+    }
+    const text = await res.text();
+    throw new Error(`Errore GitHub (${res.status}): ${text.slice(0, 200)}`);
+  }
+}
+
+async function waitForRunCompletion(filename) {
+  const token = getToken();
+  // Aspetto qualche secondo che GitHub registri la nuova esecuzione
+  await new Promise(r => setTimeout(r, 4000));
+
+  for (let attempt = 0; attempt < 90; attempt++) {  // fino a ~9 minuti di attesa
+    const res = await fetch(`${API_BASE}/actions/workflows/${filename}/runs?per_page=1`, {
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Accept': 'application/vnd.github+json',
+      },
+    });
+    if (!res.ok) throw new Error(`Errore nel controllare lo stato (${res.status})`);
+    const data = await res.json();
+    const run = data.workflow_runs && data.workflow_runs[0];
+
+    if (run && run.status === 'completed') {
+      return run.conclusion;  // 'success', 'failure', ecc.
+    }
+    if (run) {
+      logStatus(`In corso... (${run.status})`, 'run');
+    }
+    await new Promise(r => setTimeout(r, 6000));
+  }
+  throw new Error('Timeout: sta impiegando più del previsto, controlla direttamente su GitHub Actions.');
+}
+
+async function runWorkflow(filename, inputs, btnId) {
+  const btn = document.getElementById(btnId);
+  const originalLabel = btn.textContent;
+  try {
+    setButtonBusy(btnId, true);
+    logStatus(`Avvio "${filename}"...`, 'run');
+    await dispatchWorkflow(filename, inputs);
+    const conclusion = await waitForRunCompletion(filename);
+    if (conclusion === 'success') {
+      logStatus(`Completato: ${filename}`, 'ok');
+    } else {
+      logStatus(`Terminato con esito "${conclusion}": ${filename}. Controlla i log su GitHub Actions per i dettagli.`, 'err');
+    }
+    return conclusion;
+  } catch (err) {
+    logStatus(err.message, 'err');
+    return null;
+  } finally {
+    setButtonBusy(btnId, false, originalLabel);
+  }
+}
+
+async function runStrategyWorkflow() {
+  const inputs = {
+    starting_capital: document.getElementById('input-starting').value,
+    target_capital: document.getElementById('input-target').value,
+    odds_min: document.getElementById('input-odds-min').value,
+    odds_max: document.getElementById('input-odds-max').value,
+  };
+  const conclusion = await runWorkflow('generate-strategy.yml', inputs, 'btn-strategy');
+  if (conclusion === 'success') {
+    logStatus('Ricarico i risultati aggiornati...', 'run');
+    await load();
+    logStatus('Pagina aggiornata con i nuovi risultati.', 'ok');
+  }
+}
+
+</script>
 <script>
 async function load() {
   const res = await fetch('strategy.json?_=' + Date.now());
