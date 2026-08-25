@@ -233,6 +233,9 @@ def winning_progression(starting_capital, target_capital, odd, stake_fraction=1.
             break
 
     return steps
+
+
+def print_report(candidates):
     print("=" * 100)
     print(f"STRATEGIA: {STARTING_CAPITAL}€ -> {TARGET_CAPITAL}€, range quota {ODDS_MIN}-{ODDS_MAX}")
     print("=" * 100)
