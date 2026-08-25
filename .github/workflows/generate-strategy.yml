@@ -22,6 +22,10 @@ on:
         description: 'Quota massima desiderata'
         required: true
         default: '1.8'
+      n_legs:
+        description: 'Numero di partite da combinare (1 = solo singole)'
+        required: true
+        default: '2'
 
 jobs:
   generate-strategy:
@@ -44,6 +48,7 @@ jobs:
           TARGET_CAPITAL: ${{ github.event.inputs.target_capital }}
           ODDS_MIN: ${{ github.event.inputs.odds_min }}
           ODDS_MAX: ${{ github.event.inputs.odds_max }}
+          N_LEGS: ${{ github.event.inputs.n_legs }}
         run: python src/generate_strategy.py
 
       - name: Salva i risultati (report e pagina web)
