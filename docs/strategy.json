@@ -1,0 +1,668 @@
+{
+  "generated_at": "2026-08-25T20:53:44.280591+00:00",
+  "parameters": {
+    "starting_capital": 20.0,
+    "target_capital": 100.0,
+    "odds_min": 1.5,
+    "odds_max": 1.8
+  },
+  "total_candidates": 323,
+  "positive_edge_count": 145,
+  "singles": [
+    {
+      "league": "La Liga",
+      "match": "CA Osasuna vs Getafe CF",
+      "date": "2026-08-31",
+      "market": "over_under",
+      "outcome": "under_2.5",
+      "model_probability": 0.7949,
+      "real_odd": 1.58,
+      "n_bookmakers": 4,
+      "implied_probability": 0.6329,
+      "edge": 0.162,
+      "simulation": {
+        "probability_reach_target": 0.4001,
+        "probability_bust": 0.5999,
+        "probability_stuck_in_between": 0.0,
+        "avg_bets_if_successful": 4.0,
+        "median_final_capital": 0.0,
+        "mean_final_capital": 49.87
+      },
+      "progression": [
+        {
+          "step": 1,
+          "capital_before": 20.0,
+          "stake": 20.0,
+          "winnings": 11.6,
+          "capital_after": 31.6,
+          "remaining_to_target": 68.4,
+          "target_reached": false
+        },
+        {
+          "step": 2,
+          "capital_before": 31.6,
+          "stake": 31.6,
+          "winnings": 18.33,
+          "capital_after": 49.93,
+          "remaining_to_target": 50.07,
+          "target_reached": false
+        },
+        {
+          "step": 3,
+          "capital_before": 49.93,
+          "stake": 49.93,
+          "winnings": 28.96,
+          "capital_after": 78.89,
+          "remaining_to_target": 21.11,
+          "target_reached": false
+        },
+        {
+          "step": 4,
+          "capital_before": 78.89,
+          "stake": 78.89,
+          "winnings": 45.76,
+          "capital_after": 124.65,
+          "remaining_to_target": 0,
+          "target_reached": true
+        }
+      ]
+    },
+    {
+      "league": "Premier League",
+      "match": "Arsenal FC vs Chelsea FC",
+      "date": "2026-09-06",
+      "market": "1x2",
+      "outcome": "1",
+      "model_probability": 0.6966,
+      "real_odd": 1.75,
+      "n_bookmakers": 18,
+      "implied_probability": 0.5714,
+      "edge": 0.1252,
+      "simulation": {
+        "probability_reach_target": 0.3413,
+        "probability_bust": 0.6587,
+        "probability_stuck_in_between": 0.0,
+        "avg_bets_if_successful": 3.0,
+        "median_final_capital": 0.0,
+        "mean_final_capital": 36.58
+      },
+      "progression": [
+        {
+          "step": 1,
+          "capital_before": 20.0,
+          "stake": 20.0,
+          "winnings": 15.0,
+          "capital_after": 35.0,
+          "remaining_to_target": 65.0,
+          "target_reached": false
+        },
+        {
+          "step": 2,
+          "capital_before": 35.0,
+          "stake": 35.0,
+          "winnings": 26.25,
+          "capital_after": 61.25,
+          "remaining_to_target": 38.75,
+          "target_reached": false
+        },
+        {
+          "step": 3,
+          "capital_before": 61.25,
+          "stake": 61.25,
+          "winnings": 45.94,
+          "capital_after": 107.19,
+          "remaining_to_target": 0,
+          "target_reached": true
+        }
+      ]
+    },
+    {
+      "league": "Premier League",
+      "match": "Manchester United FC vs Ipswich Town FC",
+      "date": "2026-08-30",
+      "market": "over_under",
+      "outcome": "over_2.5",
+      "model_probability": 0.6924,
+      "real_odd": 1.69,
+      "n_bookmakers": 13,
+      "implied_probability": 0.5917,
+      "edge": 0.1007,
+      "simulation": {
+        "probability_reach_target": 0.2282,
+        "probability_bust": 0.7718,
+        "probability_stuck_in_between": 0.0,
+        "avg_bets_if_successful": 4.0,
+        "median_final_capital": 0.0,
+        "mean_final_capital": 37.23
+      },
+      "progression": [
+        {
+          "step": 1,
+          "capital_before": 20.0,
+          "stake": 20.0,
+          "winnings": 13.8,
+          "capital_after": 33.8,
+          "remaining_to_target": 66.2,
+          "target_reached": false
+        },
+        {
+          "step": 2,
+          "capital_before": 33.8,
+          "stake": 33.8,
+          "winnings": 23.32,
+          "capital_after": 57.12,
+          "remaining_to_target": 42.88,
+          "target_reached": false
+        },
+        {
+          "step": 3,
+          "capital_before": 57.12,
+          "stake": 57.12,
+          "winnings": 39.41,
+          "capital_after": 96.53,
+          "remaining_to_target": 3.47,
+          "target_reached": false
+        },
+        {
+          "step": 4,
+          "capital_before": 96.53,
+          "stake": 96.53,
+          "winnings": 66.61,
+          "capital_after": 163.14,
+          "remaining_to_target": 0,
+          "target_reached": true
+        }
+      ]
+    },
+    {
+      "league": "Premier League",
+      "match": "Ipswich Town FC vs Liverpool FC",
+      "date": "2026-09-04",
+      "market": "over_under",
+      "outcome": "over_2.5",
+      "model_probability": 0.7127,
+      "real_odd": 1.63,
+      "n_bookmakers": 9,
+      "implied_probability": 0.6135,
+      "edge": 0.0992,
+      "simulation": {
+        "probability_reach_target": 0.2563,
+        "probability_bust": 0.7437,
+        "probability_stuck_in_between": 0.0,
+        "avg_bets_if_successful": 4.0,
+        "median_final_capital": 0.0,
+        "mean_final_capital": 36.19
+      },
+      "progression": [
+        {
+          "step": 1,
+          "capital_before": 20.0,
+          "stake": 20.0,
+          "winnings": 12.6,
+          "capital_after": 32.6,
+          "remaining_to_target": 67.4,
+          "target_reached": false
+        },
+        {
+          "step": 2,
+          "capital_before": 32.6,
+          "stake": 32.6,
+          "winnings": 20.54,
+          "capital_after": 53.14,
+          "remaining_to_target": 46.86,
+          "target_reached": false
+        },
+        {
+          "step": 3,
+          "capital_before": 53.14,
+          "stake": 53.14,
+          "winnings": 33.48,
+          "capital_after": 86.62,
+          "remaining_to_target": 13.38,
+          "target_reached": false
+        },
+        {
+          "step": 4,
+          "capital_before": 86.62,
+          "stake": 86.62,
+          "winnings": 54.57,
+          "capital_after": 141.19,
+          "remaining_to_target": 0,
+          "target_reached": true
+        }
+      ]
+    },
+    {
+      "league": "Bundesliga",
+      "match": "SV Werder Bremen vs RB Leipzig",
+      "date": "2026-09-05",
+      "market": "over_under",
+      "outcome": "under_3.5",
+      "model_probability": 0.68,
+      "real_odd": 1.69,
+      "n_bookmakers": 2,
+      "implied_probability": 0.5917,
+      "edge": 0.0883,
+      "simulation": {
+        "probability_reach_target": 0.2139,
+        "probability_bust": 0.7861,
+        "probability_stuck_in_between": 0.0,
+        "avg_bets_if_successful": 4.0,
+        "median_final_capital": 0.0,
+        "mean_final_capital": 34.9
+      },
+      "progression": [
+        {
+          "step": 1,
+          "capital_before": 20.0,
+          "stake": 20.0,
+          "winnings": 13.8,
+          "capital_after": 33.8,
+          "remaining_to_target": 66.2,
+          "target_reached": false
+        },
+        {
+          "step": 2,
+          "capital_before": 33.8,
+          "stake": 33.8,
+          "winnings": 23.32,
+          "capital_after": 57.12,
+          "remaining_to_target": 42.88,
+          "target_reached": false
+        },
+        {
+          "step": 3,
+          "capital_before": 57.12,
+          "stake": 57.12,
+          "winnings": 39.41,
+          "capital_after": 96.53,
+          "remaining_to_target": 3.47,
+          "target_reached": false
+        },
+        {
+          "step": 4,
+          "capital_before": 96.53,
+          "stake": 96.53,
+          "winnings": 66.61,
+          "capital_after": 163.14,
+          "remaining_to_target": 0,
+          "target_reached": true
+        }
+      ]
+    }
+  ],
+  "doubles": [
+    {
+      "legs": [
+        {
+          "league": "Serie A",
+          "match": "AC Milan vs Venezia FC",
+          "date": "2026-08-28",
+          "market": "1x2",
+          "outcome": "1",
+          "model_probability": 0.9772,
+          "real_odd": 1.4,
+          "n_bookmakers": 24,
+          "implied_probability": 0.7143,
+          "edge": 0.2629
+        },
+        {
+          "league": "Premier League",
+          "match": "Manchester City FC vs Coventry City FC",
+          "date": "2026-09-05",
+          "market": "1x2",
+          "outcome": "1",
+          "model_probability": 0.9631,
+          "real_odd": 1.25,
+          "n_bookmakers": 18,
+          "implied_probability": 0.8,
+          "edge": 0.1631
+        }
+      ],
+      "combined_odd": 1.75,
+      "combined_true_probability": 0.9411,
+      "combined_implied_probability": 0.5714,
+      "combined_edge": 0.3697,
+      "simulation": {
+        "probability_reach_target": 0.8329,
+        "probability_bust": 0.1671,
+        "probability_stuck_in_between": 0.0,
+        "avg_bets_if_successful": 3.0,
+        "median_final_capital": 107.19,
+        "mean_final_capital": 89.28
+      },
+      "progression": [
+        {
+          "step": 1,
+          "capital_before": 20.0,
+          "stake": 20.0,
+          "winnings": 15.0,
+          "capital_after": 35.0,
+          "remaining_to_target": 65.0,
+          "target_reached": false
+        },
+        {
+          "step": 2,
+          "capital_before": 35.0,
+          "stake": 35.0,
+          "winnings": 26.25,
+          "capital_after": 61.25,
+          "remaining_to_target": 38.75,
+          "target_reached": false
+        },
+        {
+          "step": 3,
+          "capital_before": 61.25,
+          "stake": 61.25,
+          "winnings": 45.94,
+          "capital_after": 107.19,
+          "remaining_to_target": 0,
+          "target_reached": true
+        }
+      ]
+    },
+    {
+      "legs": [
+        {
+          "league": "Serie A",
+          "match": "AC Milan vs Venezia FC",
+          "date": "2026-08-28",
+          "market": "1x2",
+          "outcome": "1",
+          "model_probability": 0.9772,
+          "real_odd": 1.4,
+          "n_bookmakers": 24,
+          "implied_probability": 0.7143,
+          "edge": 0.2629
+        },
+        {
+          "league": "La Liga",
+          "match": "Real Madrid CF vs Málaga CF",
+          "date": "2026-08-30",
+          "market": "1x2",
+          "outcome": "1",
+          "model_probability": 0.8855,
+          "real_odd": 1.2,
+          "n_bookmakers": 20,
+          "implied_probability": 0.8333,
+          "edge": 0.0522
+        }
+      ],
+      "combined_odd": 1.68,
+      "combined_true_probability": 0.8653,
+      "combined_implied_probability": 0.5952,
+      "combined_edge": 0.2701,
+      "simulation": {
+        "probability_reach_target": 0.5654,
+        "probability_bust": 0.4346,
+        "probability_stuck_in_between": 0.0,
+        "avg_bets_if_successful": 4.0,
+        "median_final_capital": 159.32,
+        "mean_final_capital": 90.08
+      },
+      "progression": [
+        {
+          "step": 1,
+          "capital_before": 20.0,
+          "stake": 20.0,
+          "winnings": 13.6,
+          "capital_after": 33.6,
+          "remaining_to_target": 66.4,
+          "target_reached": false
+        },
+        {
+          "step": 2,
+          "capital_before": 33.6,
+          "stake": 33.6,
+          "winnings": 22.85,
+          "capital_after": 56.45,
+          "remaining_to_target": 43.55,
+          "target_reached": false
+        },
+        {
+          "step": 3,
+          "capital_before": 56.45,
+          "stake": 56.45,
+          "winnings": 38.39,
+          "capital_after": 94.84,
+          "remaining_to_target": 5.16,
+          "target_reached": false
+        },
+        {
+          "step": 4,
+          "capital_before": 94.84,
+          "stake": 94.84,
+          "winnings": 64.49,
+          "capital_after": 159.33,
+          "remaining_to_target": 0,
+          "target_reached": true
+        }
+      ]
+    },
+    {
+      "legs": [
+        {
+          "league": "Premier League",
+          "match": "Manchester City FC vs Coventry City FC",
+          "date": "2026-09-05",
+          "market": "1x2",
+          "outcome": "1",
+          "model_probability": 0.9631,
+          "real_odd": 1.25,
+          "n_bookmakers": 18,
+          "implied_probability": 0.8,
+          "edge": 0.1631
+        },
+        {
+          "league": "La Liga",
+          "match": "Real Madrid CF vs Málaga CF",
+          "date": "2026-08-30",
+          "market": "1x2",
+          "outcome": "1",
+          "model_probability": 0.8855,
+          "real_odd": 1.2,
+          "n_bookmakers": 20,
+          "implied_probability": 0.8333,
+          "edge": 0.0522
+        }
+      ],
+      "combined_odd": 1.5,
+      "combined_true_probability": 0.8528,
+      "combined_implied_probability": 0.6666,
+      "combined_edge": 0.1862,
+      "simulation": {
+        "probability_reach_target": 0.5355,
+        "probability_bust": 0.4645,
+        "probability_stuck_in_between": 0.0,
+        "avg_bets_if_successful": 4.0,
+        "median_final_capital": 101.25,
+        "mean_final_capital": 54.22
+      },
+      "progression": [
+        {
+          "step": 1,
+          "capital_before": 20.0,
+          "stake": 20.0,
+          "winnings": 10.0,
+          "capital_after": 30.0,
+          "remaining_to_target": 70.0,
+          "target_reached": false
+        },
+        {
+          "step": 2,
+          "capital_before": 30.0,
+          "stake": 30.0,
+          "winnings": 15.0,
+          "capital_after": 45.0,
+          "remaining_to_target": 55.0,
+          "target_reached": false
+        },
+        {
+          "step": 3,
+          "capital_before": 45.0,
+          "stake": 45.0,
+          "winnings": 22.5,
+          "capital_after": 67.5,
+          "remaining_to_target": 32.5,
+          "target_reached": false
+        },
+        {
+          "step": 4,
+          "capital_before": 67.5,
+          "stake": 67.5,
+          "winnings": 33.75,
+          "capital_after": 101.25,
+          "remaining_to_target": 0,
+          "target_reached": true
+        }
+      ]
+    },
+    {
+      "legs": [
+        {
+          "league": "Premier League",
+          "match": "Manchester City FC vs Coventry City FC",
+          "date": "2026-09-05",
+          "market": "1x2",
+          "outcome": "1",
+          "model_probability": 0.9631,
+          "real_odd": 1.25,
+          "n_bookmakers": 18,
+          "implied_probability": 0.8,
+          "edge": 0.1631
+        },
+        {
+          "league": "La Liga",
+          "match": "Real Madrid CF vs Real Sociedad de Fútbol",
+          "date": "2026-08-26",
+          "market": "1x2",
+          "outcome": "1",
+          "model_probability": 0.7595,
+          "real_odd": 1.35,
+          "n_bookmakers": 21,
+          "implied_probability": 0.7407,
+          "edge": 0.0188
+        }
+      ],
+      "combined_odd": 1.688,
+      "combined_true_probability": 0.7315,
+      "combined_implied_probability": 0.5926,
+      "combined_edge": 0.1389,
+      "simulation": {
+        "probability_reach_target": 0.2885,
+        "probability_bust": 0.7115,
+        "probability_stuck_in_between": 0.0,
+        "avg_bets_if_successful": 4.0,
+        "median_final_capital": 0.0,
+        "mean_final_capital": 46.85
+      },
+      "progression": [
+        {
+          "step": 1,
+          "capital_before": 20.0,
+          "stake": 20.0,
+          "winnings": 13.76,
+          "capital_after": 33.76,
+          "remaining_to_target": 66.24,
+          "target_reached": false
+        },
+        {
+          "step": 2,
+          "capital_before": 33.76,
+          "stake": 33.76,
+          "winnings": 23.23,
+          "capital_after": 56.99,
+          "remaining_to_target": 43.01,
+          "target_reached": false
+        },
+        {
+          "step": 3,
+          "capital_before": 56.99,
+          "stake": 56.99,
+          "winnings": 39.21,
+          "capital_after": 96.2,
+          "remaining_to_target": 3.8,
+          "target_reached": false
+        },
+        {
+          "step": 4,
+          "capital_before": 96.2,
+          "stake": 96.2,
+          "winnings": 66.19,
+          "capital_after": 162.39,
+          "remaining_to_target": 0,
+          "target_reached": true
+        }
+      ]
+    },
+    {
+      "legs": [
+        {
+          "league": "Premier League",
+          "match": "Manchester City FC vs Coventry City FC",
+          "date": "2026-09-05",
+          "market": "1x2",
+          "outcome": "1",
+          "model_probability": 0.9631,
+          "real_odd": 1.25,
+          "n_bookmakers": 18,
+          "implied_probability": 0.8,
+          "edge": 0.1631
+        },
+        {
+          "league": "La Liga",
+          "match": "Real Madrid CF vs Real Sociedad de Fútbol",
+          "date": "2026-08-26",
+          "market": "over_under",
+          "outcome": "over_2.5",
+          "model_probability": 0.7124,
+          "real_odd": 1.44,
+          "n_bookmakers": 3,
+          "implied_probability": 0.6944,
+          "edge": 0.018
+        }
+      ],
+      "combined_odd": 1.8,
+      "combined_true_probability": 0.6861,
+      "combined_implied_probability": 0.5555,
+      "combined_edge": 0.1306,
+      "simulation": {
+        "probability_reach_target": 0.3143,
+        "probability_bust": 0.6857,
+        "probability_stuck_in_between": 0.0,
+        "avg_bets_if_successful": 3.0,
+        "median_final_capital": 0.0,
+        "mean_final_capital": 36.66
+      },
+      "progression": [
+        {
+          "step": 1,
+          "capital_before": 20.0,
+          "stake": 20.0,
+          "winnings": 16.0,
+          "capital_after": 36.0,
+          "remaining_to_target": 64.0,
+          "target_reached": false
+        },
+        {
+          "step": 2,
+          "capital_before": 36.0,
+          "stake": 36.0,
+          "winnings": 28.8,
+          "capital_after": 64.8,
+          "remaining_to_target": 35.2,
+          "target_reached": false
+        },
+        {
+          "step": 3,
+          "capital_before": 64.8,
+          "stake": 64.8,
+          "winnings": 51.84,
+          "capital_after": 116.64,
+          "remaining_to_target": 0,
+          "target_reached": true
+        }
+      ]
+    }
+  ]
+}
