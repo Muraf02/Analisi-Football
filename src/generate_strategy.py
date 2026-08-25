@@ -19,7 +19,7 @@ Uso:
 
 import sys
 import os
-from datetime import datetime, timezone
+from datetime import datetime, timezone, timedelta
 from itertools import combinations
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -34,10 +34,10 @@ STARTING_CAPITAL = float(os.environ.get("STARTING_CAPITAL", 20))
 TARGET_CAPITAL = float(os.environ.get("TARGET_CAPITAL", 100))
 ODDS_MIN = float(os.environ.get("ODDS_MIN", 1.5))
 ODDS_MAX = float(os.environ.get("ODDS_MAX", 1.8))
+N_LEGS = int(os.environ.get("N_LEGS", 2))  # quante partite combinare (1 = solo singole)
 
-# Solo questi due mercati hanno quote reali scaricate (fetch_odds.py
-# richiede solo 'h2h' e 'totals' per risparmiare crediti API)
-REAL_ODDS_MARKETS = {"1x2", "over_under"}
+# Mercati per cui abbiamo quote reali (fetch_odds.py li richiede tutti)
+REAL_ODDS_MARKETS = {"1x2", "over_under", "btts", "double_chance"}
 
 
 def get_best_real_odds(conn):
@@ -68,10 +68,15 @@ def get_best_real_odds(conn):
 
 
 def get_upcoming_matches_with_info(league_code, conn):
+    """
+    Restituisce solo le partite della PROSSIMA giornata di campionato
+    (non tutte le partite future disponibili), usando il numero di
+    giornata (matchday) che football-data.org fornisce per ogni partita.
+    """
     cur = conn.cursor()
     cur.execute(
         """
-        SELECT m.match_id, m.utc_date, th.name as home_name, ta.name as away_name
+        SELECT m.match_id, m.utc_date, m.matchday, th.name as home_name, ta.name as away_name
         FROM matches m
         JOIN teams th ON m.home_team_id = th.team_id
         JOIN teams ta ON m.away_team_id = ta.team_id
@@ -81,7 +86,84 @@ def get_upcoming_matches_with_info(league_code, conn):
         """,
         (league_code,),
     )
-    return cur.fetchall()
+    rows = cur.fetchall()
+    if not rows:
+        return []
+
+    matchdays = [r["matchday"] for r in rows if r["matchday"] is not None]
+    if matchdays:
+        next_matchday = min(matchdays)
+        return [r for r in rows if r["matchday"] == next_matchday]
+
+    # Fallback se il numero di giornata non è disponibile: prendiamo solo
+    # le partite entro 7 giorni dalla più vicina (approssima la stessa idea)
+    first_date = datetime.fromisoformat(rows[0]["utc_date"].replace("Z", "+00:00"))
+    cutoff = first_date + timedelta(days=7)
+    return [
+        r for r in rows
+        if datetime.fromisoformat(r["utc_date"].replace("Z", "+00:00")) <= cutoff
+    ]
+
+
+def _team_appearance_counts(matches):
+    """Conta quante partite storiche compaiono per ciascuna squadra —
+    usato per il segnale di affidabilità (una neopromossa con poche
+    partite giocate ha stime molto più incerte)."""
+    from collections import Counter
+    counts = Counter()
+    for m in matches:
+        counts[m["home_team"]] += 1
+        counts[m["away_team"]] += 1
+    return counts
+
+
+def reliability_label(n_matches):
+    """Etichetta di affidabilità in base a quante partite storiche
+    abbiamo per una squadra. Soglie indicative, non scientifiche, ma
+    utili come segnale d'allarme onesto."""
+    if n_matches < 10:
+        return "bassa", "pochissime partite storiche (probabile neopromossa o inizio stagione)"
+    elif n_matches < 20:
+        return "media", "un numero limitato di partite storiche"
+    else:
+        return "alta", "uno storico sufficiente"
+
+
+def explain_candidate(c):
+    """Genera una spiegazione testuale in linguaggio semplice per una
+    proposta, così non resta solo un numero senza contesto."""
+    home_rel, home_desc = reliability_label(c["home_team_matches"])
+    away_rel, away_desc = reliability_label(c["away_team_matches"])
+    overall_rel = "bassa" if "bassa" in (home_rel, away_rel) else (
+        "media" if "media" in (home_rel, away_rel) else "alta"
+    )
+
+    parts = []
+    parts.append(
+        f"Il modello stima una probabilità del {c['model_probability']:.1%} per questo esito, "
+        f"basandosi su {c['home_team_matches']} partite storiche della squadra di casa e "
+        f"{c['away_team_matches']} della squadra in trasferta."
+    )
+    parts.append(
+        f"La quota reale ({c['real_odd']}) implica invece una probabilità del "
+        f"{c['implied_probability']:.1%} secondo il mercato — una differenza di "
+        f"{c['edge']*100:+.1f} punti percentuali."
+    )
+    if overall_rel == "bassa":
+        parts.append(
+            f"⚠️ Affidabilità BASSA: almeno una delle due squadre ha {home_desc if home_rel=='bassa' else away_desc}. "
+            "Un vantaggio stimato in questa condizione va preso con molta cautela — potrebbe riflettere "
+            "un limite del modello più che un'opportunità reale."
+        )
+    elif overall_rel == "media":
+        parts.append(
+            "⚠️ Affidabilità MEDIA: lo storico disponibile è limitato, la stima potrebbe migliorare "
+            "con l'avanzare della stagione."
+        )
+    else:
+        parts.append("✓ Affidabilità ALTA: entrambe le squadre hanno uno storico sufficiente per una stima solida.")
+
+    return " ".join(parts), overall_rel
 
 
 def build_candidates(conn):
@@ -109,6 +191,7 @@ def build_candidates(conn):
             print(f"[{info['name']}] Errore addestramento modello: {e}")
             continue
 
+        team_counts = _team_appearance_counts(matches)
         upcoming = get_upcoming_matches_with_info(code, conn)
 
         for m in upcoming:
@@ -136,7 +219,7 @@ def build_candidates(conn):
                 implied_prob = 1 / real_odd
                 edge = model_prob - implied_prob
 
-                all_candidates.append({
+                candidate = {
                     "league": info["name"],
                     "match": f"{m['home_name']} vs {m['away_name']}",
                     "date": m["utc_date"][:10],
@@ -147,7 +230,13 @@ def build_candidates(conn):
                     "n_bookmakers": real_odd_entry["n_bookmakers"],
                     "implied_probability": round(implied_prob, 4),
                     "edge": round(edge, 4),
-                })
+                    "home_team_matches": team_counts.get(m["home_name"], 0),
+                    "away_team_matches": team_counts.get(m["away_name"], 0),
+                }
+                explanation, reliability = explain_candidate(candidate)
+                candidate["explanation"] = explanation
+                candidate["reliability"] = reliability
+                all_candidates.append(candidate)
 
     return all_candidates
 
@@ -159,17 +248,32 @@ def find_singles_in_range(candidates, odds_min, odds_max):
     return sorted(in_range, key=lambda c: -c["edge"])
 
 
-def find_combos_in_range(candidates, odds_min, odds_max, n_legs=2, max_results=5, min_edge=0.0):
+def find_combos_in_range(candidates, odds_min, odds_max, n_legs=2, max_results=5,
+                          min_edge=0.0, pool_size=18, exclude_low_reliability=True):
     """
     Cerca combinazioni di N partite DIVERSE la cui quota combinata
     (prodotto delle singole quote) cade nel range desiderato.
-    Ordinate per vantaggio combinato stimato.
+
+    IMPORTANTE — perché limitiamo il "pool" di candidati: controllare
+    TUTTE le combinazioni possibili tra centinaia di esiti diventa
+    computazionalmente impossibile già con 4-5 gambe (letteralmente
+    migliaia di miliardi di combinazioni). Invece, restringiamo la
+    ricerca ai `pool_size` candidati con il vantaggio stimato migliore
+    (e, di default, escludiamo quelli con affidabilità bassa — una
+    neopromossa con pochi dati non dovrebbe mai finire in una
+    combinazione, il rischio si moltiplicherebbe). Non è una ricerca
+    esaustiva su tutto lo scibile possibile, ma è quello che qualunque
+    sistema serio farebbe: cercare tra le opportunità migliori e più
+    affidabili, non tra tutte le combinazioni matematicamente esistenti.
     """
-    # Solo candidati con un minimo di vantaggio hanno senso da combinare
     good_candidates = [c for c in candidates if c["edge"] > min_edge]
+    if exclude_low_reliability:
+        good_candidates = [c for c in good_candidates if c.get("reliability") != "bassa"]
+    good_candidates.sort(key=lambda c: -c["edge"])
+    pool = good_candidates[:pool_size]
 
     results = []
-    for combo in combinations(good_candidates, n_legs):
+    for combo in combinations(pool, n_legs):
         matches_involved = {c["match"] for c in combo}
         if len(matches_involved) < n_legs:
             continue  # evitiamo di combinare due esiti della STESSA partita
@@ -187,6 +291,7 @@ def find_combos_in_range(candidates, odds_min, odds_max, n_legs=2, max_results=5
 
         results.append({
             "legs": combo,
+            "n_legs": n_legs,
             "combined_odd": round(combined_odd, 3),
             "combined_true_probability": round(combined_true_prob, 4),
             "combined_implied_probability": round(combined_implied_prob, 4),
@@ -242,7 +347,7 @@ def build_json_output(candidates):
     un'interfaccia curata invece del testo grezzo dei log.
     """
     singles = find_singles_in_range(candidates, ODDS_MIN, ODDS_MAX)[:5]
-    doubles = find_combos_in_range(candidates, ODDS_MIN, ODDS_MAX, n_legs=2)
+    doubles = find_combos_in_range(candidates, ODDS_MIN, ODDS_MAX, n_legs=N_LEGS)
 
     singles_out = []
     for c in singles:
@@ -277,6 +382,7 @@ def build_json_output(candidates):
             "target_capital": TARGET_CAPITAL,
             "odds_min": ODDS_MIN,
             "odds_max": ODDS_MAX,
+            "n_legs": N_LEGS,
         },
         "total_candidates": len(candidates),
         "positive_edge_count": len([c for c in candidates if c["edge"] > 0]),
@@ -316,8 +422,9 @@ def print_report(candidates):
                 f"  [{c['league']}] {c['match']} ({c['date']}) — {c['market']} {c['outcome']} "
                 f"@ {c['real_odd']} ({c['n_bookmakers']} bookmaker) | "
                 f"modello: {c['model_probability']:.1%} vs mercato: {c['implied_probability']:.1%} "
-                f"| vantaggio: {edge_label}"
+                f"| vantaggio: {edge_label} | affidabilità: {c['reliability']}"
             )
+            print(f"      {c['explanation']}")
             sim = simulate_strategy(
                 STARTING_CAPITAL, TARGET_CAPITAL, c["real_odd"],
                 c["model_probability"], stake_fraction=1.0, n_simulations=10000,
@@ -339,16 +446,18 @@ def print_report(candidates):
                     f"obiettivo raggiunto in {len(progression)} vittorie consecutive"
                 )
 
+    legs_label = "Singola" if N_LEGS == 1 else f"Combinazioni da {N_LEGS} partite"
     print("\n" + "-" * 100)
-    print("OPZIONE B — Doppie che combinano due partite diverse nel tuo range")
+    print(f"OPZIONE B — {legs_label} nel tuo range di quota (solo affidabilità media/alta)")
     print("-" * 100)
-    doubles = find_combos_in_range(candidates, ODDS_MIN, ODDS_MAX, n_legs=2)
+    doubles = find_combos_in_range(candidates, ODDS_MIN, ODDS_MAX, n_legs=N_LEGS)
     if not doubles:
-        print(f"Nessuna doppia trovata con quota combinata tra {ODDS_MIN} e {ODDS_MAX} al momento.")
+        print(f"Nessuna combinazione da {N_LEGS} partite trovata con quota combinata tra {ODDS_MIN} e {ODDS_MAX} al momento.")
     else:
         for d in doubles:
             legs_desc = " + ".join(
-                f"{c['match']} ({c['market']} {c['outcome']} @ {c['real_odd']})" for c in d["legs"]
+                f"{c['match']} ({c['market']} {c['outcome']} @ {c['real_odd']}, affidabilità {c['reliability']})"
+                for c in d["legs"]
             )
             edge_label = f"+{d['combined_edge']:.1%}" if d["combined_edge"] > 0 else f"{d['combined_edge']:.1%}"
             print(f"  {legs_desc}")
