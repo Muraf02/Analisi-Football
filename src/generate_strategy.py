@@ -315,6 +315,13 @@ def find_combos_in_range(candidates, odds_min, odds_max, n_legs=2, max_results=5
             )
             pool = pool + extra[:max(0, pool_size - len(pool))]
 
+        print(
+            f"[TIMING][DEBUG combo] n_legs={n_legs} range={odds_min}-{odds_max} "
+            f"quota_ideale_per_gamba={ideal_low:.2f}-{ideal_high:.2f} "
+            f"(tolleranza {tol_low:.2f}-{tol_high:.2f}) -> "
+            f"{len(compatible)} candidati compatibili, pool finale di {len(pool)}"
+        )
+
     results = []
     for combo in combinations(pool, n_legs):
         matches_involved = {c["match"] for c in combo}
