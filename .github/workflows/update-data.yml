@@ -28,12 +28,6 @@ jobs:
           FOOTBALL_DATA_API_KEY: ${{ secrets.FOOTBALL_DATA_API_KEY }}
         run: python src/fetch_football_data.py
 
-      - name: Recupera i dati xG (Understat)
-        run: python src/fetch_understat.py
-        continue-on-error: true
-        # continue-on-error: se Understat cambia struttura o non risponde,
-        # non blocchiamo comunque l'aggiornamento dei dati principali sopra.
-
       - name: Salva i dati aggiornati nel progetto
         run: |
           git config --global user.name "github-actions[bot]"
