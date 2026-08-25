@@ -43,7 +43,7 @@ def run():
         for i, (code, info) in enumerate(leagues):
             print(f"\n{info['name']} ({code})...")
             try:
-                fetch_teams(code, conn)
+                fetch_teams(code, conn, season=season)
                 time.sleep(FOOTBALL_DATA_REQUEST_DELAY_SECONDS)
 
                 n = fetch_matches(code, conn, season=season)
