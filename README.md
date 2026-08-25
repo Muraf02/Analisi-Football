@@ -91,13 +91,37 @@ Dovresti vedere il conteggio partite per ciascuna delle 5 leghe.
 - Nessuna statistica avanzata (xG, formazioni dettagliate) — per questo
   serviranno le fonti aggiuntive (Understat) nella Fase 2
 
+## Fase 2: dati xG (Expected Goals) da Understat
+
+Aggiunge a ogni partita già presente nel database una stima della qualità
+delle occasioni create da ciascuna squadra (xG), molto più predittiva del
+solo risultato finale.
+
+**Come funziona nell'automazione GitHub**: è già incluso nel workflow
+`.github/workflows/update-data.yml` — non devi fare nulla, gira in automatico
+dopo il recupero di risultati e calendario, ogni 6 ore.
+
+**Nota importante**: Understat non ha un'API ufficiale, quindi i dati vengono
+letti direttamente dalla sua pagina web (scraping). Se in futuro Understat
+cambia la struttura del sito, questo passaggio potrebbe smettere di
+funzionare — per questo è configurato per *non bloccare* l'aggiornamento
+principale in caso di errore (`continue-on-error: true`).
+
+**Corrispondenza nomi squadre**: Understat e football-data.org a volte usano
+nomi diversi per la stessa squadra (es. "Inter" vs "FC Internazionale
+Milano"). Il file `src/team_name_mapping.py` gestisce questa corrispondenza
+con una mappatura manuale delle squadre principali più un sistema di
+riconoscimento automatico. Se una partita non viene abbinata correttamente,
+comparirà una segnalazione nel log (`logs/pipeline.log`, visibile anche
+nell'output del workflow su GitHub Actions) — a quel punto si può aggiungere
+una riga alla mappatura.
+
 ## Prossimi step (non ancora implementati)
 
-- **Fase 2**: integrazione xG/xGA da Understat (feature più predittive dei
-  soli gol)
 - **Fase 3**: integrazione quote bookmaker (The Odds API) per confronto
   probabilità modello vs mercato
 - **Fase 4**: feature engineering (forma, Elo rating, rolling stats)
 - **Fase 5**: modello predittivo (Poisson/Dixon-Coles + eventuale ML)
 - **Fase 6**: modulo di risk management e target (simulazioni Monte Carlo,
   Kelly frazionato)
+
