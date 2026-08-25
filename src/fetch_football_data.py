@@ -57,10 +57,14 @@ def _get(url, params=None):
     return resp.json()
 
 
-def fetch_teams(league_code, conn):
-    """Recupera e salva le squadre di una lega."""
+def fetch_teams(league_code, conn, season=None):
+    """Recupera e salva le squadre di una lega (di una specifica stagione,
+    se indicata — utile per includere anche squadre poi retrocesse)."""
     url = f"{FOOTBALL_DATA_BASE_URL}/competitions/{league_code}/teams"
-    data = _get(url)
+    params = {}
+    if season:
+        params["season"] = season
+    data = _get(url, params=params)
     teams = data.get("teams", [])
 
     cur = conn.cursor()
@@ -170,3 +174,4 @@ def run_full_update():
 
 if __name__ == "__main__":
     run_full_update()
+
