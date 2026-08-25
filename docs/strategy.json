@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-25T20:53:44.280591+00:00",
+  "generated_at": "2026-08-25T21:21:20.963220+00:00",
   "parameters": {
     "starting_capital": 20.0,
     "target_capital": 100.0,
@@ -21,12 +21,12 @@
       "implied_probability": 0.6329,
       "edge": 0.162,
       "simulation": {
-        "probability_reach_target": 0.4001,
-        "probability_bust": 0.5999,
+        "probability_reach_target": 0.3921,
+        "probability_bust": 0.6079,
         "probability_stuck_in_between": 0.0,
         "avg_bets_if_successful": 4.0,
         "median_final_capital": 0.0,
-        "mean_final_capital": 49.87
+        "mean_final_capital": 48.87
       },
       "progression": [
         {
@@ -79,12 +79,12 @@
       "implied_probability": 0.5714,
       "edge": 0.1252,
       "simulation": {
-        "probability_reach_target": 0.3413,
-        "probability_bust": 0.6587,
+        "probability_reach_target": 0.3359,
+        "probability_bust": 0.6641,
         "probability_stuck_in_between": 0.0,
         "avg_bets_if_successful": 3.0,
         "median_final_capital": 0.0,
-        "mean_final_capital": 36.58
+        "mean_final_capital": 36.0
       },
       "progression": [
         {
@@ -128,12 +128,12 @@
       "implied_probability": 0.5917,
       "edge": 0.1007,
       "simulation": {
-        "probability_reach_target": 0.2282,
-        "probability_bust": 0.7718,
+        "probability_reach_target": 0.2286,
+        "probability_bust": 0.7714,
         "probability_stuck_in_between": 0.0,
         "avg_bets_if_successful": 4.0,
         "median_final_capital": 0.0,
-        "mean_final_capital": 37.23
+        "mean_final_capital": 37.3
       },
       "progression": [
         {
@@ -186,12 +186,12 @@
       "implied_probability": 0.6135,
       "edge": 0.0992,
       "simulation": {
-        "probability_reach_target": 0.2563,
-        "probability_bust": 0.7437,
+        "probability_reach_target": 0.2582,
+        "probability_bust": 0.7418,
         "probability_stuck_in_between": 0.0,
         "avg_bets_if_successful": 4.0,
         "median_final_capital": 0.0,
-        "mean_final_capital": 36.19
+        "mean_final_capital": 36.45
       },
       "progression": [
         {
@@ -244,12 +244,12 @@
       "implied_probability": 0.5917,
       "edge": 0.0883,
       "simulation": {
-        "probability_reach_target": 0.2139,
-        "probability_bust": 0.7861,
+        "probability_reach_target": 0.2117,
+        "probability_bust": 0.7883,
         "probability_stuck_in_between": 0.0,
         "avg_bets_if_successful": 4.0,
         "median_final_capital": 0.0,
-        "mean_final_capital": 34.9
+        "mean_final_capital": 34.54
       },
       "progression": [
         {
@@ -324,12 +324,12 @@
       "combined_implied_probability": 0.5714,
       "combined_edge": 0.3697,
       "simulation": {
-        "probability_reach_target": 0.8329,
-        "probability_bust": 0.1671,
+        "probability_reach_target": 0.8353,
+        "probability_bust": 0.1647,
         "probability_stuck_in_between": 0.0,
         "avg_bets_if_successful": 3.0,
         "median_final_capital": 107.19,
-        "mean_final_capital": 89.28
+        "mean_final_capital": 89.53
       },
       "progression": [
         {
@@ -393,12 +393,12 @@
       "combined_implied_probability": 0.5952,
       "combined_edge": 0.2701,
       "simulation": {
-        "probability_reach_target": 0.5654,
-        "probability_bust": 0.4346,
+        "probability_reach_target": 0.5551,
+        "probability_bust": 0.4449,
         "probability_stuck_in_between": 0.0,
         "avg_bets_if_successful": 4.0,
         "median_final_capital": 159.32,
-        "mean_final_capital": 90.08
+        "mean_final_capital": 88.44
       },
       "progression": [
         {
@@ -471,12 +471,12 @@
       "combined_implied_probability": 0.6666,
       "combined_edge": 0.1862,
       "simulation": {
-        "probability_reach_target": 0.5355,
-        "probability_bust": 0.4645,
+        "probability_reach_target": 0.5212,
+        "probability_bust": 0.4788,
         "probability_stuck_in_between": 0.0,
         "avg_bets_if_successful": 4.0,
         "median_final_capital": 101.25,
-        "mean_final_capital": 54.22
+        "mean_final_capital": 52.77
       },
       "progression": [
         {
@@ -549,12 +549,12 @@
       "combined_implied_probability": 0.5926,
       "combined_edge": 0.1389,
       "simulation": {
-        "probability_reach_target": 0.2885,
-        "probability_bust": 0.7115,
+        "probability_reach_target": 0.2888,
+        "probability_bust": 0.7112,
         "probability_stuck_in_between": 0.0,
         "avg_bets_if_successful": 4.0,
         "median_final_capital": 0.0,
-        "mean_final_capital": 46.85
+        "mean_final_capital": 46.89
       },
       "progression": [
         {
@@ -627,12 +627,12 @@
       "combined_implied_probability": 0.5555,
       "combined_edge": 0.1306,
       "simulation": {
-        "probability_reach_target": 0.3143,
-        "probability_bust": 0.6857,
+        "probability_reach_target": 0.3218,
+        "probability_bust": 0.6782,
         "probability_stuck_in_between": 0.0,
         "avg_bets_if_successful": 3.0,
         "median_final_capital": 0.0,
-        "mean_final_capital": 36.66
+        "mean_final_capital": 37.53
       },
       "progression": [
         {
