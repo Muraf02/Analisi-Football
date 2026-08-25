@@ -1,0 +1,34 @@
+name: Recupera storico stagione precedente (una tantum)
+
+# Da avviare manualmente UNA VOLTA SOLA (o di nuovo in futuro solo se si
+# vuole aggiungere un'altra stagione storica)
+on:
+  workflow_dispatch:
+
+jobs:
+  backfill:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Scarica il codice del progetto
+        uses: actions/checkout@v4
+
+      - name: Prepara Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Installa le dipendenze
+        run: pip install -r requirements.txt
+
+      - name: Recupera lo storico
+        env:
+          FOOTBALL_DATA_API_KEY: ${{ secrets.FOOTBALL_DATA_API_KEY }}
+        run: python src/backfill_previous_season.py
+
+      - name: Salva i dati storici nel progetto
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/football.db
+          git diff --staged --quiet || git commit -m "Aggiunto storico stagione precedente"
+          git push
