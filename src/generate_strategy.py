@@ -266,28 +266,54 @@ def find_singles_in_range(candidates, odds_min, odds_max):
 
 
 def find_combos_in_range(candidates, odds_min, odds_max, n_legs=2, max_results=5,
-                          min_edge=0.0, pool_size=18, exclude_low_reliability=True):
+                          min_edge=0.0, pool_size=40, exclude_low_reliability=True):
     """
     Cerca combinazioni di N partite DIVERSE la cui quota combinata
     (prodotto delle singole quote) cade nel range desiderato.
 
-    IMPORTANTE — perché limitiamo il "pool" di candidati: controllare
-    TUTTE le combinazioni possibili tra centinaia di esiti diventa
-    computazionalmente impossibile già con 4-5 gambe (letteralmente
-    migliaia di miliardi di combinazioni). Invece, restringiamo la
-    ricerca ai `pool_size` candidati con il vantaggio stimato migliore
-    (e, di default, escludiamo quelli con affidabilità bassa — una
-    neopromossa con pochi dati non dovrebbe mai finire in una
-    combinazione, il rischio si moltiplicherebbe). Non è una ricerca
-    esaustiva su tutto lo scibile possibile, ma è quello che qualunque
-    sistema serio farebbe: cercare tra le opportunità migliori e più
-    affidabili, non tra tutte le combinazioni matematicamente esistenti.
+    IMPORTANTE — come scegliamo quali candidati considerare: non basta
+    prendere i candidati con il vantaggio migliore in assoluto — se hanno
+    tutti quote troppo alte (o troppo basse) rispetto all'obiettivo,
+    nessuna loro combinazione potrà mai cadere nel range desiderato
+    (es. range 2.5-3.0 con 2 gambe: combinare due quote da 2.7 ciascuna dà
+    una quota finale di ~7.3, troppo alta). Filtriamo quindi PRIMA ai
+    candidati con una quota individuale matematicamente compatibile con
+    l'obiettivo (vicina alla radice N-esima del range), e SOLO dopo
+    scegliamo tra questi quelli con il vantaggio migliore.
+
+    Anche qui: controllare TUTTE le combinazioni possibili tra centinaia
+    di esiti è computazionalmente impossibile già con 4-5 gambe. Restringiamo
+    quindi la ricerca ai `pool_size` candidati compatibili con il vantaggio
+    migliore (escludendo di default quelli con affidabilità bassa).
     """
     good_candidates = [c for c in candidates if c["edge"] > min_edge]
     if exclude_low_reliability:
         good_candidates = [c for c in good_candidates if c.get("reliability") != "bassa"]
-    good_candidates.sort(key=lambda c: -c["edge"])
-    pool = good_candidates[:pool_size]
+
+    if n_legs <= 1:
+        pool = sorted(good_candidates, key=lambda c: -c["edge"])[:pool_size]
+    else:
+        # Quota "ideale" per singola gamba: la radice n_legs-esima del range,
+        # con un margine di tolleranza (le gambe non devono avere per forza
+        # tutte la stessa quota, basta che il PRODOTTO cada nel range)
+        ideal_low = odds_min ** (1 / n_legs)
+        ideal_high = odds_max ** (1 / n_legs)
+        tol_low = max(1.01, ideal_low / 1.7)
+        tol_high = ideal_high * 1.7
+
+        compatible = [c for c in good_candidates if tol_low <= c["real_odd"] <= tol_high]
+        compatible.sort(key=lambda c: -c["edge"])
+        pool = compatible[:pool_size]
+
+        # Fallback: se troppo pochi candidati compatibili, allarghiamo
+        # includendo anche altri (meglio provare che restituire nulla)
+        if len(pool) < n_legs * 2:
+            used_ids = {id(c) for c in pool}
+            extra = sorted(
+                [c for c in good_candidates if id(c) not in used_ids],
+                key=lambda c: -c["edge"],
+            )
+            pool = pool + extra[:max(0, pool_size - len(pool))]
 
     results = []
     for combo in combinations(pool, n_legs):
