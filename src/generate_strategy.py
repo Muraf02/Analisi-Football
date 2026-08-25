@@ -197,7 +197,42 @@ def find_combos_in_range(candidates, odds_min, odds_max, n_legs=2, max_results=5
     return results[:max_results]
 
 
-def print_report(candidates):
+def winning_progression(starting_capital, target_capital, odd, stake_fraction=1.0, max_steps=15):
+    """
+    Calcola il percorso concreto SE VINCI SEMPRE (il caso migliore possibile,
+    non una previsione) — quanto punti, quanto vinci, quanto capitale hai
+    dopo ogni vittoria, e quanto ti manca all'obiettivo.
+
+    Non è una previsione di quello che succederà (per quello serve
+    simulate_strategy, che tiene conto anche delle sconfitte) — è una
+    fotografia concreta e comprensibile di "cosa vince ogni singolo passo".
+    """
+    steps = []
+    capital = starting_capital
+
+    for step_num in range(1, max_steps + 1):
+        if capital >= target_capital:
+            break
+        stake = round(capital * stake_fraction, 2)
+        winnings = round(stake * (odd - 1), 2)
+        capital_after = round(capital + winnings, 2)
+        remaining = round(max(target_capital - capital_after, 0), 2)
+
+        steps.append({
+            "step": step_num,
+            "capital_before": round(capital, 2),
+            "stake": stake,
+            "winnings": winnings,
+            "capital_after": capital_after,
+            "remaining_to_target": remaining,
+            "target_reached": capital_after >= target_capital,
+        })
+
+        capital = capital_after
+        if capital >= target_capital:
+            break
+
+    return steps
     print("=" * 100)
     print(f"STRATEGIA: {STARTING_CAPITAL}€ -> {TARGET_CAPITAL}€, range quota {ODDS_MIN}-{ODDS_MAX}")
     print("=" * 100)
@@ -229,6 +264,18 @@ def print_report(candidates):
                 f"      -> Con questa quota ripetuta: successo {sim['probability_reach_target']:.1%}, "
                 f"rovina {sim['probability_bust']:.1%}"
             )
+            progression = winning_progression(STARTING_CAPITAL, TARGET_CAPITAL, c["real_odd"])
+            print(f"      -> Se vinci SUBITO questa scommessa (puntando tutto il capitale):")
+            first = progression[0]
+            print(
+                f"         Punti {first['stake']}€ -> se vinci, incassi {first['winnings']}€ di vincita, "
+                f"capitale diventa {first['capital_after']}€ (mancano {first['remaining_to_target']}€ all'obiettivo)"
+            )
+            if len(progression) > 1:
+                print(
+                    f"         Se vincessi SEMPRE (caso migliore, non una previsione): "
+                    f"obiettivo raggiunto in {len(progression)} vittorie consecutive"
+                )
 
     print("\n" + "-" * 100)
     print("OPZIONE B — Doppie che combinano due partite diverse nel tuo range")
@@ -255,6 +302,13 @@ def print_report(candidates):
             print(
                 f"      -> Con questa combinazione ripetuta: successo {sim['probability_reach_target']:.1%}, "
                 f"rovina {sim['probability_bust']:.1%}"
+            )
+            progression = winning_progression(STARTING_CAPITAL, TARGET_CAPITAL, d["combined_odd"])
+            first = progression[0]
+            print(
+                f"      -> Se vinci SUBITO questa doppia: punti {first['stake']}€ -> "
+                f"incassi {first['winnings']}€, capitale diventa {first['capital_after']}€ "
+                f"(mancano {first['remaining_to_target']}€ all'obiettivo)"
             )
 
     print("\n" + "=" * 100)
