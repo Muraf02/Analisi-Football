@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="it">
 <head>
@@ -372,6 +373,7 @@
   .status-log .line.ok { color: var(--teal); }
   .status-log .line.err { color: var(--red); }
   .status-log .line.run { color: var(--gold); }
+  .status-log .line a { color: var(--gold); font-weight: 700; }
 
   .help-text {
     font-size: 12px;
@@ -475,6 +477,18 @@ function logStatus(msg, cls) {
   log.prepend(line);
 }
 
+function logStatusHtml(htmlMsg, cls) {
+  // Come logStatus, ma permette un link cliccabile dentro il messaggio.
+  // Usata solo con contenuto che costruiamo noi (link restituiti dalla
+  // API di GitHub), mai con testo digitato dall'utente.
+  const log = document.getElementById('status-log');
+  const line = document.createElement('div');
+  line.className = 'line' + (cls ? ' ' + cls : '');
+  const time = new Date().toLocaleTimeString('it-IT', {hour:'2-digit', minute:'2-digit', second:'2-digit'});
+  line.innerHTML = `[${time}] ${htmlMsg}`;
+  log.prepend(line);
+}
+
 function setButtonBusy(btnId, busy, labelWhenIdle) {
   const btn = document.getElementById(btnId);
   if (!btn) return;
@@ -523,6 +537,8 @@ async function waitForRunCompletion(filename) {
   // Aspetto qualche secondo che GitHub registri la nuova esecuzione
   await new Promise(r => setTimeout(r, 4000));
 
+  let linkShown = false;
+
   for (let attempt = 0; attempt < 90; attempt++) {  // fino a ~9 minuti di attesa
     const res = await fetch(`${API_BASE}/actions/workflows/${filename}/runs?per_page=1`, {
       headers: {
@@ -533,6 +549,11 @@ async function waitForRunCompletion(filename) {
     if (!res.ok) throw new Error(`Errore nel controllare lo stato (${res.status})`);
     const data = await res.json();
     const run = data.workflow_runs && data.workflow_runs[0];
+
+    if (run && !linkShown && run.html_url) {
+      logStatusHtml(`Puoi seguirla direttamente qui: <a href="${run.html_url}" target="_blank" rel="noopener">apri su GitHub Actions ↗</a>`, 'run');
+      linkShown = true;
+    }
 
     if (run && run.status === 'completed') {
       return run.conclusion;  // 'success', 'failure', ecc.
