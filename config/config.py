@@ -24,7 +24,7 @@ ODDS_API_LEAGUES = {
 }
 ODDS_API_BASE_URL = "https://api.the-odds-api.com/v4"
 ODDS_API_REGIONS = "eu"  # bookmaker europei (include i principali operatori italiani/europei)
-ODDS_API_MARKETS = "h2h,totals"  # h2h = 1X2, totals = Over/Under
+ODDS_API_MARKETS = "h2h,totals,btts,double_chance"  # 1X2, Over/Under, GG/NG, doppia chance
 
 # --- LEGHE DA MONITORARE ---
 # Codici competizione di football-data.org (v4)
@@ -58,4 +58,3 @@ FOOTBALL_DATA_REQUEST_DELAY_SECONDS = 7
 # --- LOGGING ---
 LOG_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "logs")
 LOG_FILE = os.path.join(LOG_DIR, "pipeline.log")
-
