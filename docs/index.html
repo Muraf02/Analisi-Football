@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Analisi Football — Strategia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0B1F17;
+    --surface: #12271D;
+    --surface-2: #17301F   ;
+    --line: #23402E;
+    --text: #F1EDE4;
+    --muted: #8AA394;
+    --gold: #D4A64A;
+    --gold-dim: #8A7238;
+    --teal: #3FA796;
+    --red: #C1483D;
+    --pitch-line: rgba(241,237,228,0.06);
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background:
+      repeating-linear-gradient(0deg, transparent, transparent 79px, var(--pitch-line) 79px, var(--pitch-line) 80px),
+      var(--bg);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    line-height: 1.5;
+    padding-bottom: 80px;
+  }
+
+  .wrap { max-width: 920px; margin: 0 auto; padding: 0 20px; }
+
+  header.hero {
+    padding: 56px 20px 40px;
+    text-align: center;
+    border-bottom: 1px solid var(--line);
+    margin-bottom: 40px;
+  }
+
+  .eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 14px;
+  }
+
+  h1 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(32px, 6vw, 52px);
+    font-weight: 700;
+    margin: 0 0 20px;
+    letter-spacing: -0.01em;
+  }
+
+  .params-row {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  .param-pill {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 8px 18px;
+    font-size: 14px;
+  }
+  .param-pill b { color: var(--gold); font-weight: 700; }
+
+  .meta-line {
+    margin-top: 18px;
+    font-size: 13px;
+    color: var(--muted);
+  }
+
+  section { margin-bottom: 56px; }
+
+  .section-head {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .section-head .tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--bg);
+    background: var(--gold);
+    padding: 3px 9px;
+    border-radius: 4px;
+    font-weight: 700;
+  }
+
+  .section-head h2 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 22px;
+    margin: 0;
+    font-weight: 600;
+  }
+
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 22px 24px;
+    margin-bottom: 16px;
+  }
+
+  .card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+  }
+
+  .match-info .league {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 4px;
+  }
+
+  .match-info .teams {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+  }
+
+  .match-info .date { font-size: 13px; color: var(--muted); margin-top: 2px; }
+
+  .odd-box {
+    text-align: center;
+    background: var(--surface-2);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 8px 16px;
+    min-width: 90px;
+  }
+  .odd-box .val {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--gold);
+  }
+  .odd-box .label { font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
+
+  .vantage {
+    margin: 18px 0;
+  }
+  .vantage-labels {
+    display: flex;
+    justify-content: space-between;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    margin-bottom: 6px;
+    color: var(--muted);
+  }
+  .vantage-bar {
+    position: relative;
+    height: 10px;
+    background: var(--surface-2);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  .vantage-bar .market {
+    position: absolute;
+    top: 0; left: 0; bottom: 0;
+    background: var(--line);
+  }
+  .vantage-bar .model {
+    position: absolute;
+    top: 0; left: 0; bottom: 0;
+    background: var(--gold);
+  }
+  .edge-badge {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 6px;
+    margin-top: 8px;
+  }
+  .edge-pos { background: rgba(63,167,150,0.15); color: var(--teal); }
+  .edge-neg { background: rgba(193,72,61,0.15); color: var(--red); }
+
+  .stats-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 12px;
+    margin-top: 18px;
+    padding-top: 16px;
+    border-top: 1px dashed var(--line);
+  }
+  .stat .num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 20px;
+    font-weight: 700;
+  }
+  .stat .cap { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; }
+  .stat.success .num { color: var(--teal); }
+  .stat.bust .num { color: var(--red); }
+
+  .progression-line {
+    margin-top: 14px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: var(--muted);
+    background: var(--surface-2);
+    border-radius: 8px;
+    padding: 10px 14px;
+  }
+  .progression-line b { color: var(--text); }
+
+  .legs-list {
+    font-size: 14px;
+    color: var(--muted);
+    margin: 10px 0 0;
+    padding-left: 18px;
+  }
+  .legs-list li { margin-bottom: 4px; }
+  .legs-list b { color: var(--text); }
+
+  .empty-state {
+    color: var(--muted);
+    font-style: italic;
+    padding: 20px;
+    text-align: center;
+    border: 1px dashed var(--line);
+    border-radius: 10px;
+  }
+
+  footer {
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 24px 20px;
+    font-size: 13px;
+    color: var(--muted);
+    border-top: 1px solid var(--line);
+    text-align: center;
+  }
+
+  #loading {
+    text-align: center;
+    padding: 80px 20px;
+    color: var(--muted);
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  @media (max-width: 560px) {
+    .card-top { flex-direction: column; }
+    .odd-box { align-self: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="eyebrow">Analisi Football · Dixon-Coles</div>
+  <h1>La tua strategia</h1>
+  <div class="params-row" id="params-row"></div>
+  <div class="meta-line" id="meta-line"></div>
+</header>
+
+<div class="wrap" id="content">
+  <div id="loading">caricamento dati...</div>
+</div>
+
+<footer>
+  Un vantaggio stimato positivo significa che il modello vede quella probabilità
+  come più alta di quanto implichi la quota — non è una garanzia di vincita.
+  Il modello può sbagliare.
+</footer>
+
+<script>
+async function load() {
+  const res = await fetch('strategy.json?_=' + Date.now());
+  const data = await res.json();
+
+  const p = data.parameters;
+  document.getElementById('params-row').innerHTML = `
+    <div class="param-pill"><b>${p.starting_capital}€</b> → <b>${p.target_capital}€</b></div>
+    <div class="param-pill">quota <b>${p.odds_min}–${p.odds_max}</b></div>
+  `;
+  const genDate = new Date(data.generated_at);
+  document.getElementById('meta-line').textContent =
+    `Aggiornato il ${genDate.toLocaleDateString('it-IT')} alle ${genDate.toLocaleTimeString('it-IT', {hour:'2-digit', minute:'2-digit'})} · ` +
+    `${data.total_candidates} esiti confrontati, ${data.positive_edge_count} con vantaggio positivo`;
+
+  const content = document.getElementById('content');
+  content.innerHTML = '';
+
+  content.appendChild(renderSection('A', 'Singole nel tuo range di quota', data.singles, renderSingle));
+  content.appendChild(renderSection('B', 'Doppie combinate', data.doubles, renderDouble));
+}
+
+function renderSection(tag, title, items, renderFn) {
+  const section = document.createElement('section');
+  const head = document.createElement('div');
+  head.className = 'section-head';
+  head.innerHTML = `<span class="tag">${tag}</span><h2>${title}</h2>`;
+  section.appendChild(head);
+
+  if (!items || items.length === 0) {
+    const empty = document.createElement('div');
+    empty.className = 'empty-state';
+    empty.textContent = 'Nessuna proposta trovata in questo range al momento.';
+    section.appendChild(empty);
+  } else {
+    items.forEach(item => section.appendChild(renderFn(item)));
+  }
+  return section;
+}
+
+function edgeBadge(edge) {
+  const pct = (edge * 100).toFixed(1);
+  const cls = edge > 0 ? 'edge-pos' : 'edge-neg';
+  const sign = edge > 0 ? '+' : '';
+  return `<span class="edge-badge ${cls}">vantaggio ${sign}${pct}%</span>`;
+}
+
+function vantageBar(modelProb, marketProb) {
+  const max = Math.max(modelProb, marketProb, 0.01);
+  return `
+    <div class="vantage">
+      <div class="vantage-labels">
+        <span>Mercato ${(marketProb*100).toFixed(1)}%</span>
+        <span>Modello ${(modelProb*100).toFixed(1)}%</span>
+      </div>
+      <div class="vantage-bar">
+        <div class="market" style="width:${(marketProb/max)*100}%"></div>
+        <div class="model" style="width:${(modelProb/max)*100}%; opacity:0.85;"></div>
+      </div>
+    </div>`;
+}
+
+function statsBlock(sim) {
+  return `
+    <div class="stats-row">
+      <div class="stat success"><div class="num">${(sim.probability_reach_target*100).toFixed(1)}%</div><div class="cap">Successo</div></div>
+      <div class="stat bust"><div class="num">${(sim.probability_bust*100).toFixed(1)}%</div><div class="cap">Rovina</div></div>
+      <div class="stat"><div class="num">${sim.avg_bets_if_successful ?? '—'}</div><div class="cap">Puntate medie</div></div>
+    </div>`;
+}
+
+function progressionLine(progression) {
+  if (!progression || progression.length === 0) return '';
+  const first = progression[0];
+  return `
+    <div class="progression-line">
+      Se vinci subito: punti <b>${first.stake}€</b> → incassi <b>${first.winnings}€</b>,
+      capitale <b>${first.capital_after}€</b> (mancano <b>${first.remaining_to_target}€</b>)
+      · vincendo sempre: obiettivo in <b>${progression.length}</b> giocate
+    </div>`;
+}
+
+function renderSingle(c) {
+  const card = document.createElement('div');
+  card.className = 'card';
+  card.innerHTML = `
+    <div class="card-top">
+      <div class="match-info">
+        <div class="league">${c.league} · ${c.market.toUpperCase()} ${c.outcome}</div>
+        <div class="teams">${c.match}</div>
+        <div class="date">${c.date} · ${c.n_bookmakers} bookmaker</div>
+      </div>
+      <div class="odd-box">
+        <div class="val">${c.real_odd}</div>
+        <div class="label">quota</div>
+      </div>
+    </div>
+    ${vantageBar(c.model_probability, c.implied_probability)}
+    ${edgeBadge(c.edge)}
+    ${statsBlock(c.simulation)}
+    ${progressionLine(c.progression)}
+  `;
+  return card;
+}
+
+function renderDouble(d) {
+  const card = document.createElement('div');
+  card.className = 'card';
+  const legsHtml = d.legs.map(l =>
+    `<li><b>${l.match}</b> — ${l.market.toUpperCase()} ${l.outcome} @ ${l.real_odd}</li>`
+  ).join('');
+  card.innerHTML = `
+    <div class="card-top">
+      <div class="match-info">
+        <div class="league">Doppia combinata</div>
+        <ul class="legs-list">${legsHtml}</ul>
+      </div>
+      <div class="odd-box">
+        <div class="val">${d.combined_odd}</div>
+        <div class="label">quota combinata</div>
+      </div>
+    </div>
+    ${vantageBar(d.combined_true_probability, d.combined_implied_probability)}
+    ${edgeBadge(d.combined_edge)}
+    ${statsBlock(d.simulation)}
+    ${progressionLine(d.progression)}
+  `;
+  return card;
+}
+
+load().catch(err => {
+  document.getElementById('content').innerHTML =
+    `<div class="empty-state">Impossibile caricare i dati (${err.message}). Verifica che strategy.json esista nella cartella docs/.</div>`;
+});
+</script>
+
+</body>
+</html>
