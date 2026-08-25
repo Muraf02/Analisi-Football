@@ -1,0 +1,36 @@
+name: Recupera quote bookmaker
+
+# Da avviare manualmente quando vuoi vedere le quote aggiornate.
+# Il piano gratuito di the-odds-api.com da' 500 crediti/mese, e ogni
+# esecuzione ne consuma circa 10 (5 leghe x 2 mercati) — quindi puoi
+# lanciarlo tranquillamente diverse volte a settimana senza preoccuparti.
+on:
+  workflow_dispatch:
+
+jobs:
+  fetch-odds:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Scarica il codice del progetto
+        uses: actions/checkout@v4
+
+      - name: Prepara Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Installa le dipendenze
+        run: pip install -r requirements.txt
+
+      - name: Recupera le quote
+        env:
+          ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
+        run: python src/fetch_odds.py
+
+      - name: Salva le quote nel progetto
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/football.db
+          git diff --staged --quiet || git commit -m "Aggiornate quote bookmaker"
+          git push
