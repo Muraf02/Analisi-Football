@@ -416,6 +416,7 @@
       <div><label>Obiettivo (€)</label><input type="number" id="input-target" value="100" min="1" step="1"></div>
       <div><label>Quota minima</label><input type="number" id="input-odds-min" value="1.5" min="1.01" step="0.01"></div>
       <div><label>Quota massima</label><input type="number" id="input-odds-max" value="1.8" min="1.01" step="0.01"></div>
+      <div><label>N° partite da combinare</label><input type="number" id="input-n-legs" value="2" min="1" max="5" step="1"></div>
     </div>
 
     <div class="actions-grid">
@@ -489,15 +490,22 @@ async function dispatchWorkflow(filename, inputs) {
   if (!REPO_NAME) {
     throw new Error('Non riesco a capire il nome del repository dall\'indirizzo della pagina.');
   }
-  const res = await fetch(`${API_BASE}/actions/workflows/${filename}/dispatches`, {
-    method: 'POST',
-    headers: {
-      'Authorization': `Bearer ${token}`,
-      'Accept': 'application/vnd.github+json',
-      'X-GitHub-Api-Version': '2022-11-28',
-    },
-    body: JSON.stringify({ ref: 'main', inputs: inputs || {} }),
-  });
+  let res;
+  try {
+    res = await fetch(`${API_BASE}/actions/workflows/${filename}/dispatches`, {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Accept': 'application/vnd.github+json',
+      },
+      body: JSON.stringify({ ref: 'main', inputs: inputs || {} }),
+    });
+  } catch (networkErr) {
+    throw new Error(
+      'Impossibile contattare GitHub (blocco di rete/CORS). Controlla la connessione, ' +
+      'disattiva eventuali blocchi pubblicitari per questa pagina, e riprova.'
+    );
+  }
   if (!res.ok) {
     if (res.status === 401 || res.status === 403) {
       throw new Error('Token non valido o senza i permessi giusti (serve "Actions: Read and write").');
@@ -565,6 +573,7 @@ async function runStrategyWorkflow() {
     target_capital: document.getElementById('input-target').value,
     odds_min: document.getElementById('input-odds-min').value,
     odds_max: document.getElementById('input-odds-max').value,
+    n_legs: document.getElementById('input-n-legs').value,
   };
   const conclusion = await runWorkflow('generate-strategy.yml', inputs, 'btn-strategy');
   if (conclusion === 'success') {
@@ -622,6 +631,21 @@ function edgeBadge(edge) {
   return `<span class="edge-badge ${cls}">vantaggio ${sign}${pct}%</span>`;
 }
 
+function reliabilityBadge(reliability) {
+  const map = {
+    'alta': { cls: 'edge-pos', label: '✓ affidabilità alta' },
+    'media': { cls: '', label: '⚠ affidabilità media' },
+    'bassa': { cls: 'edge-neg', label: '⚠ affidabilità bassa' },
+  };
+  const info = map[reliability] || map['media'];
+  return `<span class="edge-badge ${info.cls}" style="margin-left:8px;">${info.label}</span>`;
+}
+
+function explanationBox(text) {
+  if (!text) return '';
+  return `<div class="progression-line" style="margin-top:10px; color: var(--text); opacity:0.85;">${text}</div>`;
+}
+
 function vantageBar(modelProb, marketProb) {
   const max = Math.max(modelProb, marketProb, 0.01);
   return `
@@ -673,9 +697,10 @@ function renderSingle(c) {
       </div>
     </div>
     ${vantageBar(c.model_probability, c.implied_probability)}
-    ${edgeBadge(c.edge)}
+    ${edgeBadge(c.edge)}${reliabilityBadge(c.reliability)}
     ${statsBlock(c.simulation)}
     ${progressionLine(c.progression)}
+    ${explanationBox(c.explanation)}
   `;
   return card;
 }
@@ -684,12 +709,12 @@ function renderDouble(d) {
   const card = document.createElement('div');
   card.className = 'card';
   const legsHtml = d.legs.map(l =>
-    `<li><b>${l.match}</b> — ${l.market.toUpperCase()} ${l.outcome} @ ${l.real_odd}</li>`
+    `<li><b>${l.match}</b> — ${l.market.toUpperCase()} ${l.outcome} @ ${l.real_odd} <i>(affidabilità ${l.reliability})</i></li>`
   ).join('');
   card.innerHTML = `
     <div class="card-top">
       <div class="match-info">
-        <div class="league">Doppia combinata</div>
+        <div class="league">Combinazione (${d.legs.length} partite)</div>
         <ul class="legs-list">${legsHtml}</ul>
       </div>
       <div class="odd-box">
