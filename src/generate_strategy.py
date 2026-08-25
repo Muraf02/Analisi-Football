@@ -206,7 +206,9 @@ def build_candidates(conn):
             f"{len(set([m['home_team'] for m in matches] + [m['away_team'] for m in matches]))} squadre diverse, "
             f"{len(upcoming)} partite in programma | "
             f"caricamento={t_load-t_league_start:.2f}s addestramento={t_fit-t_load:.2f}s "
-            f"prossima_giornata={t_upcoming-t_fit:.2f}s"
+            f"prossima_giornata={t_upcoming-t_fit:.2f}s | "
+            f"convergenza={model.fit_diagnostics['converged']} "
+            f"iterazioni={model.fit_diagnostics['iterations']}"
         )
 
         for m in upcoming:
