@@ -1,0 +1,37 @@
+name: Aggiorna dati calcio
+
+# Quando si esegue automaticamente:
+on:
+  schedule:
+    # Ogni 6 ore (orario UTC). GitHub potrebbe ritardare di qualche minuto, è normale.
+    - cron: '0 */6 * * *'
+  # Permette anche di lanciarlo manualmente da GitHub (utile per il primo test)
+  workflow_dispatch:
+
+jobs:
+  update-data:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Scarica il codice del progetto
+        uses: actions/checkout@v4
+
+      - name: Prepara Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Installa le dipendenze
+        run: pip install -r requirements.txt
+
+      - name: Esegui l'aggiornamento dati
+        env:
+          FOOTBALL_DATA_API_KEY: ${{ secrets.FOOTBALL_DATA_API_KEY }}
+        run: python src/fetch_football_data.py
+
+      - name: Salva i dati aggiornati nel progetto
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/football.db
+          git diff --staged --quiet || git commit -m "Aggiornamento dati automatico"
+          git push
