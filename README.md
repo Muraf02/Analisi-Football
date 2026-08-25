@@ -91,37 +91,33 @@ Dovresti vedere il conteggio partite per ciascuna delle 5 leghe.
 - Nessuna statistica avanzata (xG, formazioni dettagliate) — per questo
   serviranno le fonti aggiuntive (Understat) nella Fase 2
 
-## Fase 2: dati xG (Expected Goals) da Understat
+## Fase 2: dati xG (Expected Goals) — al momento non attiva
 
-Aggiunge a ogni partita già presente nel database una stima della qualità
-delle occasioni create da ciascuna squadra (xG), molto più predittiva del
-solo risultato finale.
+Avevamo tentato l'integrazione con Understat (gratuita), ma il sito blocca le
+richieste automatiche con sistemi anti-bot — non aggiriamo queste protezioni,
+quindi questa via è stata abbandonata.
 
-**Come funziona nell'automazione GitHub**: è già incluso nel workflow
-`.github/workflows/update-data.yml` — non devi fare nulla, gira in automatico
-dopo il recupero di risultati e calendario, ogni 6 ore.
+**Decisione presa**: procediamo senza xG per ora. Il modello statistico
+(Poisson/Dixon-Coles, Fase 5) funziona bene anche sui soli gol segnati/subiti
+— è lo standard consolidato nell'analisi calcistica da decenni, l'xG è un
+miglioramento ma non un requisito.
 
-**Nota importante**: Understat non ha un'API ufficiale, quindi i dati vengono
-letti direttamente dalla sua pagina web (scraping). Se in futuro Understat
-cambia la struttura del sito, questo passaggio potrebbe smettere di
-funzionare — per questo è configurato per *non bloccare* l'aggiornamento
-principale in caso di errore (`continue-on-error: true`).
+**Se in futuro si vuole aggiungere l'xG**: le opzioni valutate sono servizi a
+pagamento con dati legittimi (Sportmonks da ~29€/mese + add-on xG, o
+TheStatsAPI da $50/mese con xG incluso, entrambi con prova gratuita). Il
+codice del progetto è strutturato in modo che aggiungerlo in un secondo
+momento non richieda di rifare nulla di già costruito — la tabella
+`match_stats` nel database è già pronta ad accoglierlo.
 
-**Corrispondenza nomi squadre**: Understat e football-data.org a volte usano
-nomi diversi per la stessa squadra (es. "Inter" vs "FC Internazionale
-Milano"). Il file `src/team_name_mapping.py` gestisce questa corrispondenza
-con una mappatura manuale delle squadre principali più un sistema di
-riconoscimento automatico. Se una partita non viene abbinata correttamente,
-comparirà una segnalazione nel log (`logs/pipeline.log`, visibile anche
-nell'output del workflow su GitHub Actions) — a quel punto si può aggiungere
-una riga alla mappatura.
+I file `src/fetch_understat.py` e `src/team_name_mapping.py` restano nel
+progetto ma non fanno parte dell'automazione attiva (non sono richiamati da
+`update-data.yml`).
 
-## Prossimi step (non ancora implementati)
+## Prossimi step
 
 - **Fase 3**: integrazione quote bookmaker (The Odds API) per confronto
   probabilità modello vs mercato
 - **Fase 4**: feature engineering (forma, Elo rating, rolling stats)
-- **Fase 5**: modello predittivo (Poisson/Dixon-Coles + eventuale ML)
+- **Fase 5**: modello predittivo (Poisson/Dixon-Coles)
 - **Fase 6**: modulo di risk management e target (simulazioni Monte Carlo,
   Kelly frazionato)
-
