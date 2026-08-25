@@ -235,6 +235,65 @@ def winning_progression(starting_capital, target_capital, odd, stake_fraction=1.
     return steps
 
 
+def build_json_output(candidates):
+    """
+    Prepara gli stessi risultati del report testuale, ma in formato JSON,
+    così la pagina web (docs/index.html) può leggerli e mostrarli con
+    un'interfaccia curata invece del testo grezzo dei log.
+    """
+    singles = find_singles_in_range(candidates, ODDS_MIN, ODDS_MAX)[:5]
+    doubles = find_combos_in_range(candidates, ODDS_MIN, ODDS_MAX, n_legs=2)
+
+    singles_out = []
+    for c in singles:
+        sim = simulate_strategy(
+            STARTING_CAPITAL, TARGET_CAPITAL, c["real_odd"],
+            c["model_probability"], stake_fraction=1.0, n_simulations=10000,
+        )
+        progression = winning_progression(STARTING_CAPITAL, TARGET_CAPITAL, c["real_odd"])
+        singles_out.append({**c, "simulation": sim, "progression": progression})
+
+    doubles_out = []
+    for d in doubles:
+        sim = simulate_strategy(
+            STARTING_CAPITAL, TARGET_CAPITAL, d["combined_odd"],
+            d["combined_true_probability"], stake_fraction=1.0, n_simulations=10000,
+        )
+        progression = winning_progression(STARTING_CAPITAL, TARGET_CAPITAL, d["combined_odd"])
+        doubles_out.append({
+            "legs": list(d["legs"]),
+            "combined_odd": d["combined_odd"],
+            "combined_true_probability": d["combined_true_probability"],
+            "combined_implied_probability": d["combined_implied_probability"],
+            "combined_edge": d["combined_edge"],
+            "simulation": sim,
+            "progression": progression,
+        })
+
+    return {
+        "generated_at": datetime.now(timezone.utc).isoformat(),
+        "parameters": {
+            "starting_capital": STARTING_CAPITAL,
+            "target_capital": TARGET_CAPITAL,
+            "odds_min": ODDS_MIN,
+            "odds_max": ODDS_MAX,
+        },
+        "total_candidates": len(candidates),
+        "positive_edge_count": len([c for c in candidates if c["edge"] > 0]),
+        "singles": singles_out,
+        "doubles": doubles_out,
+    }
+
+
+def save_json_output(candidates, path="docs/strategy.json"):
+    import json
+    output = build_json_output(candidates)
+    os.makedirs(os.path.dirname(path), exist_ok=True)
+    with open(path, "w", encoding="utf-8") as f:
+        json.dump(output, f, indent=2, ensure_ascii=False)
+    print(f"\nRisultati salvati anche in formato web: {path}")
+
+
 def print_report(candidates):
     print("=" * 100)
     print(f"STRATEGIA: {STARTING_CAPITAL}€ -> {TARGET_CAPITAL}€, range quota {ODDS_MIN}-{ODDS_MAX}")
@@ -328,6 +387,7 @@ def run():
     try:
         candidates = build_candidates(conn)
         print_report(candidates)
+        save_json_output(candidates)
     finally:
         conn.close()
 
