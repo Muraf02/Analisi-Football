@@ -124,9 +124,8 @@ def match_odds_to_database(league_code, events, conn):
         for bookmaker in event.get("bookmakers", []):
             bookmaker_name = bookmaker["key"]
             for market in bookmaker.get("markets", []):
-                market_key = market["key"]  # 'h2h' o 'totals'
+                market_key = market["key"]
                 for outcome in market.get("outcomes", []):
-                    # Normalizziamo il nome dell'esito in un formato semplice
                     if market_key == "h2h":
                         if outcome["name"] == home_team:
                             outcome_label = "1"
@@ -135,12 +134,35 @@ def match_odds_to_database(league_code, events, conn):
                         else:
                             outcome_label = "X"
                         market_label = "1x2"
+
                     elif market_key == "totals":
                         point = outcome.get("point", "")
                         outcome_label = f"{outcome['name'].lower()}_{point}"
                         market_label = "over_under"
+
+                    elif market_key == "btts":
+                        # The Odds API usa 'Yes'/'No' per Both Teams To Score
+                        outcome_label = "yes" if outcome["name"].lower() == "yes" else "no"
+                        market_label = "btts"
+
+                    elif market_key == "double_chance":
+                        # The Odds API usa nomi tipo 'Team A or Draw', 'Team A or Team B'
+                        name = outcome["name"]
+                        has_home = home_team in name
+                        has_away = away_team in name
+                        has_draw = "draw" in name.lower()
+                        if has_home and has_draw:
+                            outcome_label = "1X"
+                        elif has_away and has_draw:
+                            outcome_label = "X2"
+                        elif has_home and has_away:
+                            outcome_label = "12"
+                        else:
+                            continue  # formato inatteso, salto per sicurezza
+                        market_label = "double_chance"
+
                     else:
-                        continue
+                        continue  # mercato non ancora gestito
 
                     cur.execute(
                         """
