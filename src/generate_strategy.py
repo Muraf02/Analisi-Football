@@ -19,6 +19,7 @@ Uso:
 
 import sys
 import os
+import time
 from datetime import datetime, timezone, timedelta
 from itertools import combinations
 
@@ -179,7 +180,11 @@ def build_candidates(conn):
     all_candidates = []
 
     for code, info in LEAGUES.items():
+        t_league_start = time.time()
+
         matches = load_finished_matches(code, conn)
+        t_load = time.time()
+
         if len(matches) < MIN_MATCHES_REQUIRED:
             print(f"[{info['name']}] Dati storici insufficienti, salto questa lega.")
             continue
@@ -190,9 +195,19 @@ def build_candidates(conn):
         except Exception as e:
             print(f"[{info['name']}] Errore addestramento modello: {e}")
             continue
+        t_fit = time.time()
 
         team_counts = _team_appearance_counts(matches)
         upcoming = get_upcoming_matches_with_info(code, conn)
+        t_upcoming = time.time()
+
+        print(
+            f"[TIMING] {info['name']}: {len(matches)} partite storiche, "
+            f"{len(set([m['home_team'] for m in matches] + [m['away_team'] for m in matches]))} squadre diverse, "
+            f"{len(upcoming)} partite in programma | "
+            f"caricamento={t_load-t_league_start:.2f}s addestramento={t_fit-t_load:.2f}s "
+            f"prossima_giornata={t_upcoming-t_fit:.2f}s"
+        )
 
         for m in upcoming:
             real_odds_for_match = real_odds_by_match.get(m["match_id"])
@@ -494,9 +509,19 @@ def print_report(candidates):
 def run():
     conn = get_connection()
     try:
+        t0 = time.time()
         candidates = build_candidates(conn)
+        t1 = time.time()
+        print(f"\n[TIMING] build_candidates totale: {t1-t0:.2f}s ({len(candidates)} candidati)")
+
         print_report(candidates)
+        t2 = time.time()
+        print(f"[TIMING] print_report (ricerca combinazioni + simulazioni): {t2-t1:.2f}s")
+
         save_json_output(candidates)
+        t3 = time.time()
+        print(f"[TIMING] save_json_output: {t3-t2:.2f}s")
+        print(f"[TIMING] TOTALE: {t3-t0:.2f}s")
     finally:
         conn.close()
 
