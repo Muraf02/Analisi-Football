@@ -52,7 +52,14 @@ def load_finished_matches(league_code, conn):
 
 
 def load_upcoming_matches(league_code, conn, limit=10):
-    """Carica le prossime partite in programma (non ancora giocate)."""
+    """Carica le prossime partite in programma (non ancora giocate).
+
+    Invece di elencare esplicitamente gli stati "da giocare" (che secondo
+    la documentazione di football-data.org possono essere SCHEDULED,
+    TIMED, LIVE, IN_PLAY, PAUSED — e la lista esatta è cambiata nel tempo),
+    escludiamo solo gli stati chiaramente "conclusi o annullati". Così il
+    filtro resta corretto anche se l'API aggiunge/rinomina stati intermedi.
+    """
     cur = conn.cursor()
     cur.execute(
         """
@@ -60,7 +67,8 @@ def load_upcoming_matches(league_code, conn, limit=10):
         FROM matches m
         JOIN teams th ON m.home_team_id = th.team_id
         JOIN teams ta ON m.away_team_id = ta.team_id
-        WHERE m.league_code = ? AND m.status = 'SCHEDULED'
+        WHERE m.league_code = ?
+              AND m.status NOT IN ('FINISHED', 'POSTPONED', 'SUSPENDED', 'CANCELED', 'CANCELLED', 'AWARDED')
         ORDER BY m.utc_date
         LIMIT ?
         """,
