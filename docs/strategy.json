@@ -1,129 +1,160 @@
 {
-  "generated_at": "2026-08-25T21:30:46.107816+00:00",
+  "generated_at": "2026-08-25T22:14:12.463813+00:00",
   "parameters": {
     "starting_capital": 20.0,
-    "target_capital": 100.0,
-    "odds_min": 4.0,
-    "odds_max": 5.0
+    "target_capital": 60.0,
+    "odds_min": 1.5,
+    "odds_max": 1.8,
+    "n_legs": 3
   },
-  "total_candidates": 323,
-  "positive_edge_count": 145,
+  "total_candidates": 153,
+  "positive_edge_count": 77,
   "singles": [
     {
       "league": "Premier League",
-      "match": "Coventry City FC vs Hull City AFC",
+      "match": "Manchester United FC vs Ipswich Town FC",
+      "date": "2026-08-30",
+      "market": "over_under",
+      "outcome": "over_2.5",
+      "model_probability": 0.6924,
+      "real_odd": 1.69,
+      "n_bookmakers": 13,
+      "implied_probability": 0.5917,
+      "edge": 0.1007,
+      "home_team_matches": 39,
+      "away_team_matches": 1,
+      "explanation": "Il modello stima una probabilità del 69.2% per questo esito, basandosi su 39 partite storiche della squadra di casa e 1 della squadra in trasferta. La quota reale (1.69) implica invece una probabilità del 59.2% secondo il mercato — una differenza di +10.1 punti percentuali. ⚠️ Affidabilità BASSA: almeno una delle due squadre ha pochissime partite storiche (probabile neopromossa o inizio stagione). Un vantaggio stimato in questa condizione va preso con molta cautela — potrebbe riflettere un limite del modello più che un'opportunità reale.",
+      "reliability": "bassa",
+      "simulation": {
+        "probability_reach_target": 0.3307,
+        "probability_bust": 0.6693,
+        "probability_stuck_in_between": 0.0,
+        "avg_bets_if_successful": 3.0,
+        "median_final_capital": 0.0,
+        "mean_final_capital": 31.92
+      },
+      "progression": [
+        {
+          "step": 1,
+          "capital_before": 20.0,
+          "stake": 20.0,
+          "winnings": 13.8,
+          "capital_after": 33.8,
+          "remaining_to_target": 26.2,
+          "target_reached": false
+        },
+        {
+          "step": 2,
+          "capital_before": 33.8,
+          "stake": 33.8,
+          "winnings": 23.32,
+          "capital_after": 57.12,
+          "remaining_to_target": 2.88,
+          "target_reached": false
+        },
+        {
+          "step": 3,
+          "capital_before": 57.12,
+          "stake": 57.12,
+          "winnings": 39.41,
+          "capital_after": 96.53,
+          "remaining_to_target": 0,
+          "target_reached": true
+        }
+      ]
+    },
+    {
+      "league": "Bundesliga",
+      "match": "Borussia Dortmund vs Hamburger SV",
       "date": "2026-08-29",
-      "market": "1x2",
-      "outcome": "2",
-      "model_probability": 0.9284,
-      "real_odd": 4.73,
-      "n_bookmakers": 25,
-      "implied_probability": 0.2114,
-      "edge": 0.717,
+      "market": "over_under",
+      "outcome": "under_3.5",
+      "model_probability": 0.6691,
+      "real_odd": 1.71,
+      "n_bookmakers": 5,
+      "implied_probability": 0.5848,
+      "edge": 0.0843,
+      "home_team_matches": 34,
+      "away_team_matches": 34,
+      "explanation": "Il modello stima una probabilità del 66.9% per questo esito, basandosi su 34 partite storiche della squadra di casa e 34 della squadra in trasferta. La quota reale (1.71) implica invece una probabilità del 58.5% secondo il mercato — una differenza di +8.4 punti percentuali. ✓ Affidabilità ALTA: entrambe le squadre hanno uno storico sufficiente per una stima solida.",
+      "reliability": "alta",
       "simulation": {
-        "probability_reach_target": 0.8603,
-        "probability_bust": 0.1397,
+        "probability_reach_target": 0.2967,
+        "probability_bust": 0.7033,
         "probability_stuck_in_between": 0.0,
-        "avg_bets_if_successful": 2.0,
-        "median_final_capital": 447.46,
-        "mean_final_capital": 384.95
+        "avg_bets_if_successful": 3.0,
+        "median_final_capital": 0.0,
+        "mean_final_capital": 29.67
       },
       "progression": [
         {
           "step": 1,
           "capital_before": 20.0,
           "stake": 20.0,
-          "winnings": 74.6,
-          "capital_after": 94.6,
-          "remaining_to_target": 5.4,
+          "winnings": 14.2,
+          "capital_after": 34.2,
+          "remaining_to_target": 25.8,
           "target_reached": false
         },
         {
           "step": 2,
-          "capital_before": 94.6,
-          "stake": 94.6,
-          "winnings": 352.86,
-          "capital_after": 447.46,
+          "capital_before": 34.2,
+          "stake": 34.2,
+          "winnings": 24.28,
+          "capital_after": 58.48,
+          "remaining_to_target": 1.52,
+          "target_reached": false
+        },
+        {
+          "step": 3,
+          "capital_before": 58.48,
+          "stake": 58.48,
+          "winnings": 41.52,
+          "capital_after": 100.0,
           "remaining_to_target": 0,
           "target_reached": true
         }
       ]
     },
     {
-      "league": "Premier League",
-      "match": "Hull City AFC vs Aston Villa FC",
-      "date": "2026-09-05",
-      "market": "1x2",
-      "outcome": "1",
-      "model_probability": 0.9084,
-      "real_odd": 4.3,
-      "n_bookmakers": 18,
-      "implied_probability": 0.2326,
-      "edge": 0.6758,
-      "simulation": {
-        "probability_reach_target": 0.8202,
-        "probability_bust": 0.1798,
-        "probability_stuck_in_between": 0.0,
-        "avg_bets_if_successful": 2.0,
-        "median_final_capital": 369.8,
-        "mean_final_capital": 303.31
-      },
-      "progression": [
-        {
-          "step": 1,
-          "capital_before": 20.0,
-          "stake": 20.0,
-          "winnings": 66.0,
-          "capital_after": 86.0,
-          "remaining_to_target": 14.0,
-          "target_reached": false
-        },
-        {
-          "step": 2,
-          "capital_before": 86.0,
-          "stake": 86.0,
-          "winnings": 283.8,
-          "capital_after": 369.8,
-          "remaining_to_target": 0,
-          "target_reached": true
-        }
-      ]
-    },
-    {
-      "league": "Serie A",
-      "match": "ACF Fiorentina vs Frosinone Calcio",
+      "league": "Bundesliga",
+      "match": "1. FC Union Berlin vs Eintracht Frankfurt",
       "date": "2026-08-29",
-      "market": "1x2",
-      "outcome": "X",
-      "model_probability": 0.4766,
-      "real_odd": 4.29,
-      "n_bookmakers": 24,
-      "implied_probability": 0.2331,
-      "edge": 0.2435,
+      "market": "over_under",
+      "outcome": "over_2.5",
+      "model_probability": 0.6415,
+      "real_odd": 1.74,
+      "n_bookmakers": 13,
+      "implied_probability": 0.5747,
+      "edge": 0.0668,
+      "home_team_matches": 34,
+      "away_team_matches": 34,
+      "explanation": "Il modello stima una probabilità del 64.1% per questo esito, basandosi su 34 partite storiche della squadra di casa e 34 della squadra in trasferta. La quota reale (1.74) implica invece una probabilità del 57.5% secondo il mercato — una differenza di +6.7 punti percentuali. ✓ Affidabilità ALTA: entrambe le squadre hanno uno storico sufficiente per una stima solida.",
+      "reliability": "alta",
       "simulation": {
-        "probability_reach_target": 0.2333,
-        "probability_bust": 0.7667,
+        "probability_reach_target": 0.4115,
+        "probability_bust": 0.5885,
         "probability_stuck_in_between": 0.0,
         "avg_bets_if_successful": 2.0,
         "median_final_capital": 0.0,
-        "mean_final_capital": 85.87
+        "mean_final_capital": 24.92
       },
       "progression": [
         {
           "step": 1,
           "capital_before": 20.0,
           "stake": 20.0,
-          "winnings": 65.8,
-          "capital_after": 85.8,
-          "remaining_to_target": 14.2,
+          "winnings": 14.8,
+          "capital_after": 34.8,
+          "remaining_to_target": 25.2,
           "target_reached": false
         },
         {
           "step": 2,
-          "capital_before": 85.8,
-          "stake": 85.8,
-          "winnings": 282.28,
-          "capital_after": 368.08,
+          "capital_before": 34.8,
+          "stake": 34.8,
+          "winnings": 25.75,
+          "capital_after": 60.55,
           "remaining_to_target": 0,
           "target_reached": true
         }
@@ -131,39 +162,52 @@
     },
     {
       "league": "Serie A",
-      "match": "Parma Calcio 1913 vs AC Monza",
-      "date": "2026-09-06",
+      "match": "US Lecce vs AS Roma",
+      "date": "2026-08-31",
       "market": "1x2",
       "outcome": "2",
-      "model_probability": 0.354,
-      "real_odd": 4.91,
-      "n_bookmakers": 14,
-      "implied_probability": 0.2037,
-      "edge": 0.1503,
+      "model_probability": 0.6706,
+      "real_odd": 1.65,
+      "n_bookmakers": 23,
+      "implied_probability": 0.6061,
+      "edge": 0.0645,
+      "home_team_matches": 39,
+      "away_team_matches": 39,
+      "explanation": "Il modello stima una probabilità del 67.1% per questo esito, basandosi su 39 partite storiche della squadra di casa e 39 della squadra in trasferta. La quota reale (1.65) implica invece una probabilità del 60.6% secondo il mercato — una differenza di +6.5 punti percentuali. ✓ Affidabilità ALTA: entrambe le squadre hanno uno storico sufficiente per una stima solida.",
+      "reliability": "alta",
       "simulation": {
-        "probability_reach_target": 0.1258,
-        "probability_bust": 0.8742,
+        "probability_reach_target": 0.2948,
+        "probability_bust": 0.7052,
         "probability_stuck_in_between": 0.0,
-        "avg_bets_if_successful": 2.0,
+        "avg_bets_if_successful": 3.0,
         "median_final_capital": 0.0,
-        "mean_final_capital": 60.66
+        "mean_final_capital": 26.49
       },
       "progression": [
         {
           "step": 1,
           "capital_before": 20.0,
           "stake": 20.0,
-          "winnings": 78.2,
-          "capital_after": 98.2,
-          "remaining_to_target": 1.8,
+          "winnings": 13.0,
+          "capital_after": 33.0,
+          "remaining_to_target": 27.0,
           "target_reached": false
         },
         {
           "step": 2,
-          "capital_before": 98.2,
-          "stake": 98.2,
-          "winnings": 383.96,
-          "capital_after": 482.16,
+          "capital_before": 33.0,
+          "stake": 33.0,
+          "winnings": 21.45,
+          "capital_after": 54.45,
+          "remaining_to_target": 5.55,
+          "target_reached": false
+        },
+        {
+          "step": 3,
+          "capital_before": 54.45,
+          "stake": 54.45,
+          "winnings": 35.39,
+          "capital_after": 89.84,
           "remaining_to_target": 0,
           "target_reached": true
         }
@@ -171,345 +215,57 @@
     },
     {
       "league": "Serie A",
-      "match": "Bologna FC 1909 vs US Sassuolo Calcio",
-      "date": "2026-09-06",
-      "market": "1x2",
-      "outcome": "2",
-      "model_probability": 0.3201,
-      "real_odd": 4.25,
-      "n_bookmakers": 14,
-      "implied_probability": 0.2353,
-      "edge": 0.0848,
+      "match": "SS Lazio vs Genoa CFC",
+      "date": "2026-08-30",
+      "market": "over_under",
+      "outcome": "under_2.5",
+      "model_probability": 0.6665,
+      "real_odd": 1.64,
+      "n_bookmakers": 11,
+      "implied_probability": 0.6098,
+      "edge": 0.0567,
+      "home_team_matches": 39,
+      "away_team_matches": 39,
+      "explanation": "Il modello stima una probabilità del 66.6% per questo esito, basandosi su 39 partite storiche della squadra di casa e 39 della squadra in trasferta. La quota reale (1.64) implica invece una probabilità del 61.0% secondo il mercato — una differenza di +5.7 punti percentuali. ✓ Affidabilità ALTA: entrambe le squadre hanno uno storico sufficiente per una stima solida.",
+      "reliability": "alta",
       "simulation": {
-        "probability_reach_target": 0.102,
-        "probability_bust": 0.898,
+        "probability_reach_target": 0.3015,
+        "probability_bust": 0.6985,
         "probability_stuck_in_between": 0.0,
-        "avg_bets_if_successful": 2.0,
+        "avg_bets_if_successful": 3.0,
         "median_final_capital": 0.0,
-        "mean_final_capital": 36.85
+        "mean_final_capital": 26.6
       },
       "progression": [
         {
           "step": 1,
           "capital_before": 20.0,
           "stake": 20.0,
-          "winnings": 65.0,
-          "capital_after": 85.0,
-          "remaining_to_target": 15.0,
+          "winnings": 12.8,
+          "capital_after": 32.8,
+          "remaining_to_target": 27.2,
           "target_reached": false
         },
         {
           "step": 2,
-          "capital_before": 85.0,
-          "stake": 85.0,
-          "winnings": 276.25,
-          "capital_after": 361.25,
+          "capital_before": 32.8,
+          "stake": 32.8,
+          "winnings": 20.99,
+          "capital_after": 53.79,
+          "remaining_to_target": 6.21,
+          "target_reached": false
+        },
+        {
+          "step": 3,
+          "capital_before": 53.79,
+          "stake": 53.79,
+          "winnings": 34.43,
+          "capital_after": 88.22,
           "remaining_to_target": 0,
           "target_reached": true
         }
       ]
     }
   ],
-  "doubles": [
-    {
-      "legs": [
-        {
-          "league": "Serie A",
-          "match": "AC Milan vs Venezia FC",
-          "date": "2026-08-28",
-          "market": "1x2",
-          "outcome": "1",
-          "model_probability": 0.9772,
-          "real_odd": 1.4,
-          "n_bookmakers": 24,
-          "implied_probability": 0.7143,
-          "edge": 0.2629
-        },
-        {
-          "league": "Serie A",
-          "match": "Frosinone Calcio vs Venezia FC",
-          "date": "2026-09-06",
-          "market": "1x2",
-          "outcome": "X",
-          "model_probability": 1.0,
-          "real_odd": 3.42,
-          "n_bookmakers": 14,
-          "implied_probability": 0.2924,
-          "edge": 0.7076
-        }
-      ],
-      "combined_odd": 4.788,
-      "combined_true_probability": 0.9772,
-      "combined_implied_probability": 0.2089,
-      "combined_edge": 0.7683,
-      "simulation": {
-        "probability_reach_target": 0.953,
-        "probability_bust": 0.047,
-        "probability_stuck_in_between": 0.0,
-        "avg_bets_if_successful": 2.0,
-        "median_final_capital": 458.5,
-        "mean_final_capital": 436.95
-      },
-      "progression": [
-        {
-          "step": 1,
-          "capital_before": 20.0,
-          "stake": 20.0,
-          "winnings": 75.76,
-          "capital_after": 95.76,
-          "remaining_to_target": 4.24,
-          "target_reached": false
-        },
-        {
-          "step": 2,
-          "capital_before": 95.76,
-          "stake": 95.76,
-          "winnings": 362.74,
-          "capital_after": 458.5,
-          "remaining_to_target": 0,
-          "target_reached": true
-        }
-      ]
-    },
-    {
-      "legs": [
-        {
-          "league": "Premier League",
-          "match": "Manchester City FC vs Coventry City FC",
-          "date": "2026-09-05",
-          "market": "1x2",
-          "outcome": "1",
-          "model_probability": 0.9631,
-          "real_odd": 1.25,
-          "n_bookmakers": 18,
-          "implied_probability": 0.8,
-          "edge": 0.1631
-        },
-        {
-          "league": "Ligue 1",
-          "match": "FC Lorient vs ES Troyes AC",
-          "date": "2026-08-29",
-          "market": "1x2",
-          "outcome": "X",
-          "model_probability": 1.0,
-          "real_odd": 3.75,
-          "n_bookmakers": 22,
-          "implied_probability": 0.2667,
-          "edge": 0.7333
-        }
-      ],
-      "combined_odd": 4.688,
-      "combined_true_probability": 0.9631,
-      "combined_implied_probability": 0.2134,
-      "combined_edge": 0.7497,
-      "simulation": {
-        "probability_reach_target": 0.9287,
-        "probability_bust": 0.0713,
-        "probability_stuck_in_between": 0.0,
-        "avg_bets_if_successful": 2.0,
-        "median_final_capital": 439.55,
-        "mean_final_capital": 408.21
-      },
-      "progression": [
-        {
-          "step": 1,
-          "capital_before": 20.0,
-          "stake": 20.0,
-          "winnings": 73.76,
-          "capital_after": 93.76,
-          "remaining_to_target": 6.24,
-          "target_reached": false
-        },
-        {
-          "step": 2,
-          "capital_before": 93.76,
-          "stake": 93.76,
-          "winnings": 345.79,
-          "capital_after": 439.55,
-          "remaining_to_target": 0,
-          "target_reached": true
-        }
-      ]
-    },
-    {
-      "legs": [
-        {
-          "league": "Serie A",
-          "match": "Frosinone Calcio vs Venezia FC",
-          "date": "2026-09-06",
-          "market": "1x2",
-          "outcome": "X",
-          "model_probability": 1.0,
-          "real_odd": 3.42,
-          "n_bookmakers": 14,
-          "implied_probability": 0.2924,
-          "edge": 0.7076
-        },
-        {
-          "league": "Premier League",
-          "match": "Manchester City FC vs Coventry City FC",
-          "date": "2026-09-05",
-          "market": "1x2",
-          "outcome": "1",
-          "model_probability": 0.9631,
-          "real_odd": 1.25,
-          "n_bookmakers": 18,
-          "implied_probability": 0.8,
-          "edge": 0.1631
-        }
-      ],
-      "combined_odd": 4.275,
-      "combined_true_probability": 0.9631,
-      "combined_implied_probability": 0.2339,
-      "combined_edge": 0.7292,
-      "simulation": {
-        "probability_reach_target": 0.9263,
-        "probability_bust": 0.0737,
-        "probability_stuck_in_between": 0.0,
-        "avg_bets_if_successful": 2.0,
-        "median_final_capital": 365.51,
-        "mean_final_capital": 338.57
-      },
-      "progression": [
-        {
-          "step": 1,
-          "capital_before": 20.0,
-          "stake": 20.0,
-          "winnings": 65.5,
-          "capital_after": 85.5,
-          "remaining_to_target": 14.5,
-          "target_reached": false
-        },
-        {
-          "step": 2,
-          "capital_before": 85.5,
-          "stake": 85.5,
-          "winnings": 280.01,
-          "capital_after": 365.51,
-          "remaining_to_target": 0,
-          "target_reached": true
-        }
-      ]
-    },
-    {
-      "legs": [
-        {
-          "league": "La Liga",
-          "match": "Real Madrid CF vs Málaga CF",
-          "date": "2026-08-30",
-          "market": "1x2",
-          "outcome": "1",
-          "model_probability": 0.8855,
-          "real_odd": 1.2,
-          "n_bookmakers": 20,
-          "implied_probability": 0.8333,
-          "edge": 0.0522
-        },
-        {
-          "league": "Ligue 1",
-          "match": "FC Lorient vs ES Troyes AC",
-          "date": "2026-08-29",
-          "market": "1x2",
-          "outcome": "X",
-          "model_probability": 1.0,
-          "real_odd": 3.75,
-          "n_bookmakers": 22,
-          "implied_probability": 0.2667,
-          "edge": 0.7333
-        }
-      ],
-      "combined_odd": 4.5,
-      "combined_true_probability": 0.8855,
-      "combined_implied_probability": 0.2222,
-      "combined_edge": 0.6633,
-      "simulation": {
-        "probability_reach_target": 0.787,
-        "probability_bust": 0.213,
-        "probability_stuck_in_between": 0.0,
-        "avg_bets_if_successful": 2.0,
-        "median_final_capital": 405.0,
-        "mean_final_capital": 318.74
-      },
-      "progression": [
-        {
-          "step": 1,
-          "capital_before": 20.0,
-          "stake": 20.0,
-          "winnings": 70.0,
-          "capital_after": 90.0,
-          "remaining_to_target": 10.0,
-          "target_reached": false
-        },
-        {
-          "step": 2,
-          "capital_before": 90.0,
-          "stake": 90.0,
-          "winnings": 315.0,
-          "capital_after": 405.0,
-          "remaining_to_target": 0,
-          "target_reached": true
-        }
-      ]
-    },
-    {
-      "legs": [
-        {
-          "league": "Serie A",
-          "match": "Frosinone Calcio vs Venezia FC",
-          "date": "2026-09-06",
-          "market": "1x2",
-          "outcome": "X",
-          "model_probability": 1.0,
-          "real_odd": 3.42,
-          "n_bookmakers": 14,
-          "implied_probability": 0.2924,
-          "edge": 0.7076
-        },
-        {
-          "league": "La Liga",
-          "match": "Real Madrid CF vs Málaga CF",
-          "date": "2026-08-30",
-          "market": "1x2",
-          "outcome": "1",
-          "model_probability": 0.8855,
-          "real_odd": 1.2,
-          "n_bookmakers": 20,
-          "implied_probability": 0.8333,
-          "edge": 0.0522
-        }
-      ],
-      "combined_odd": 4.104,
-      "combined_true_probability": 0.8855,
-      "combined_implied_probability": 0.2437,
-      "combined_edge": 0.6418,
-      "simulation": {
-        "probability_reach_target": 0.7831,
-        "probability_bust": 0.2169,
-        "probability_stuck_in_between": 0.0,
-        "avg_bets_if_successful": 2.0,
-        "median_final_capital": 336.86,
-        "mean_final_capital": 263.79
-      },
-      "progression": [
-        {
-          "step": 1,
-          "capital_before": 20.0,
-          "stake": 20.0,
-          "winnings": 62.08,
-          "capital_after": 82.08,
-          "remaining_to_target": 17.92,
-          "target_reached": false
-        },
-        {
-          "step": 2,
-          "capital_before": 82.08,
-          "stake": 82.08,
-          "winnings": 254.78,
-          "capital_after": 336.86,
-          "remaining_to_target": 0,
-          "target_reached": true
-        }
-      ]
-    }
-  ]
+  "doubles": []
 }
