@@ -1,14 +1,235 @@
 {
-  "generated_at": "2026-08-25T22:26:00.158383+00:00",
+  "generated_at": "2026-08-25T22:29:30.177494+00:00",
   "parameters": {
     "starting_capital": 20.0,
-    "target_capital": 60.0,
-    "odds_min": 3.0,
+    "target_capital": 100.0,
+    "odds_min": 2.5,
     "odds_max": 3.0,
     "n_legs": 3
   },
   "total_candidates": 153,
   "positive_edge_count": 77,
-  "singles": [],
+  "singles": [
+    {
+      "league": "Bundesliga",
+      "match": "Borussia Dortmund vs Hamburger SV",
+      "date": "2026-08-29",
+      "market": "over_under",
+      "outcome": "under_2.5",
+      "model_probability": 0.4453,
+      "real_odd": 2.63,
+      "n_bookmakers": 7,
+      "implied_probability": 0.3802,
+      "edge": 0.0651,
+      "home_team_matches": 34,
+      "away_team_matches": 34,
+      "explanation": "Il modello stima una probabilità del 44.5% per questo esito, basandosi su 34 partite storiche della squadra di casa e 34 della squadra in trasferta. La quota reale (2.63) implica invece una probabilità del 38.0% secondo il mercato — una differenza di +6.5 punti percentuali. ✓ Affidabilità ALTA: entrambe le squadre hanno uno storico sufficiente per una stima solida.",
+      "reliability": "alta",
+      "simulation": {
+        "probability_reach_target": 0.1942,
+        "probability_bust": 0.8058,
+        "probability_stuck_in_between": 0.0,
+        "avg_bets_if_successful": 2.0,
+        "median_final_capital": 0.0,
+        "mean_final_capital": 26.87
+      },
+      "progression": [
+        {
+          "step": 1,
+          "capital_before": 20.0,
+          "stake": 20.0,
+          "winnings": 32.6,
+          "capital_after": 52.6,
+          "remaining_to_target": 47.4,
+          "target_reached": false
+        },
+        {
+          "step": 2,
+          "capital_before": 52.6,
+          "stake": 52.6,
+          "winnings": 85.74,
+          "capital_after": 138.34,
+          "remaining_to_target": 0,
+          "target_reached": true
+        }
+      ]
+    },
+    {
+      "league": "Bundesliga",
+      "match": "1. FC Union Berlin vs Eintracht Frankfurt",
+      "date": "2026-08-29",
+      "market": "1x2",
+      "outcome": "2",
+      "model_probability": 0.3688,
+      "real_odd": 2.85,
+      "n_bookmakers": 24,
+      "implied_probability": 0.3509,
+      "edge": 0.0179,
+      "home_team_matches": 34,
+      "away_team_matches": 34,
+      "explanation": "Il modello stima una probabilità del 36.9% per questo esito, basandosi su 34 partite storiche della squadra di casa e 34 della squadra in trasferta. La quota reale (2.85) implica invece una probabilità del 35.1% secondo il mercato — una differenza di +1.8 punti percentuali. ✓ Affidabilità ALTA: entrambe le squadre hanno uno storico sufficiente per una stima solida.",
+      "reliability": "alta",
+      "simulation": {
+        "probability_reach_target": 0.129,
+        "probability_bust": 0.871,
+        "probability_stuck_in_between": 0.0,
+        "avg_bets_if_successful": 2.0,
+        "median_final_capital": 0.0,
+        "mean_final_capital": 20.96
+      },
+      "progression": [
+        {
+          "step": 1,
+          "capital_before": 20.0,
+          "stake": 20.0,
+          "winnings": 37.0,
+          "capital_after": 57.0,
+          "remaining_to_target": 43.0,
+          "target_reached": false
+        },
+        {
+          "step": 2,
+          "capital_before": 57.0,
+          "stake": 57.0,
+          "winnings": 105.45,
+          "capital_after": 162.45,
+          "remaining_to_target": 0,
+          "target_reached": true
+        }
+      ]
+    },
+    {
+      "league": "Ligue 1",
+      "match": "AS Monaco FC vs Olympique de Marseille",
+      "date": "2026-08-30",
+      "market": "1x2",
+      "outcome": "1",
+      "model_probability": 0.3932,
+      "real_odd": 2.65,
+      "n_bookmakers": 23,
+      "implied_probability": 0.3774,
+      "edge": 0.0158,
+      "home_team_matches": 35,
+      "away_team_matches": 35,
+      "explanation": "Il modello stima una probabilità del 39.3% per questo esito, basandosi su 35 partite storiche della squadra di casa e 35 della squadra in trasferta. La quota reale (2.65) implica invece una probabilità del 37.7% secondo il mercato — una differenza di +1.6 punti percentuali. ✓ Affidabilità ALTA: entrambe le squadre hanno uno storico sufficiente per una stima solida.",
+      "reliability": "alta",
+      "simulation": {
+        "probability_reach_target": 0.1598,
+        "probability_bust": 0.8402,
+        "probability_stuck_in_between": 0.0,
+        "avg_bets_if_successful": 2.0,
+        "median_final_capital": 0.0,
+        "mean_final_capital": 22.44
+      },
+      "progression": [
+        {
+          "step": 1,
+          "capital_before": 20.0,
+          "stake": 20.0,
+          "winnings": 33.0,
+          "capital_after": 53.0,
+          "remaining_to_target": 47.0,
+          "target_reached": false
+        },
+        {
+          "step": 2,
+          "capital_before": 53.0,
+          "stake": 53.0,
+          "winnings": 87.45,
+          "capital_after": 140.45,
+          "remaining_to_target": 0,
+          "target_reached": true
+        }
+      ]
+    },
+    {
+      "league": "Ligue 1",
+      "match": "Stade Brestois 29 vs Toulouse FC",
+      "date": "2026-08-29",
+      "market": "1x2",
+      "outcome": "1",
+      "model_probability": 0.3687,
+      "real_odd": 2.8,
+      "n_bookmakers": 22,
+      "implied_probability": 0.3571,
+      "edge": 0.0116,
+      "home_team_matches": 35,
+      "away_team_matches": 34,
+      "explanation": "Il modello stima una probabilità del 36.9% per questo esito, basandosi su 35 partite storiche della squadra di casa e 34 della squadra in trasferta. La quota reale (2.8) implica invece una probabilità del 35.7% secondo il mercato — una differenza di +1.2 punti percentuali. ✓ Affidabilità ALTA: entrambe le squadre hanno uno storico sufficiente per una stima solida.",
+      "reliability": "alta",
+      "simulation": {
+        "probability_reach_target": 0.1317,
+        "probability_bust": 0.8683,
+        "probability_stuck_in_between": 0.0,
+        "avg_bets_if_successful": 2.0,
+        "median_final_capital": 0.0,
+        "mean_final_capital": 20.65
+      },
+      "progression": [
+        {
+          "step": 1,
+          "capital_before": 20.0,
+          "stake": 20.0,
+          "winnings": 36.0,
+          "capital_after": 56.0,
+          "remaining_to_target": 44.0,
+          "target_reached": false
+        },
+        {
+          "step": 2,
+          "capital_before": 56.0,
+          "stake": 56.0,
+          "winnings": 100.8,
+          "capital_after": 156.8,
+          "remaining_to_target": 0,
+          "target_reached": true
+        }
+      ]
+    },
+    {
+      "league": "Bundesliga",
+      "match": "1. FC Union Berlin vs Eintracht Frankfurt",
+      "date": "2026-08-29",
+      "market": "1x2",
+      "outcome": "1",
+      "model_probability": 0.3974,
+      "real_odd": 2.55,
+      "n_bookmakers": 24,
+      "implied_probability": 0.3922,
+      "edge": 0.0052,
+      "home_team_matches": 34,
+      "away_team_matches": 34,
+      "explanation": "Il modello stima una probabilità del 39.7% per questo esito, basandosi su 34 partite storiche della squadra di casa e 34 della squadra in trasferta. La quota reale (2.55) implica invece una probabilità del 39.2% secondo il mercato — una differenza di +0.5 punti percentuali. ✓ Affidabilità ALTA: entrambe le squadre hanno uno storico sufficiente per una stima solida.",
+      "reliability": "alta",
+      "simulation": {
+        "probability_reach_target": 0.1603,
+        "probability_bust": 0.8397,
+        "probability_stuck_in_between": 0.0,
+        "avg_bets_if_successful": 2.0,
+        "median_final_capital": 0.0,
+        "mean_final_capital": 20.85
+      },
+      "progression": [
+        {
+          "step": 1,
+          "capital_before": 20.0,
+          "stake": 20.0,
+          "winnings": 31.0,
+          "capital_after": 51.0,
+          "remaining_to_target": 49.0,
+          "target_reached": false
+        },
+        {
+          "step": 2,
+          "capital_before": 51.0,
+          "stake": 51.0,
+          "winnings": 79.05,
+          "capital_after": 130.05,
+          "remaining_to_target": 0,
+          "target_reached": true
+        }
+      ]
+    }
+  ],
   "doubles": []
 }
