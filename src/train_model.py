@@ -52,7 +52,8 @@ def load_finished_matches(league_code, conn):
 
 
 def load_upcoming_matches(league_code, conn, limit=10):
-    """Carica le prossime partite in programma (non ancora giocate).
+    """Carica le partite della PROSSIMA giornata di campionato (non ancora
+    giocate) — non tutte le partite future disponibili.
 
     Invece di elencare esplicitamente gli stati "da giocare" (che secondo
     la documentazione di football-data.org possono essere SCHEDULED,
@@ -63,18 +64,34 @@ def load_upcoming_matches(league_code, conn, limit=10):
     cur = conn.cursor()
     cur.execute(
         """
-        SELECT m.utc_date, th.name as home_name, ta.name as away_name
+        SELECT m.utc_date, m.matchday, th.name as home_name, ta.name as away_name
         FROM matches m
         JOIN teams th ON m.home_team_id = th.team_id
         JOIN teams ta ON m.away_team_id = ta.team_id
         WHERE m.league_code = ?
               AND m.status NOT IN ('FINISHED', 'POSTPONED', 'SUSPENDED', 'CANCELED', 'CANCELLED', 'AWARDED')
         ORDER BY m.utc_date
-        LIMIT ?
         """,
-        (league_code, limit),
+        (league_code,),
     )
-    return cur.fetchall()
+    rows = cur.fetchall()
+    if not rows:
+        return []
+
+    matchdays = [r["matchday"] for r in rows if r["matchday"] is not None]
+    if matchdays:
+        next_matchday = min(matchdays)
+        rows = [r for r in rows if r["matchday"] == next_matchday]
+    else:
+        from datetime import timedelta
+        first_date = datetime.fromisoformat(rows[0]["utc_date"].replace("Z", "+00:00"))
+        cutoff = first_date + timedelta(days=7)
+        rows = [
+            r for r in rows
+            if datetime.fromisoformat(r["utc_date"].replace("Z", "+00:00")) <= cutoff
+        ]
+
+    return rows[:limit]
 
 
 def train_and_predict_league(league_code, league_name, conn):
