@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-25T22:29:30.177494+00:00",
+  "generated_at": "2026-08-25T22:34:56.779941+00:00",
   "parameters": {
     "starting_capital": 20.0,
     "target_capital": 100.0,
@@ -26,12 +26,12 @@
       "explanation": "Il modello stima una probabilità del 44.5% per questo esito, basandosi su 34 partite storiche della squadra di casa e 34 della squadra in trasferta. La quota reale (2.63) implica invece una probabilità del 38.0% secondo il mercato — una differenza di +6.5 punti percentuali. ✓ Affidabilità ALTA: entrambe le squadre hanno uno storico sufficiente per una stima solida.",
       "reliability": "alta",
       "simulation": {
-        "probability_reach_target": 0.1942,
-        "probability_bust": 0.8058,
+        "probability_reach_target": 0.1985,
+        "probability_bust": 0.8015,
         "probability_stuck_in_between": 0.0,
         "avg_bets_if_successful": 2.0,
         "median_final_capital": 0.0,
-        "mean_final_capital": 26.87
+        "mean_final_capital": 27.46
       },
       "progression": [
         {
@@ -70,12 +70,12 @@
       "explanation": "Il modello stima una probabilità del 36.9% per questo esito, basandosi su 34 partite storiche della squadra di casa e 34 della squadra in trasferta. La quota reale (2.85) implica invece una probabilità del 35.1% secondo il mercato — una differenza di +1.8 punti percentuali. ✓ Affidabilità ALTA: entrambe le squadre hanno uno storico sufficiente per una stima solida.",
       "reliability": "alta",
       "simulation": {
-        "probability_reach_target": 0.129,
-        "probability_bust": 0.871,
+        "probability_reach_target": 0.1314,
+        "probability_bust": 0.8686,
         "probability_stuck_in_between": 0.0,
         "avg_bets_if_successful": 2.0,
         "median_final_capital": 0.0,
-        "mean_final_capital": 20.96
+        "mean_final_capital": 21.35
       },
       "progression": [
         {
@@ -114,12 +114,12 @@
       "explanation": "Il modello stima una probabilità del 39.3% per questo esito, basandosi su 35 partite storiche della squadra di casa e 35 della squadra in trasferta. La quota reale (2.65) implica invece una probabilità del 37.7% secondo il mercato — una differenza di +1.6 punti percentuali. ✓ Affidabilità ALTA: entrambe le squadre hanno uno storico sufficiente per una stima solida.",
       "reliability": "alta",
       "simulation": {
-        "probability_reach_target": 0.1598,
-        "probability_bust": 0.8402,
+        "probability_reach_target": 0.1555,
+        "probability_bust": 0.8445,
         "probability_stuck_in_between": 0.0,
         "avg_bets_if_successful": 2.0,
         "median_final_capital": 0.0,
-        "mean_final_capital": 22.44
+        "mean_final_capital": 21.84
       },
       "progression": [
         {
@@ -158,12 +158,12 @@
       "explanation": "Il modello stima una probabilità del 36.9% per questo esito, basandosi su 35 partite storiche della squadra di casa e 34 della squadra in trasferta. La quota reale (2.8) implica invece una probabilità del 35.7% secondo il mercato — una differenza di +1.2 punti percentuali. ✓ Affidabilità ALTA: entrambe le squadre hanno uno storico sufficiente per una stima solida.",
       "reliability": "alta",
       "simulation": {
-        "probability_reach_target": 0.1317,
-        "probability_bust": 0.8683,
+        "probability_reach_target": 0.1366,
+        "probability_bust": 0.8634,
         "probability_stuck_in_between": 0.0,
         "avg_bets_if_successful": 2.0,
         "median_final_capital": 0.0,
-        "mean_final_capital": 20.65
+        "mean_final_capital": 21.42
       },
       "progression": [
         {
@@ -202,12 +202,12 @@
       "explanation": "Il modello stima una probabilità del 39.7% per questo esito, basandosi su 34 partite storiche della squadra di casa e 34 della squadra in trasferta. La quota reale (2.55) implica invece una probabilità del 39.2% secondo il mercato — una differenza di +0.5 punti percentuali. ✓ Affidabilità ALTA: entrambe le squadre hanno uno storico sufficiente per una stima solida.",
       "reliability": "alta",
       "simulation": {
-        "probability_reach_target": 0.1603,
-        "probability_bust": 0.8397,
+        "probability_reach_target": 0.1545,
+        "probability_bust": 0.8455,
         "probability_stuck_in_between": 0.0,
         "avg_bets_if_successful": 2.0,
         "median_final_capital": 0.0,
-        "mean_final_capital": 20.85
+        "mean_final_capital": 20.09
       },
       "progression": [
         {
