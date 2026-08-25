@@ -45,3 +45,11 @@ jobs:
           ODDS_MIN: ${{ github.event.inputs.odds_min }}
           ODDS_MAX: ${{ github.event.inputs.odds_max }}
         run: python src/generate_strategy.py
+
+      - name: Salva i risultati (report e pagina web)
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add docs/strategy.json
+          git diff --staged --quiet || git commit -m "Aggiornata strategia (pagina web)"
+          git push
