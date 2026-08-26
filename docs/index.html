@@ -382,6 +382,86 @@
     line-height: 1.5;
   }
   .help-text a { color: var(--gold); }
+
+  /* --- Tab principali --- */
+  .main-tabs {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 24px;
+    border-bottom: 1px solid var(--line);
+  }
+  .main-tab {
+    background: none;
+    border: none;
+    color: var(--muted);
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    padding: 10px 18px;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    transition: color 0.15s, border-color 0.15s;
+  }
+  .main-tab:hover { color: var(--text); }
+  .main-tab.active { color: var(--gold); border-bottom-color: var(--gold); }
+
+  /* --- Filtri lega --- */
+  .league-filters {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+  }
+  .league-filter-btn {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    color: var(--muted);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    padding: 6px 14px;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .league-filter-btn:hover { border-color: var(--gold-dim); color: var(--text); }
+  .league-filter-btn.active { background: var(--gold); color: var(--bg); border-color: var(--gold); font-weight: 700; }
+
+  /* --- Card partita (vista giornata) --- */
+  .match-card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 20px 22px;
+    margin-bottom: 14px;
+  }
+  .match-card-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 14px;
+  }
+  .match-card-head .teams { font-family: 'Space Grotesk', sans-serif; font-size: 17px; font-weight: 600; }
+  .match-card-head .meta { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--muted); }
+  .prob-bars { display: flex; gap: 6px; margin-bottom: 12px; }
+  .prob-bar {
+    flex: 1;
+    text-align: center;
+    background: var(--surface-2);
+    border-radius: 8px;
+    padding: 10px 6px;
+  }
+  .prob-bar .pct { font-family: 'JetBrains Mono', monospace; font-size: 18px; font-weight: 700; color: var(--gold); }
+  .prob-bar .lbl { font-size: 10px; color: var(--muted); text-transform: uppercase; margin-top: 2px; }
+  .score-pill {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    background: var(--surface-2);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 4px 10px;
+    margin-bottom: 12px;
+  }
 </style>
 </head>
 <body>
@@ -434,8 +514,22 @@
   </div>
   <!-- fine control-panel -->
 
-  <div id="content">
-    <div id="loading">caricamento dati...</div>
+  <div class="main-tabs" id="main-tabs">
+    <button class="main-tab active" data-tab="strategy" onclick="switchMainTab('strategy')">📊 Strategia</button>
+    <button class="main-tab" data-tab="matchday" onclick="switchMainTab('matchday')">⚽ Prossima Giornata</button>
+  </div>
+
+  <div id="tab-strategy">
+    <div id="content">
+      <div id="loading">caricamento dati...</div>
+    </div>
+  </div>
+
+  <div id="tab-matchday" style="display:none;">
+    <div id="league-filters" class="league-filters"></div>
+    <div id="matchday-content">
+      <div id="loading-matchday">caricamento dati...</div>
+    </div>
   </div>
 </div>
 <!-- fine .wrap -->
@@ -808,6 +902,116 @@ function rangeBadge(d) {
     return `<span class="edge-badge edge-pos" style="margin-left:8px;">✓ nel tuo range</span>`;
   }
   return `<span class="edge-badge" style="margin-left:8px;">vicino al range (fuori di ${d.distance_from_range})</span>`;
+}
+
+// --- Tab principali (Strategia / Prossima Giornata) ---
+let matchdayLoaded = false;
+let matchdayData = null;
+let activeLeagueFilter = 'all';
+
+function switchMainTab(tab) {
+  document.querySelectorAll('.main-tab').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.tab === tab);
+  });
+  document.getElementById('tab-strategy').style.display = tab === 'strategy' ? 'block' : 'none';
+  document.getElementById('tab-matchday').style.display = tab === 'matchday' ? 'block' : 'none';
+
+  if (tab === 'matchday' && !matchdayLoaded) {
+    loadMatchdayOverview();
+  }
+}
+
+async function loadMatchdayOverview() {
+  try {
+    const res = await fetch('matchday.json?_=' + Date.now());
+    matchdayData = await res.json();
+    matchdayLoaded = true;
+    renderLeagueFilters();
+    renderMatchdayMatches();
+  } catch (err) {
+    document.getElementById('matchday-content').innerHTML =
+      `<div class="empty-state">Impossibile caricare la panoramica (${err.message}). Lancia prima "4. Genera strategia" — crea anche questo file.</div>`;
+  }
+}
+
+function renderLeagueFilters() {
+  const container = document.getElementById('league-filters');
+  if (!matchdayData || !matchdayData.matches.length) { container.innerHTML = ''; return; }
+
+  const leagues = [...new Set(matchdayData.matches.map(m => m.league))].sort();
+  let html = `<button class="league-filter-btn active" data-league="all" onclick="filterByLeague('all')">Tutte (${matchdayData.matches.length})</button>`;
+  leagues.forEach(lg => {
+    const count = matchdayData.matches.filter(m => m.league === lg).length;
+    html += `<button class="league-filter-btn" data-league="${lg}" onclick="filterByLeague('${lg}')">${lg} (${count})</button>`;
+  });
+  container.innerHTML = html;
+}
+
+function filterByLeague(league) {
+  activeLeagueFilter = league;
+  document.querySelectorAll('.league-filter-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.league === league);
+  });
+  renderMatchdayMatches();
+}
+
+function renderMatchdayMatches() {
+  const container = document.getElementById('matchday-content');
+  if (!matchdayData || !matchdayData.matches.length) {
+    container.innerHTML = '<div class="empty-state">Nessuna partita trovata nella prossima giornata. Lancia "1. Aggiorna dati partite" e poi "4. Genera strategia".</div>';
+    return;
+  }
+
+  const genDate = new Date(matchdayData.generated_at);
+  const filtered = activeLeagueFilter === 'all'
+    ? matchdayData.matches
+    : matchdayData.matches.filter(m => m.league === activeLeagueFilter);
+
+  let html = `<div style="font-size:13px; color:var(--muted); margin-bottom:16px;">
+    Aggiornato il ${genDate.toLocaleDateString('it-IT')} alle ${genDate.toLocaleTimeString('it-IT', {hour:'2-digit', minute:'2-digit'})}
+    · ${filtered.length} partite mostrate
+  </div>`;
+
+  if (filtered.length === 0) {
+    html += '<div class="empty-state">Nessuna partita per questo filtro.</div>';
+  } else {
+    filtered.forEach(m => { html += renderMatchCard(m); });
+  }
+  container.innerHTML = html;
+}
+
+function renderMatchCard(m) {
+  const injuriesHtml = (m.injuries && m.injuries.length > 0)
+    ? `<div class="progression-line" style="margin-top:10px; border-color:var(--red);">
+         ⚕ Assenze note: ${m.injuries.map(i => `${i.player} (${i.team}, ${i.reason || i.type})`).join(', ')}
+       </div>`
+    : '';
+  const h2hHtml = (m.head_to_head && !m.head_to_head.startsWith('Nessuno'))
+    ? `<div style="font-size:12px; color:var(--muted); margin-top:8px;">Scontri diretti: ${m.head_to_head}</div>`
+    : '';
+
+  return `
+    <div class="match-card">
+      <div class="match-card-head">
+        <div>
+          <div class="meta">${m.league} · ${m.date} ${m.time}</div>
+          <div class="teams">${m.match}</div>
+        </div>
+      </div>
+      <div class="score-pill">Risultato più probabile: ${m.most_likely_score} · gol attesi ${m.home_expected_goals.toFixed(1)}-${m.away_expected_goals.toFixed(1)}</div>
+      <div class="prob-bars">
+        <div class="prob-bar"><div class="pct">${(m.home_win*100).toFixed(0)}%</div><div class="lbl">1 (casa)</div></div>
+        <div class="prob-bar"><div class="pct">${(m.draw*100).toFixed(0)}%</div><div class="lbl">X (pareggio)</div></div>
+        <div class="prob-bar"><div class="pct">${(m.away_win*100).toFixed(0)}%</div><div class="lbl">2 (trasferta)</div></div>
+      </div>
+      <div style="font-size:12px; color:var(--muted);">
+        Forma: casa <b style="color:var(--text)">${m.home_form}</b> · trasferta <b style="color:var(--text)">${m.away_form}</b>
+        ${m.home_rest_days !== null ? ` · riposo casa ${m.home_rest_days}g` : ''}
+        ${m.away_rest_days !== null ? ` · trasferta ${m.away_rest_days}g` : ''}
+      </div>
+      ${h2hHtml}
+      ${injuriesHtml}
+    </div>`;
 }
 
 load().catch(err => {
