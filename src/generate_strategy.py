@@ -27,7 +27,7 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from config.config import LEAGUES
 from src.db import get_connection
 from src.model_poisson import DixonColesModel
-from src.markets import market_probabilities
+from src.markets import market_probabilities, combined_market_probabilities
 from src.train_model import load_finished_matches, MIN_MATCHES_REQUIRED
 from src.strategy_engine import simulate_strategy
 
@@ -106,6 +106,65 @@ def get_upcoming_matches_with_info(league_code, conn):
     ]
 
 
+def recent_form(matches, team, before_date, n=5):
+    """
+    Restituisce la forma recente di una squadra come stringa (es. 'VVNPV',
+    dalla più vecchia alla più recente), basata sulle ultime n partite
+    PRIMA della data indicata.
+    """
+    team_matches = [
+        m for m in matches
+        if (m["home_team"] == team or m["away_team"] == team) and m["date"] < before_date
+    ]
+    team_matches.sort(key=lambda m: m["date"], reverse=True)
+    recent = list(reversed(team_matches[:n]))  # dalla più vecchia alla più recente
+
+    form = []
+    for m in recent:
+        if m["home_team"] == team:
+            gf, ga = m["home_goals"], m["away_goals"]
+        else:
+            gf, ga = m["away_goals"], m["home_goals"]
+        if gf > ga:
+            form.append("V")
+        elif gf == ga:
+            form.append("N")
+        else:
+            form.append("P")
+    return "".join(form) if form else "n/d"
+
+
+def head_to_head_summary(matches, home_team, away_team, before_date, n=3):
+    """Restituisce un riassunto testuale degli ultimi scontri diretti."""
+    h2h = [
+        m for m in matches
+        if {m["home_team"], m["away_team"]} == {home_team, away_team} and m["date"] < before_date
+    ]
+    h2h.sort(key=lambda m: m["date"], reverse=True)
+    h2h = h2h[:n]
+
+    if not h2h:
+        return "Nessuno scontro diretto recente disponibile nei dati storici."
+
+    parts = []
+    for m in h2h:
+        parts.append(f"{m['home_team']} {m['home_goals']}-{m['away_goals']} {m['away_team']} ({m['date'].strftime('%Y-%m-%d')})")
+    return " · ".join(parts)
+
+
+def days_since_last_match(matches, team, before_date):
+    """Giorni trascorsi dall'ultima partita giocata da una squadra
+    (segnale di possibile stanchezza/vantaggio di riposo)."""
+    team_matches = [
+        m for m in matches
+        if (m["home_team"] == team or m["away_team"] == team) and m["date"] < before_date
+    ]
+    if not team_matches:
+        return None
+    last_date = max(m["date"] for m in team_matches)
+    return (before_date - last_date).days
+
+
 def _team_appearance_counts(matches):
     """Conta quante partite storiche compaiono per ciascuna squadra —
     usato per il segnale di affidabilità (una neopromossa con poche
@@ -150,6 +209,44 @@ def explain_candidate(c):
         f"{c['implied_probability']:.1%} secondo il mercato — una differenza di "
         f"{c['edge']*100:+.1f} punti percentuali."
     )
+
+    if c.get("home_form") or c.get("away_form"):
+        parts.append(
+            f"Forma recente (dalla più vecchia alla più recente): "
+            f"casa {c.get('home_form', 'n/d')}, trasferta {c.get('away_form', 'n/d')} "
+            f"(V=vittoria, N=pareggio, P=sconfitta)."
+        )
+
+    if c.get("head_to_head") and "Nessuno" not in c["head_to_head"]:
+        parts.append(f"Scontri diretti recenti: {c['head_to_head']}.")
+
+    rest_parts = []
+    if c.get("home_rest_days") is not None:
+        rest_parts.append(f"casa {c['home_rest_days']} giorni")
+    if c.get("away_rest_days") is not None:
+        rest_parts.append(f"trasferta {c['away_rest_days']} giorni")
+    if rest_parts:
+        rest_text = " e ".join(rest_parts)
+        parts.append(f"Riposo dall'ultima partita: {rest_text}.")
+        min_rest = min(
+            [d for d in [c.get("home_rest_days"), c.get("away_rest_days")] if d is not None],
+            default=None,
+        )
+        if min_rest is not None and min_rest <= 3:
+            parts.append(
+                "⚠️ Nota: una delle due squadre ha giocato pochissimi giorni fa — possibile "
+                "affaticamento non pienamente catturato dal modello statistico."
+            )
+
+    if c.get("top_combined_markets"):
+        combo_texts = []
+        for item in c["top_combined_markets"]:
+            combo_texts.append(f"{item['market']} ({item['probability']:.1%})")
+        parts.append(
+            "Mercati combinati sulla stessa partita più probabili secondo il modello "
+            f"(stima, non verificata su una quota reale): {', '.join(combo_texts)}."
+        )
+
     if overall_rel == "bassa":
         parts.append(
             f"⚠️ Affidabilità BASSA: almeno una delle due squadre ha {home_desc if home_rel=='bassa' else away_desc}. "
@@ -222,6 +319,24 @@ def build_candidates(conn):
                 continue  # squadra senza storico sufficiente (es. neopromossa)
 
             markets = market_probabilities(score_matrix)
+            combined_markets = combined_market_probabilities(score_matrix)
+            # I 3 mercati combinati più probabili secondo il modello (solo
+            # stima, nessuna quota reale disponibile per confrontarli)
+            top_combined = sorted(combined_markets.items(), key=lambda x: -x[1])[:3]
+
+            match_date = datetime.fromisoformat(m["utc_date"].replace("Z", "+00:00"))
+
+            # Contesto calcolato UNA VOLTA per partita (non per ogni candidato)
+            context = {
+                "home_form": recent_form(matches, m["home_name"], match_date),
+                "away_form": recent_form(matches, m["away_name"], match_date),
+                "head_to_head": head_to_head_summary(matches, m["home_name"], m["away_name"], match_date),
+                "home_rest_days": days_since_last_match(matches, m["home_name"], match_date),
+                "away_rest_days": days_since_last_match(matches, m["away_name"], match_date),
+                "top_combined_markets": [
+                    {"market": k, "probability": v} for k, v in top_combined
+                ],
+            }
 
             for real_odd_entry in real_odds_for_match:
                 market_name = real_odd_entry["market"]
@@ -249,6 +364,7 @@ def build_candidates(conn):
                     "edge": round(edge, 4),
                     "home_team_matches": team_counts.get(m["home_name"], 0),
                     "away_team_matches": team_counts.get(m["away_name"], 0),
+                    **context,
                 }
                 explanation, reliability = explain_candidate(candidate)
                 candidate["explanation"] = explanation
