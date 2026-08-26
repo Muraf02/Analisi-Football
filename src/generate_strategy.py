@@ -408,6 +408,78 @@ def build_candidates(conn):
     return all_candidates
 
 
+def build_matchday_overview(conn):
+    """
+    Analizza TUTTE le partite della prossima giornata di campionato, su
+    tutte le 5 leghe — non solo quelle con vantaggio o quote disponibili.
+    A differenza di build_candidates() (pensata per trovare opportunità di
+    scommessa), questa funzione serve per una panoramica completa: previsione
+    1X2, gol attesi, forma, scontri diretti, infortuni — per ogni partita.
+    """
+    overview = []
+
+    for code, info in LEAGUES.items():
+        matches = load_finished_matches(code, conn)
+        if len(matches) < MIN_MATCHES_REQUIRED:
+            continue
+
+        model = DixonColesModel(time_decay_half_life_days=180)
+        try:
+            model.fit(matches)
+        except Exception:
+            continue
+
+        upcoming = get_upcoming_matches_with_info(code, conn, n_matchdays=1)
+
+        for m in upcoming:
+            try:
+                score_matrix = model.score_matrix(m["home_name"], m["away_name"])
+            except ValueError:
+                continue  # squadra senza storico sufficiente
+
+            pred = model.predict_match(m["home_name"], m["away_name"])
+            match_date = datetime.fromisoformat(m["utc_date"].replace("Z", "+00:00"))
+
+            overview.append({
+                "league": info["name"],
+                "league_code": code,
+                "match": f"{m['home_name']} vs {m['away_name']}",
+                "home_team": m["home_name"],
+                "away_team": m["away_name"],
+                "date": m["utc_date"][:10],
+                "time": m["utc_date"][11:16],
+                "home_win": pred["home_win"],
+                "draw": pred["draw"],
+                "away_win": pred["away_win"],
+                "home_expected_goals": pred["home_expected_goals"],
+                "away_expected_goals": pred["away_expected_goals"],
+                "most_likely_score": f"{pred['most_likely_score'][0]}-{pred['most_likely_score'][1]}",
+                "home_form": recent_form(matches, m["home_name"], match_date),
+                "away_form": recent_form(matches, m["away_name"], match_date),
+                "head_to_head": head_to_head_summary(matches, m["home_name"], m["away_name"], match_date),
+                "home_rest_days": days_since_last_match(matches, m["home_name"], match_date),
+                "away_rest_days": days_since_last_match(matches, m["away_name"], match_date),
+                "injuries": get_injuries_for_match(m["match_id"], conn),
+            })
+
+    return overview
+
+
+def save_matchday_overview(conn, path="docs/matchday.json"):
+    overview = build_matchday_overview(conn)
+    output = {
+        "generated_at": datetime.now(timezone.utc).isoformat(),
+        "total_matches": len(overview),
+        "matches": overview,
+    }
+    os.makedirs(os.path.dirname(path), exist_ok=True)
+    import json
+    with open(path, "w", encoding="utf-8") as f:
+        json.dump(output, f, indent=2, ensure_ascii=False)
+    print(f"Panoramica prossima giornata salvata: {path} ({len(overview)} partite)")
+    return output
+
+
 def find_singles_in_range(candidates, odds_min, odds_max):
     """Candidati singoli la cui quota reale cade nel range desiderato,
     ordinati dal miglior vantaggio stimato al peggiore."""
@@ -722,7 +794,11 @@ def run():
         save_json_output(candidates)
         t3 = time.time()
         print(f"[TIMING] save_json_output: {t3-t2:.2f}s")
-        print(f"[TIMING] TOTALE: {t3-t0:.2f}s")
+
+        save_matchday_overview(conn)
+        t4 = time.time()
+        print(f"[TIMING] save_matchday_overview: {t4-t3:.2f}s")
+        print(f"[TIMING] TOTALE: {t4-t0:.2f}s")
     finally:
         conn.close()
 
