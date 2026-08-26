@@ -37,6 +37,10 @@ ODDS_MIN = float(os.environ.get("ODDS_MIN", 1.5))
 ODDS_MAX = float(os.environ.get("ODDS_MAX", 1.8))
 N_LEGS = int(os.environ.get("N_LEGS", 2))  # quante partite combinare (1 = solo singole)
 
+# Emblemi dei campionati: football-data.org li pubblica su un CDN pubblico
+# con un URL prevedibile basato sul codice lega (lo stesso che usiamo già)
+LEAGUE_EMBLEMS = {code: f"https://crests.football-data.org/{code}.png" for code in LEAGUES}
+
 
 # Mercati per cui abbiamo quote reali (fetch_odds.py li richiede tutti)
 REAL_ODDS_MARKETS = {"1x2", "over_under", "btts", "double_chance"}
@@ -79,7 +83,9 @@ def get_upcoming_matches_with_info(league_code, conn, n_matchdays=1):
     cur = conn.cursor()
     cur.execute(
         """
-        SELECT m.match_id, m.utc_date, m.matchday, th.name as home_name, ta.name as away_name
+        SELECT m.match_id, m.utc_date, m.matchday,
+               th.name as home_name, ta.name as away_name,
+               th.crest_url as home_crest, ta.crest_url as away_crest
         FROM matches m
         JOIN teams th ON m.home_team_id = th.team_id
         JOIN teams ta ON m.away_team_id = ta.team_id
@@ -386,7 +392,11 @@ def build_candidates(conn):
 
                 candidate = {
                     "league": info["name"],
+                    "league_code": code,
+                    "league_emblem": LEAGUE_EMBLEMS.get(code),
                     "match": f"{m['home_name']} vs {m['away_name']}",
+                    "home_crest": m["home_crest"],
+                    "away_crest": m["away_crest"],
                     "date": m["utc_date"][:10],
                     "market": market_name,
                     "outcome": outcome_name,
@@ -443,9 +453,12 @@ def build_matchday_overview(conn):
             overview.append({
                 "league": info["name"],
                 "league_code": code,
+                "league_emblem": LEAGUE_EMBLEMS.get(code),
                 "match": f"{m['home_name']} vs {m['away_name']}",
                 "home_team": m["home_name"],
                 "away_team": m["away_name"],
+                "home_crest": m["home_crest"],
+                "away_crest": m["away_crest"],
                 "date": m["utc_date"][:10],
                 "time": m["utc_date"][11:16],
                 "home_win": pred["home_win"],
