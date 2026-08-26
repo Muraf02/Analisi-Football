@@ -55,6 +55,6 @@ jobs:
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add docs/strategy.json
-          git diff --staged --quiet || git commit -m "Aggiornata strategia (pagina web)"
+          git add docs/strategy.json docs/matchday.json
+          git diff --staged --quiet || git commit -m "Aggiornata strategia e panoramica giornata"
           git push
