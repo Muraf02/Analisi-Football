@@ -419,6 +419,7 @@
       <div><label>Quota minima</label><input type="number" id="input-odds-min" value="1.5" min="1.01" step="0.01"></div>
       <div><label>Quota massima</label><input type="number" id="input-odds-max" value="1.8" min="1.01" step="0.01"></div>
       <div><label>N° partite da combinare</label><input type="number" id="input-n-legs" value="2" min="1" max="5" step="1"></div>
+
     </div>
 
     <div class="actions-grid">
@@ -623,60 +624,71 @@ async function load() {
   const content = document.getElementById('content');
   content.innerHTML = '';
 
-  const legsLabel = p.n_legs === 1
-    ? `Singola nel range di quota ${p.odds_min}–${p.odds_max}`
-    : `Combinazione di ${p.n_legs} partite, quota combinata ${p.odds_min}–${p.odds_max}`;
+  content.appendChild(renderLegend());
 
+  const legsLabel = p.n_legs === 1 ? 'singola' : `combinazione di ${p.n_legs} partite`;
+
+  content.appendChild(renderResultsSection(
+    'A', `Ricerca rigorosa — ${legsLabel}, solo affidabilità media/alta`,
+    'Massima affidabilità: usa solo squadre con storico sufficiente sulla prossima giornata di campionato.',
+    data.strict_results
+  ));
+
+  content.appendChild(renderResultsSection(
+    'B', `Ricerca estesa — ${legsLabel}, include affidabilità bassa`,
+    'Più probabile trovare un risultato esatto nel tuo range: include anche squadre con storico limitato (es. neopromosse) sulla stessa prossima giornata — qualità dei dati potenzialmente inferiore, controlla sempre l\'affidabilità di ogni gamba.',
+    data.extended_results
+  ));
+}
+
+function renderLegend() {
+  const box = document.createElement('div');
+  box.className = 'control-panel';
+  box.innerHTML = `
+    <div class="panel-title">📖 Come leggere questi numeri</div>
+    <div style="font-size:13px; line-height:1.8; color:var(--muted);">
+      <b style="color:var(--text)">Quota / Quota combinata</b> — il moltiplicatore reale offerto dal bookmaker.<br>
+      <b style="color:var(--text)">Mercato vs Modello</b> — la probabilità implicita nella quota del bookmaker, confrontata con quella stimata dal nostro modello statistico.<br>
+      <b style="color:var(--text)">Vantaggio</b> — la differenza tra le due: positivo significa che il modello vede più probabilità di quanto paghi la quota (non è una garanzia di vincita).<br>
+      <b style="color:var(--text)">Affidabilità</b> — quanto storico ha il modello sulle squadre coinvolte: bassa = pochi dati (es. neopromosse), da prendere con cautela.<br>
+      <b style="color:var(--text)">Successo / Rovina</b> — simulando questa stessa giocata migliaia di volte, quante volte porta al tuo obiettivo o azzera il capitale.<br>
+      <b style="color:var(--text)">✓ nel tuo range / vicino al range</b> — se la quota combinata cade esattamente nei valori richiesti, o quanto ne è distante.
+    </div>
+  `;
+  return box;
+}
+
+function renderResultsSection(tag, title, subtitle, results) {
   const section = document.createElement('section');
   const head = document.createElement('div');
   head.className = 'section-head';
-  head.innerHTML = `<span class="tag">✓</span><h2>La tua richiesta — ${legsLabel}</h2>`;
+  head.innerHTML = `<span class="tag">${tag}</span><h2>${title}</h2>`;
   section.appendChild(head);
 
-  if (data.results && data.results.length > 0) {
-    data.results.forEach(item => section.appendChild(renderResult(item)));
+  const sub = document.createElement('div');
+  sub.style.cssText = 'font-size:13px; color:var(--muted); margin-bottom:16px; margin-top:-8px;';
+  sub.textContent = subtitle;
+  section.appendChild(sub);
+
+  if (results && results.length > 0) {
+    const anyInRange = results.some(r => r.in_range);
+    if (!anyInRange) {
+      const note = document.createElement('div');
+      note.style.cssText = 'margin-bottom:16px; font-size:13px; color:var(--muted); font-style:italic;';
+      note.textContent = 'Nessuna combinazione cade esattamente nel tuo range in questo momento — ecco le più vicine disponibili davvero.';
+      section.appendChild(note);
+    }
+    results.forEach(item => section.appendChild(renderResult(item)));
   } else {
     const empty = document.createElement('div');
     empty.className = 'empty-state';
-    if (p.n_legs === 1) {
-      empty.textContent = 'Nessuna singola trovata con quota reale in questo range al momento.';
-    } else {
-      empty.textContent = `Nessuna combinazione da ${p.n_legs} partite con vantaggio trovata in questo range esatto al momento.`;
-    }
+    empty.textContent = 'Nessuna combinazione reale possibile al momento (probabilmente troppo poche partite disponibili).';
     section.appendChild(empty);
-
-    if (data.near_misses && data.near_misses.length > 0) {
-      const nearTitle = document.createElement('div');
-      nearTitle.style.cssText = 'margin-top:20px; font-family:JetBrains Mono, monospace; font-size:13px; color:var(--muted);';
-      nearTitle.textContent = 'Le combinazioni REALI più vicine al tuo range (per riferimento):';
-      section.appendChild(nearTitle);
-      data.near_misses.forEach(nm => section.appendChild(renderNearMiss(nm)));
-
-      const hint = document.createElement('div');
-      hint.style.cssText = 'margin-top:12px; font-size:13px; color:var(--muted); font-style:italic;';
-      hint.textContent = 'Suggerimento: prova ad allargare il range di quota o cambiare il numero di partite da combinare.';
-      section.appendChild(hint);
-    }
   }
 
-  content.appendChild(section);
+  return section;
 }
 
-function renderNearMiss(nm) {
-  const card = document.createElement('div');
-  card.className = 'card';
-  card.style.opacity = '0.75';
-  const legsHtml = nm.legs.map(l => `<li>${l.match} @ ${l.real_odd}</li>`).join('');
-  const edgeLabel = nm.combined_edge > 0 ? `+${(nm.combined_edge*100).toFixed(1)}%` : `${(nm.combined_edge*100).toFixed(1)}%`;
-  card.innerHTML = `
-    <div class="card-top">
-      <div class="match-info"><ul class="legs-list">${legsHtml}</ul></div>
-      <div class="odd-box"><div class="val">${nm.combined_odd}</div><div class="label">quota combinata</div></div>
-    </div>
-    <div class="progression-line">Fuori dal tuo range · vantaggio stimato ${edgeLabel}</div>
-  `;
-  return card;
-}
 
 function edgeBadge(edge) {
   const pct = (edge * 100).toFixed(1);
@@ -753,7 +765,7 @@ function renderResult(d) {
         <div class="odd-box"><div class="val">${d.combined_odd}</div><div class="label">quota</div></div>
       </div>
       ${vantageBar(d.combined_true_probability, d.combined_implied_probability)}
-      ${edgeBadge(d.combined_edge)}${reliabilityBadge(c.reliability)}
+      ${edgeBadge(d.combined_edge)}${reliabilityBadge(c.reliability)}${rangeBadge(d)}
       ${statsBlock(d.simulation)}
       ${progressionLine(d.progression)}
       ${explanationBox(c.explanation)}
@@ -774,13 +786,20 @@ function renderResult(d) {
         <div class="odd-box"><div class="val">${d.combined_odd}</div><div class="label">quota combinata</div></div>
       </div>
       ${vantageBar(d.combined_true_probability, d.combined_implied_probability)}
-      ${edgeBadge(d.combined_edge)}
+      ${edgeBadge(d.combined_edge)}${rangeBadge(d)}
       ${statsBlock(d.simulation)}
       ${progressionLine(d.progression)}
       ${explanationBox(explanations)}
     `;
   }
   return card;
+}
+
+function rangeBadge(d) {
+  if (d.in_range) {
+    return `<span class="edge-badge edge-pos" style="margin-left:8px;">✓ nel tuo range</span>`;
+  }
+  return `<span class="edge-badge" style="margin-left:8px;">vicino al range (fuori di ${d.distance_from_range})</span>`;
 }
 
 load().catch(err => {
