@@ -382,7 +382,7 @@ def find_singles_in_range(candidates, odds_min, odds_max):
 
 
 def find_combos_in_range(candidates, odds_min, odds_max, n_legs=2, max_results=5,
-                          min_edge=0.0, pool_size=40, exclude_low_reliability=True):
+                          min_edge=0.0, pool_size=60, exclude_low_reliability=True):
     """
     Cerca combinazioni di N partite DIVERSE la cui quota combinata
     (prodotto delle singole quote) cade nel range desiderato.
@@ -438,7 +438,7 @@ def find_combos_in_range(candidates, odds_min, odds_max, n_legs=2, max_results=5
             f"{len(compatible)} candidati compatibili, pool finale di {len(pool)}"
         )
 
-    results = []
+    all_combos = []
     for combo in combinations(pool, n_legs):
         matches_involved = {c["match"] for c in combo}
         if len(matches_involved) < n_legs:
@@ -452,20 +452,32 @@ def find_combos_in_range(candidates, odds_min, odds_max, n_legs=2, max_results=5
             combined_true_prob *= c["model_probability"]
             combined_implied_prob *= c["implied_probability"]
 
-        if not (odds_min <= combined_odd <= odds_max):
-            continue
+        in_range = odds_min <= combined_odd <= odds_max
+        distance = 0.0 if in_range else min(abs(combined_odd - odds_min), abs(combined_odd - odds_max))
 
-        results.append({
+        all_combos.append({
             "legs": combo,
             "n_legs": n_legs,
             "combined_odd": round(combined_odd, 3),
             "combined_true_probability": round(combined_true_prob, 4),
             "combined_implied_probability": round(combined_implied_prob, 4),
             "combined_edge": round(combined_true_prob - combined_implied_prob, 4),
+            "in_range": in_range,
+            "distance_from_range": round(distance, 3),
         })
 
+    results = [c for c in all_combos if c["in_range"]]
     results.sort(key=lambda r: -r["combined_edge"])
-    return results[:max_results]
+
+    near_misses = []
+    if not results:
+        # Nessuna combinazione esatta trovata: mostriamo le combinazioni
+        # REALI più vicine al range desiderato (non inventate), cosi'
+        # l'utente sa se conviene allargare il range invece di restare al buio
+        candidates_sorted = sorted(all_combos, key=lambda r: (r["distance_from_range"], -r["combined_edge"]))
+        near_misses = candidates_sorted[:3]
+
+    return results[:max_results], near_misses
 
 
 def winning_progression(starting_capital, target_capital, odd, stake_fraction=1.0, max_steps=15):
@@ -511,28 +523,22 @@ def build_json_output(candidates):
     Prepara gli stessi risultati del report testuale, ma in formato JSON,
     così la pagina web (docs/index.html) può leggerli e mostrarli con
     un'interfaccia curata invece del testo grezzo dei log.
+
+    Mostra SOLO quello che l'utente ha richiesto (N_LEGS): se N_LEGS=1,
+    sono singole; se N_LEGS>1, sono combinazioni — non entrambe insieme.
     """
-    singles = find_singles_in_range(candidates, ODDS_MIN, ODDS_MAX)[:5]
-    doubles = find_combos_in_range(candidates, ODDS_MIN, ODDS_MAX, n_legs=N_LEGS)
+    results, near_misses = find_combos_in_range(candidates, ODDS_MIN, ODDS_MAX, n_legs=N_LEGS)
 
-    singles_out = []
-    for c in singles:
-        sim = simulate_strategy(
-            STARTING_CAPITAL, TARGET_CAPITAL, c["real_odd"],
-            c["model_probability"], stake_fraction=1.0, n_simulations=10000,
-        )
-        progression = winning_progression(STARTING_CAPITAL, TARGET_CAPITAL, c["real_odd"])
-        singles_out.append({**c, "simulation": sim, "progression": progression})
-
-    doubles_out = []
-    for d in doubles:
+    results_out = []
+    for d in results:
         sim = simulate_strategy(
             STARTING_CAPITAL, TARGET_CAPITAL, d["combined_odd"],
             d["combined_true_probability"], stake_fraction=1.0, n_simulations=10000,
         )
         progression = winning_progression(STARTING_CAPITAL, TARGET_CAPITAL, d["combined_odd"])
-        doubles_out.append({
+        results_out.append({
             "legs": list(d["legs"]),
+            "n_legs": d["n_legs"],
             "combined_odd": d["combined_odd"],
             "combined_true_probability": d["combined_true_probability"],
             "combined_implied_probability": d["combined_implied_probability"],
@@ -540,6 +546,15 @@ def build_json_output(candidates):
             "simulation": sim,
             "progression": progression,
         })
+
+    near_misses_out = [
+        {
+            "legs": list(nm["legs"]),
+            "combined_odd": nm["combined_odd"],
+            "combined_edge": nm["combined_edge"],
+        }
+        for nm in near_misses
+    ]
 
     return {
         "generated_at": datetime.now(timezone.utc).isoformat(),
@@ -552,9 +567,10 @@ def build_json_output(candidates):
         },
         "total_candidates": len(candidates),
         "positive_edge_count": len([c for c in candidates if c["edge"] > 0]),
-        "singles": singles_out,
-        "doubles": doubles_out,
+        "results": results_out,
+        "near_misses": near_misses_out,
     }
+
 
 
 def save_json_output(candidates, path="docs/strategy.json"):
@@ -575,50 +591,35 @@ def print_report(candidates):
     positive_edge = [c for c in candidates if c["edge"] > 0]
     print(f"Di cui con vantaggio stimato positivo: {len(positive_edge)}")
 
+    request_label = (
+        f"Singola nel range di quota {ODDS_MIN}-{ODDS_MAX}"
+        if N_LEGS == 1
+        else f"Combinazione di {N_LEGS} partite con quota combinata {ODDS_MIN}-{ODDS_MAX}"
+    )
     print("\n" + "-" * 100)
-    print("OPZIONE A — Singole nel tuo range di quota")
+    print(f"LA TUA RICHIESTA — {request_label}")
     print("-" * 100)
-    singles = find_singles_in_range(candidates, ODDS_MIN, ODDS_MAX)
-    if not singles:
-        print(f"Nessuna singola trovata con quota reale tra {ODDS_MIN} e {ODDS_MAX} al momento.")
-    else:
-        for c in singles[:5]:
-            edge_label = f"+{c['edge']:.1%}" if c["edge"] > 0 else f"{c['edge']:.1%}"
-            print(
-                f"  [{c['league']}] {c['match']} ({c['date']}) — {c['market']} {c['outcome']} "
-                f"@ {c['real_odd']} ({c['n_bookmakers']} bookmaker) | "
-                f"modello: {c['model_probability']:.1%} vs mercato: {c['implied_probability']:.1%} "
-                f"| vantaggio: {edge_label} | affidabilità: {c['reliability']}"
-            )
-            print(f"      {c['explanation']}")
-            sim = simulate_strategy(
-                STARTING_CAPITAL, TARGET_CAPITAL, c["real_odd"],
-                c["model_probability"], stake_fraction=1.0, n_simulations=10000,
-            )
-            print(
-                f"      -> Con questa quota ripetuta: successo {sim['probability_reach_target']:.1%}, "
-                f"rovina {sim['probability_bust']:.1%}"
-            )
-            progression = winning_progression(STARTING_CAPITAL, TARGET_CAPITAL, c["real_odd"])
-            print(f"      -> Se vinci SUBITO questa scommessa (puntando tutto il capitale):")
-            first = progression[0]
-            print(
-                f"         Punti {first['stake']}€ -> se vinci, incassi {first['winnings']}€ di vincita, "
-                f"capitale diventa {first['capital_after']}€ (mancano {first['remaining_to_target']}€ all'obiettivo)"
-            )
-            if len(progression) > 1:
-                print(
-                    f"         Se vincessi SEMPRE (caso migliore, non una previsione): "
-                    f"obiettivo raggiunto in {len(progression)} vittorie consecutive"
-                )
 
-    legs_label = "Singola" if N_LEGS == 1 else f"Combinazioni da {N_LEGS} partite"
-    print("\n" + "-" * 100)
-    print(f"OPZIONE B — {legs_label} nel tuo range di quota (solo affidabilità media/alta)")
-    print("-" * 100)
-    doubles = find_combos_in_range(candidates, ODDS_MIN, ODDS_MAX, n_legs=N_LEGS)
+    doubles, near_misses = find_combos_in_range(candidates, ODDS_MIN, ODDS_MAX, n_legs=N_LEGS)
+
     if not doubles:
-        print(f"Nessuna combinazione da {N_LEGS} partite trovata con quota combinata tra {ODDS_MIN} e {ODDS_MAX} al momento.")
+        if N_LEGS == 1:
+            print(f"Nessuna singola trovata con quota reale tra {ODDS_MIN} e {ODDS_MAX} al momento.")
+        else:
+            print(
+                f"Nessuna combinazione da {N_LEGS} partite con vantaggio positivo trovata "
+                f"con quota combinata esattamente tra {ODDS_MIN} e {ODDS_MAX} al momento."
+            )
+        if near_misses:
+            print(f"\nLe combinazioni REALI più vicine al tuo range (per riferimento, non nel range richiesto):")
+            for nm in near_misses:
+                legs_desc = " + ".join(f"{c['match']} @ {c['real_odd']}" for c in nm["legs"])
+                edge_label = f"+{nm['combined_edge']:.1%}" if nm["combined_edge"] > 0 else f"{nm['combined_edge']:.1%}"
+                print(f"  {legs_desc} -> quota combinata {nm['combined_odd']} (vantaggio {edge_label})")
+            print(
+                "\nSuggerimento: se vuoi risultati in questo momento, prova ad allargare "
+                "il range di quota, oppure un numero diverso di partite da combinare."
+            )
     else:
         for d in doubles:
             legs_desc = " + ".join(
@@ -627,6 +628,8 @@ def print_report(candidates):
             )
             edge_label = f"+{d['combined_edge']:.1%}" if d["combined_edge"] > 0 else f"{d['combined_edge']:.1%}"
             print(f"  {legs_desc}")
+            for c in d["legs"]:
+                print(f"      · {c['match']}: {c['explanation']}")
             print(
                 f"      Quota combinata: {d['combined_odd']} | "
                 f"modello: {d['combined_true_probability']:.1%} vs mercato: "
@@ -643,7 +646,7 @@ def print_report(candidates):
             progression = winning_progression(STARTING_CAPITAL, TARGET_CAPITAL, d["combined_odd"])
             first = progression[0]
             print(
-                f"      -> Se vinci SUBITO questa doppia: punti {first['stake']}€ -> "
+                f"      -> Se vinci SUBITO questa combinazione: punti {first['stake']}€ -> "
                 f"incassi {first['winnings']}€, capitale diventa {first['capital_after']}€ "
                 f"(mancano {first['remaining_to_target']}€ all'obiettivo)"
             )
@@ -674,6 +677,12 @@ def run():
         print(f"[TIMING] save_json_output: {t3-t2:.2f}s")
         print(f"[TIMING] TOTALE: {t3-t0:.2f}s")
     finally:
+        conn.close()
+
+
+if __name__ == "__main__":
+    run()
+
         conn.close()
 
 
