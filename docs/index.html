@@ -9,17 +9,26 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #0B1F17;
-    --surface: #12271D;
-    --surface-2: #17301F   ;
-    --line: #23402E;
-    --text: #F1EDE4;
-    --muted: #8AA394;
-    --gold: #D4A64A;
-    --gold-dim: #8A7238;
-    --teal: #3FA796;
-    --red: #C1483D;
-    --pitch-line: rgba(241,237,228,0.06);
+    --bg: #0A0E1A;
+    --surface: #121729;
+    --surface-2: #1A2140;
+    --line: #262E4A;
+    --text: #ECEEF5;
+    --muted: #8991B3;
+    --gold: #F0A93C;
+    --gold-dim: #A8762A;
+    --teal: #22C58B;
+    --red: #E14F5A;
+    --accent: #5B7CFA;
+    --pitch-line: rgba(91,124,250,0.05);
+
+    /* Colori distintivi per campionato — ispirati alle identità
+       ufficiali, usati come accenti (bordo/tag) */
+    --league-SA: #1E88E5;   /* Serie A: blu */
+    --league-PL: #9C4FE8;   /* Premier League: viola */
+    --league-PD: #F5892B;   /* La Liga: arancione */
+    --league-FL1: #C8E600;  /* Ligue 1: verde lime */
+    --league-BL1: #EF4557;  /* Bundesliga: rosso */
   }
 
   * { box-sizing: border-box; }
@@ -27,7 +36,7 @@
   body {
     margin: 0;
     background:
-      repeating-linear-gradient(0deg, transparent, transparent 79px, var(--pitch-line) 79px, var(--pitch-line) 80px),
+      radial-gradient(circle at 1px 1px, var(--pitch-line) 1px, transparent 0) 0 0/28px 28px,
       var(--bg);
     color: var(--text);
     font-family: 'Inter', sans-serif;
@@ -35,13 +44,54 @@
     padding-bottom: 80px;
   }
 
-  .wrap { max-width: 920px; margin: 0 auto; padding: 0 20px; }
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 0 20px; }
+
+  /* --- Barra di navigazione superiore, in stile piattaforma dati --- */
+  .topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 24px;
+    border-bottom: 1px solid var(--line);
+    background: rgba(18,23,41,0.85);
+    backdrop-filter: blur(8px);
+    position: sticky;
+    top: 0;
+    z-index: 50;
+  }
+  .topbar .brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 17px;
+  }
+  .topbar .brand .mark {
+    width: 30px; height: 30px;
+    border-radius: 8px;
+    background: linear-gradient(135deg, var(--accent), var(--gold));
+    display: flex; align-items: center; justify-content: center;
+    font-size: 15px;
+  }
+  .topbar .brand .sub {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    font-weight: 400;
+    letter-spacing: 0.08em;
+  }
+  .topbar-meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--muted);
+  }
 
   header.hero {
-    padding: 56px 20px 40px;
+    padding: 40px 20px 28px;
     text-align: center;
     border-bottom: 1px solid var(--line);
-    margin-bottom: 40px;
+    margin-bottom: 32px;
   }
 
   .eyebrow {
@@ -49,13 +99,13 @@
     font-size: 12px;
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: var(--gold);
+    color: var(--accent);
     margin-bottom: 14px;
   }
 
   h1 {
     font-family: 'Space Grotesk', sans-serif;
-    font-size: clamp(32px, 6vw, 52px);
+    font-size: clamp(28px, 5vw, 44px);
     font-weight: 700;
     margin: 0 0 20px;
     letter-spacing: -0.01em;
@@ -83,6 +133,38 @@
     font-size: 13px;
     color: var(--muted);
   }
+
+  /* --- Striscia statistiche stile dashboard --- */
+  .stats-strip {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 28px;
+  }
+  .stat-tile {
+    background: var(--surface);
+    padding: 16px 18px;
+  }
+  .stat-tile .num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--text);
+  }
+  .stat-tile .cap {
+    font-size: 11px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-top: 2px;
+  }
+  .stat-tile.accent .num { color: var(--accent); }
+  .stat-tile.gold .num { color: var(--gold); }
+  .stat-tile.teal .num { color: var(--teal); }
 
   section { margin-bottom: 56px; }
 
@@ -115,7 +197,7 @@
   .card {
     background: var(--surface);
     border: 1px solid var(--line);
-    border-radius: 14px;
+    border-radius: 10px;
     padding: 22px 24px;
     margin-bottom: 16px;
   }
@@ -427,12 +509,17 @@
   .league-filter-btn.active { background: var(--gold); color: var(--bg); border-color: var(--gold); font-weight: 700; }
 
   /* --- Card partita (vista giornata) --- */
+  .matchday-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+    gap: 14px;
+  }
   .match-card {
     background: var(--surface);
     border: 1px solid var(--line);
-    border-radius: 14px;
+    border-radius: 10px;
     padding: 20px 22px;
-    margin-bottom: 14px;
+    margin-bottom: 0;
   }
   .match-card-head {
     display: flex;
@@ -462,18 +549,68 @@
     padding: 4px 10px;
     margin-bottom: 12px;
   }
+
+  /* --- Stemmi squadre e campionati --- */
+  .crest {
+    width: 28px;
+    height: 28px;
+    object-fit: contain;
+    flex-shrink: 0;
+    filter: drop-shadow(0 1px 2px rgba(0,0,0,0.4));
+  }
+  .crest-lg { width: 40px; height: 40px; }
+  .crest-sm { width: 16px; height: 16px; vertical-align: -3px; margin-right: 5px; }
+  .teams-with-crests {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .teams-with-crests .vs {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+  }
+  .league-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  /* Card con bordo sinistro colorato in base al campionato */
+  .card, .match-card {
+    border-left: 3px solid var(--card-league-color, var(--line));
+    box-shadow: 0 2px 10px rgba(0,0,0,0.18);
+    transition: transform 0.12s, box-shadow 0.12s;
+  }
+  .card:hover, .match-card:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.28);
+  }
 </style>
 </head>
 <body>
 
+<div class="topbar">
+  <div class="brand">
+    <div class="mark">⬡</div>
+    <div>
+      Analisi Football
+      <div class="sub">DIXON-COLES ENGINE · v2</div>
+    </div>
+  </div>
+  <div class="topbar-meta" id="topbar-meta">—</div>
+</div>
+
 <header class="hero">
-  <div class="eyebrow">Analisi Football · Dixon-Coles</div>
+  <div class="eyebrow">Piattaforma di analisi statistica</div>
   <h1>La tua strategia</h1>
   <div class="params-row" id="params-row"></div>
   <div class="meta-line" id="meta-line"></div>
 </header>
 
 <div class="wrap">
+  <div class="stats-strip" id="stats-strip"></div>
+
   <div class="control-panel" id="control-panel">
     <div class="panel-title">⚙️ Pannello di controllo</div>
 
@@ -716,6 +853,19 @@ async function load() {
     `Aggiornato il ${genDate.toLocaleDateString('it-IT')} alle ${genDate.toLocaleTimeString('it-IT', {hour:'2-digit', minute:'2-digit'})} · ` +
     `${data.total_candidates} esiti confrontati, ${data.positive_edge_count} con vantaggio positivo`;
 
+  document.getElementById('topbar-meta').textContent =
+    `Sincronizzato · ${genDate.toLocaleTimeString('it-IT', {hour:'2-digit', minute:'2-digit'})}`;
+
+  const strictHits = (data.strict_results || []).filter(r => r.in_range).length;
+  const extendedHits = (data.extended_results || []).filter(r => r.in_range).length;
+  const moltiplicatore = (p.target_capital / p.starting_capital).toFixed(1);
+  document.getElementById('stats-strip').innerHTML = `
+    <div class="stat-tile accent"><div class="num">${data.total_candidates}</div><div class="cap">Esiti analizzati</div></div>
+    <div class="stat-tile gold"><div class="num">${data.positive_edge_count}</div><div class="cap">Vantaggio positivo</div></div>
+    <div class="stat-tile teal"><div class="num">${strictHits + extendedHits}</div><div class="cap">Nel tuo range</div></div>
+    <div class="stat-tile"><div class="num">${moltiplicatore}×</div><div class="cap">Obiettivo capitale</div></div>
+  `;
+
   const content = document.getElementById('content');
   content.innerHTML = '';
 
@@ -850,9 +1000,14 @@ function renderResult(d) {
 
   if (isSingle) {
     const c = d.legs[0];
+    card.style.setProperty('--card-league-color', leagueColorVar(c.league_code));
     const legsHtml = `
-      <div class="league">${c.league} · ${c.market.toUpperCase()} ${c.outcome}</div>
-      <div class="teams">${c.match}</div>
+      <div class="league league-tag">${crestImg(c.league_emblem, c.league, 'crest-sm')} ${c.league} · ${c.market.toUpperCase()} ${c.outcome}</div>
+      <div class="teams-with-crests" style="margin-top:6px;">
+        ${crestImg(c.home_crest, '', 'crest')}
+        <span class="teams">${c.match}</span>
+        ${crestImg(c.away_crest, '', 'crest')}
+      </div>
       <div class="date">${c.date} · ${c.n_bookmakers} bookmaker</div>
     `;
     card.innerHTML = `
@@ -868,7 +1023,7 @@ function renderResult(d) {
     `;
   } else {
     const legsHtml = d.legs.map(l =>
-      `<li><b>${l.match}</b> — ${l.market.toUpperCase()} ${l.outcome} @ ${l.real_odd} <i>(affidabilità ${l.reliability})</i></li>`
+      `<li>${crestImg(l.home_crest, '', 'crest-sm')}<b>${l.match}</b> — ${l.market.toUpperCase()} ${l.outcome} @ ${l.real_odd} <i>(affidabilità ${l.reliability})</i></li>`
     ).join('');
     const explanations = d.legs.map(l =>
       `<div style="margin-top:8px;"><b>${l.match}:</b> ${l.explanation}</div>`
@@ -975,9 +1130,20 @@ function renderMatchdayMatches() {
   if (filtered.length === 0) {
     html += '<div class="empty-state">Nessuna partita per questo filtro.</div>';
   } else {
+    html += '<div class="matchday-grid">';
     filtered.forEach(m => { html += renderMatchCard(m); });
+    html += '</div>';
   }
   container.innerHTML = html;
+}
+
+function leagueColorVar(code) {
+  return `var(--league-${code}, var(--line))`;
+}
+
+function crestImg(url, alt, cls) {
+  if (!url) return `<div class="${cls}" style="background:var(--surface-2); border-radius:50%;"></div>`;
+  return `<img src="${url}" alt="${alt}" class="${cls}" loading="lazy" onerror="this.style.display='none'">`;
 }
 
 function renderMatchCard(m) {
@@ -991,11 +1157,19 @@ function renderMatchCard(m) {
     : '';
 
   return `
-    <div class="match-card">
+    <div class="match-card" style="--card-league-color:${leagueColorVar(m.league_code)};">
       <div class="match-card-head">
         <div>
-          <div class="meta">${m.league} · ${m.date} ${m.time}</div>
-          <div class="teams">${m.match}</div>
+          <div class="meta league-tag">
+            ${crestImg(m.league_emblem, m.league, 'crest-sm')} ${m.league} · ${m.date} ${m.time}
+          </div>
+          <div class="teams-with-crests" style="margin-top:6px;">
+            ${crestImg(m.home_crest, m.home_team, 'crest')}
+            <span class="teams">${m.home_team}</span>
+            <span class="vs">vs</span>
+            <span class="teams">${m.away_team}</span>
+            ${crestImg(m.away_crest, m.away_team, 'crest')}
+          </div>
         </div>
       </div>
       <div class="score-pill">Risultato più probabile: ${m.most_likely_score} · gol attesi ${m.home_expected_goals.toFixed(1)}-${m.away_expected_goals.toFixed(1)}</div>
