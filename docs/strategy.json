@@ -1,98 +1,208 @@
 {
-  "generated_at": "2026-08-25T22:40:24.337730+00:00",
+  "generated_at": "2026-08-26T10:40:50.921970+00:00",
   "parameters": {
     "starting_capital": 20.0,
     "target_capital": 100.0,
-    "odds_min": 2.5,
-    "odds_max": 3.0,
+    "odds_min": 2.0,
+    "odds_max": 2.5,
     "n_legs": 3
   },
-  "total_candidates": 153,
-  "positive_edge_count": 77,
+  "total_candidates": 148,
+  "positive_edge_count": 75,
   "singles": [
     {
-      "league": "Bundesliga",
-      "match": "Borussia Dortmund vs Hamburger SV",
+      "league": "Serie A",
+      "match": "ACF Fiorentina vs Frosinone Calcio",
       "date": "2026-08-29",
       "market": "over_under",
       "outcome": "under_2.5",
-      "model_probability": 0.4453,
-      "real_odd": 2.63,
-      "n_bookmakers": 7,
-      "implied_probability": 0.3802,
-      "edge": 0.0651,
-      "home_team_matches": 34,
-      "away_team_matches": 34,
-      "explanation": "Il modello stima una probabilità del 44.5% per questo esito, basandosi su 34 partite storiche della squadra di casa e 34 della squadra in trasferta. La quota reale (2.63) implica invece una probabilità del 38.0% secondo il mercato — una differenza di +6.5 punti percentuali. ✓ Affidabilità ALTA: entrambe le squadre hanno uno storico sufficiente per una stima solida.",
-      "reliability": "alta",
+      "model_probability": 0.9607,
+      "real_odd": 2.1,
+      "n_bookmakers": 15,
+      "implied_probability": 0.4762,
+      "edge": 0.4845,
+      "home_team_matches": 39,
+      "away_team_matches": 1,
+      "home_form": "PNVNP",
+      "away_form": "P",
+      "head_to_head": "Nessuno scontro diretto recente disponibile nei dati storici.",
+      "home_rest_days": 4,
+      "away_rest_days": 6,
+      "top_combined_markets": [
+        {
+          "market": "1_btts_no",
+          "probability": 0.5234
+        },
+        {
+          "market": "1_under_3.5",
+          "probability": 0.5164
+        },
+        {
+          "market": "1_under_2.5",
+          "probability": 0.4841
+        }
+      ],
+      "explanation": "Il modello stima una probabilità del 96.1% per questo esito, basandosi su 39 partite storiche della squadra di casa e 1 della squadra in trasferta. La quota reale (2.1) implica invece una probabilità del 47.6% secondo il mercato — una differenza di +48.4 punti percentuali. Forma recente (dalla più vecchia alla più recente): casa PNVNP, trasferta P (V=vittoria, N=pareggio, P=sconfitta). Riposo dall'ultima partita: casa 4 giorni e trasferta 6 giorni. Mercati combinati sulla stessa partita più probabili secondo il modello (stima, non verificata su una quota reale): 1_btts_no (52.3%), 1_under_3.5 (51.6%), 1_under_2.5 (48.4%). ⚠️ Affidabilità BASSA: almeno una delle due squadre ha pochissime partite storiche (probabile neopromossa o inizio stagione). Un vantaggio stimato in questa condizione va preso con molta cautela — potrebbe riflettere un limite del modello più che un'opportunità reale.",
+      "reliability": "bassa",
       "simulation": {
-        "probability_reach_target": 0.1986,
-        "probability_bust": 0.8014,
+        "probability_reach_target": 0.8846,
+        "probability_bust": 0.1154,
         "probability_stuck_in_between": 0.0,
-        "avg_bets_if_successful": 2.0,
-        "median_final_capital": 0.0,
-        "mean_final_capital": 27.47
+        "avg_bets_if_successful": 3.0,
+        "median_final_capital": 185.22,
+        "mean_final_capital": 163.85
       },
       "progression": [
         {
           "step": 1,
           "capital_before": 20.0,
           "stake": 20.0,
-          "winnings": 32.6,
-          "capital_after": 52.6,
-          "remaining_to_target": 47.4,
+          "winnings": 22.0,
+          "capital_after": 42.0,
+          "remaining_to_target": 58.0,
           "target_reached": false
         },
         {
           "step": 2,
-          "capital_before": 52.6,
-          "stake": 52.6,
-          "winnings": 85.74,
-          "capital_after": 138.34,
+          "capital_before": 42.0,
+          "stake": 42.0,
+          "winnings": 46.2,
+          "capital_after": 88.2,
+          "remaining_to_target": 11.8,
+          "target_reached": false
+        },
+        {
+          "step": 3,
+          "capital_before": 88.2,
+          "stake": 88.2,
+          "winnings": 97.02,
+          "capital_after": 185.22,
           "remaining_to_target": 0,
           "target_reached": true
         }
       ]
     },
     {
-      "league": "Bundesliga",
-      "match": "1. FC Union Berlin vs Eintracht Frankfurt",
+      "league": "Serie A",
+      "match": "Juventus FC vs Parma Calcio 1913",
       "date": "2026-08-29",
-      "market": "1x2",
-      "outcome": "2",
-      "model_probability": 0.3688,
-      "real_odd": 2.85,
-      "n_bookmakers": 24,
-      "implied_probability": 0.3509,
-      "edge": 0.0179,
-      "home_team_matches": 34,
-      "away_team_matches": 34,
-      "explanation": "Il modello stima una probabilità del 36.9% per questo esito, basandosi su 34 partite storiche della squadra di casa e 34 della squadra in trasferta. La quota reale (2.85) implica invece una probabilità del 35.1% secondo il mercato — una differenza di +1.8 punti percentuali. ✓ Affidabilità ALTA: entrambe le squadre hanno uno storico sufficiente per una stima solida.",
+      "market": "over_under",
+      "outcome": "under_2.5",
+      "model_probability": 0.6569,
+      "real_odd": 2.31,
+      "n_bookmakers": 11,
+      "implied_probability": 0.4329,
+      "edge": 0.224,
+      "home_team_matches": 39,
+      "away_team_matches": 39,
+      "home_form": "NVPNV",
+      "away_form": "PPPVP",
+      "head_to_head": "Parma Calcio 1913 1-4 Juventus FC (2026-02-01) · Juventus FC 2-0 Parma Calcio 1913 (2025-08-24)",
+      "home_rest_days": 6,
+      "away_rest_days": 7,
+      "top_combined_markets": [
+        {
+          "market": "1_under_3.5",
+          "probability": 0.5139
+        },
+        {
+          "market": "1_btts_no",
+          "probability": 0.4802
+        },
+        {
+          "market": "1_over_1.5",
+          "probability": 0.4381
+        }
+      ],
+      "explanation": "Il modello stima una probabilità del 65.7% per questo esito, basandosi su 39 partite storiche della squadra di casa e 39 della squadra in trasferta. La quota reale (2.31) implica invece una probabilità del 43.3% secondo il mercato — una differenza di +22.4 punti percentuali. Forma recente (dalla più vecchia alla più recente): casa NVPNV, trasferta PPPVP (V=vittoria, N=pareggio, P=sconfitta). Scontri diretti recenti: Parma Calcio 1913 1-4 Juventus FC (2026-02-01) · Juventus FC 2-0 Parma Calcio 1913 (2025-08-24). Riposo dall'ultima partita: casa 6 giorni e trasferta 7 giorni. Mercati combinati sulla stessa partita più probabili secondo il modello (stima, non verificata su una quota reale): 1_under_3.5 (51.4%), 1_btts_no (48.0%), 1_over_1.5 (43.8%). ✓ Affidabilità ALTA: entrambe le squadre hanno uno storico sufficiente per una stima solida.",
       "reliability": "alta",
       "simulation": {
-        "probability_reach_target": 0.1333,
-        "probability_bust": 0.8667,
+        "probability_reach_target": 0.4308,
+        "probability_bust": 0.5692,
         "probability_stuck_in_between": 0.0,
         "avg_bets_if_successful": 2.0,
         "median_final_capital": 0.0,
-        "mean_final_capital": 21.65
+        "mean_final_capital": 45.98
       },
       "progression": [
         {
           "step": 1,
           "capital_before": 20.0,
           "stake": 20.0,
-          "winnings": 37.0,
-          "capital_after": 57.0,
-          "remaining_to_target": 43.0,
+          "winnings": 26.2,
+          "capital_after": 46.2,
+          "remaining_to_target": 53.8,
           "target_reached": false
         },
         {
           "step": 2,
-          "capital_before": 57.0,
-          "stake": 57.0,
-          "winnings": 105.45,
-          "capital_after": 162.45,
+          "capital_before": 46.2,
+          "stake": 46.2,
+          "winnings": 60.52,
+          "capital_after": 106.72,
+          "remaining_to_target": 0,
+          "target_reached": true
+        }
+      ]
+    },
+    {
+      "league": "Serie A",
+      "match": "AC Monza vs Udinese Calcio",
+      "date": "2026-08-29",
+      "market": "over_under",
+      "outcome": "over_2.5",
+      "model_probability": 0.6087,
+      "real_odd": 2.35,
+      "n_bookmakers": 14,
+      "implied_probability": 0.4255,
+      "edge": 0.1832,
+      "home_team_matches": 1,
+      "away_team_matches": 39,
+      "home_form": "P",
+      "away_form": "VVPPN",
+      "head_to_head": "Nessuno scontro diretto recente disponibile nei dati storici.",
+      "home_rest_days": 7,
+      "away_rest_days": 7,
+      "top_combined_markets": [
+        {
+          "market": "2_over_1.5",
+          "probability": 0.4411
+        },
+        {
+          "market": "2_over_2.5",
+          "probability": 0.3642
+        },
+        {
+          "market": "2_under_3.5",
+          "probability": 0.3074
+        }
+      ],
+      "explanation": "Il modello stima una probabilità del 60.9% per questo esito, basandosi su 1 partite storiche della squadra di casa e 39 della squadra in trasferta. La quota reale (2.35) implica invece una probabilità del 42.5% secondo il mercato — una differenza di +18.3 punti percentuali. Forma recente (dalla più vecchia alla più recente): casa P, trasferta VVPPN (V=vittoria, N=pareggio, P=sconfitta). Riposo dall'ultima partita: casa 7 giorni e trasferta 7 giorni. Mercati combinati sulla stessa partita più probabili secondo il modello (stima, non verificata su una quota reale): 2_over_1.5 (44.1%), 2_over_2.5 (36.4%), 2_under_3.5 (30.7%). ⚠️ Affidabilità BASSA: almeno una delle due squadre ha pochissime partite storiche (probabile neopromossa o inizio stagione). Un vantaggio stimato in questa condizione va preso con molta cautela — potrebbe riflettere un limite del modello più che un'opportunità reale.",
+      "reliability": "bassa",
+      "simulation": {
+        "probability_reach_target": 0.3668,
+        "probability_bust": 0.6332,
+        "probability_stuck_in_between": 0.0,
+        "avg_bets_if_successful": 2.0,
+        "median_final_capital": 0.0,
+        "mean_final_capital": 40.51
+      },
+      "progression": [
+        {
+          "step": 1,
+          "capital_before": 20.0,
+          "stake": 20.0,
+          "winnings": 27.0,
+          "capital_after": 47.0,
+          "remaining_to_target": 53.0,
+          "target_reached": false
+        },
+        {
+          "step": 2,
+          "capital_before": 47.0,
+          "stake": 47.0,
+          "winnings": 63.45,
+          "capital_after": 110.45,
           "remaining_to_target": 0,
           "target_reached": true
         }
@@ -100,131 +210,143 @@
     },
     {
       "league": "Ligue 1",
-      "match": "AS Monaco FC vs Olympique de Marseille",
+      "match": "Olympique Lyonnais vs Le Havre AC",
+      "date": "2026-08-29",
+      "market": "over_under",
+      "outcome": "under_2.5",
+      "model_probability": 0.6125,
+      "real_odd": 2.14,
+      "n_bookmakers": 12,
+      "implied_probability": 0.4673,
+      "edge": 0.1452,
+      "home_team_matches": 35,
+      "away_team_matches": 35,
+      "home_form": "VVPPV",
+      "away_form": "NNPVP",
+      "head_to_head": "Le Havre AC 0-0 Olympique Lyonnais (2026-03-15) · Olympique Lyonnais 1-0 Le Havre AC (2025-12-14)",
+      "home_rest_days": 7,
+      "away_rest_days": 6,
+      "top_combined_markets": [
+        {
+          "market": "1_under_3.5",
+          "probability": 0.4448
+        },
+        {
+          "market": "1_over_1.5",
+          "probability": 0.4221
+        },
+        {
+          "market": "1_btts_no",
+          "probability": 0.3947
+        }
+      ],
+      "explanation": "Il modello stima una probabilità del 61.3% per questo esito, basandosi su 35 partite storiche della squadra di casa e 35 della squadra in trasferta. La quota reale (2.14) implica invece una probabilità del 46.7% secondo il mercato — una differenza di +14.5 punti percentuali. Forma recente (dalla più vecchia alla più recente): casa VVPPV, trasferta NNPVP (V=vittoria, N=pareggio, P=sconfitta). Scontri diretti recenti: Le Havre AC 0-0 Olympique Lyonnais (2026-03-15) · Olympique Lyonnais 1-0 Le Havre AC (2025-12-14). Riposo dall'ultima partita: casa 7 giorni e trasferta 6 giorni. Mercati combinati sulla stessa partita più probabili secondo il modello (stima, non verificata su una quota reale): 1_under_3.5 (44.5%), 1_over_1.5 (42.2%), 1_btts_no (39.5%). ✓ Affidabilità ALTA: entrambe le squadre hanno uno storico sufficiente per una stima solida.",
+      "reliability": "alta",
+      "simulation": {
+        "probability_reach_target": 0.2285,
+        "probability_bust": 0.7715,
+        "probability_stuck_in_between": 0.0,
+        "avg_bets_if_successful": 3.0,
+        "median_final_capital": 0.0,
+        "mean_final_capital": 44.79
+      },
+      "progression": [
+        {
+          "step": 1,
+          "capital_before": 20.0,
+          "stake": 20.0,
+          "winnings": 22.8,
+          "capital_after": 42.8,
+          "remaining_to_target": 57.2,
+          "target_reached": false
+        },
+        {
+          "step": 2,
+          "capital_before": 42.8,
+          "stake": 42.8,
+          "winnings": 48.79,
+          "capital_after": 91.59,
+          "remaining_to_target": 8.41,
+          "target_reached": false
+        },
+        {
+          "step": 3,
+          "capital_before": 91.59,
+          "stake": 91.59,
+          "winnings": 104.41,
+          "capital_after": 196.0,
+          "remaining_to_target": 0,
+          "target_reached": true
+        }
+      ]
+    },
+    {
+      "league": "Ligue 1",
+      "match": "Paris FC vs OGC Nice",
       "date": "2026-08-30",
       "market": "1x2",
       "outcome": "1",
-      "model_probability": 0.3932,
-      "real_odd": 2.65,
-      "n_bookmakers": 23,
-      "implied_probability": 0.3774,
-      "edge": 0.0158,
+      "model_probability": 0.5966,
+      "real_odd": 2.16,
+      "n_bookmakers": 22,
+      "implied_probability": 0.463,
+      "edge": 0.1336,
       "home_team_matches": 35,
       "away_team_matches": 35,
-      "explanation": "Il modello stima una probabilità del 39.3% per questo esito, basandosi su 35 partite storiche della squadra di casa e 35 della squadra in trasferta. La quota reale (2.65) implica invece una probabilità del 37.7% secondo il mercato — una differenza di +1.6 punti percentuali. ✓ Affidabilità ALTA: entrambe le squadre hanno uno storico sufficiente per una stima solida.",
-      "reliability": "alta",
-      "simulation": {
-        "probability_reach_target": 0.1539,
-        "probability_bust": 0.8461,
-        "probability_stuck_in_between": 0.0,
-        "avg_bets_if_successful": 2.0,
-        "median_final_capital": 0.0,
-        "mean_final_capital": 21.62
-      },
-      "progression": [
+      "home_form": "PVPVN",
+      "away_form": "NNPNN",
+      "head_to_head": "Paris FC 1-0 OGC Nice (2026-03-01) · OGC Nice 1-1 Paris FC (2025-09-28)",
+      "home_rest_days": 7,
+      "away_rest_days": 7,
+      "top_combined_markets": [
         {
-          "step": 1,
-          "capital_before": 20.0,
-          "stake": 20.0,
-          "winnings": 33.0,
-          "capital_after": 53.0,
-          "remaining_to_target": 47.0,
-          "target_reached": false
+          "market": "1_over_1.5",
+          "probability": 0.4756
         },
         {
-          "step": 2,
-          "capital_before": 53.0,
-          "stake": 53.0,
-          "winnings": 87.45,
-          "capital_after": 140.45,
-          "remaining_to_target": 0,
-          "target_reached": true
+          "market": "1_under_3.5",
+          "probability": 0.4054
+        },
+        {
+          "market": "1_over_2.5",
+          "probability": 0.3586
         }
-      ]
-    },
-    {
-      "league": "Ligue 1",
-      "match": "Stade Brestois 29 vs Toulouse FC",
-      "date": "2026-08-29",
-      "market": "1x2",
-      "outcome": "1",
-      "model_probability": 0.3687,
-      "real_odd": 2.8,
-      "n_bookmakers": 22,
-      "implied_probability": 0.3571,
-      "edge": 0.0116,
-      "home_team_matches": 35,
-      "away_team_matches": 34,
-      "explanation": "Il modello stima una probabilità del 36.9% per questo esito, basandosi su 35 partite storiche della squadra di casa e 34 della squadra in trasferta. La quota reale (2.8) implica invece una probabilità del 35.7% secondo il mercato — una differenza di +1.2 punti percentuali. ✓ Affidabilità ALTA: entrambe le squadre hanno uno storico sufficiente per una stima solida.",
+      ],
+      "explanation": "Il modello stima una probabilità del 59.7% per questo esito, basandosi su 35 partite storiche della squadra di casa e 35 della squadra in trasferta. La quota reale (2.16) implica invece una probabilità del 46.3% secondo il mercato — una differenza di +13.4 punti percentuali. Forma recente (dalla più vecchia alla più recente): casa PVPVN, trasferta NNPNN (V=vittoria, N=pareggio, P=sconfitta). Scontri diretti recenti: Paris FC 1-0 OGC Nice (2026-03-01) · OGC Nice 1-1 Paris FC (2025-09-28). Riposo dall'ultima partita: casa 7 giorni e trasferta 7 giorni. Mercati combinati sulla stessa partita più probabili secondo il modello (stima, non verificata su una quota reale): 1_over_1.5 (47.6%), 1_under_3.5 (40.5%), 1_over_2.5 (35.9%). ✓ Affidabilità ALTA: entrambe le squadre hanno uno storico sufficiente per una stima solida.",
       "reliability": "alta",
       "simulation": {
-        "probability_reach_target": 0.1364,
-        "probability_bust": 0.8636,
+        "probability_reach_target": 0.2208,
+        "probability_bust": 0.7792,
         "probability_stuck_in_between": 0.0,
-        "avg_bets_if_successful": 2.0,
+        "avg_bets_if_successful": 3.0,
         "median_final_capital": 0.0,
-        "mean_final_capital": 21.39
+        "mean_final_capital": 44.5
       },
       "progression": [
         {
           "step": 1,
           "capital_before": 20.0,
           "stake": 20.0,
-          "winnings": 36.0,
-          "capital_after": 56.0,
-          "remaining_to_target": 44.0,
+          "winnings": 23.2,
+          "capital_after": 43.2,
+          "remaining_to_target": 56.8,
           "target_reached": false
         },
         {
           "step": 2,
-          "capital_before": 56.0,
-          "stake": 56.0,
-          "winnings": 100.8,
-          "capital_after": 156.8,
-          "remaining_to_target": 0,
-          "target_reached": true
-        }
-      ]
-    },
-    {
-      "league": "Bundesliga",
-      "match": "1. FC Union Berlin vs Eintracht Frankfurt",
-      "date": "2026-08-29",
-      "market": "1x2",
-      "outcome": "1",
-      "model_probability": 0.3974,
-      "real_odd": 2.55,
-      "n_bookmakers": 24,
-      "implied_probability": 0.3922,
-      "edge": 0.0052,
-      "home_team_matches": 34,
-      "away_team_matches": 34,
-      "explanation": "Il modello stima una probabilità del 39.7% per questo esito, basandosi su 34 partite storiche della squadra di casa e 34 della squadra in trasferta. La quota reale (2.55) implica invece una probabilità del 39.2% secondo il mercato — una differenza di +0.5 punti percentuali. ✓ Affidabilità ALTA: entrambe le squadre hanno uno storico sufficiente per una stima solida.",
-      "reliability": "alta",
-      "simulation": {
-        "probability_reach_target": 0.1558,
-        "probability_bust": 0.8442,
-        "probability_stuck_in_between": 0.0,
-        "avg_bets_if_successful": 2.0,
-        "median_final_capital": 0.0,
-        "mean_final_capital": 20.26
-      },
-      "progression": [
-        {
-          "step": 1,
-          "capital_before": 20.0,
-          "stake": 20.0,
-          "winnings": 31.0,
-          "capital_after": 51.0,
-          "remaining_to_target": 49.0,
+          "capital_before": 43.2,
+          "stake": 43.2,
+          "winnings": 50.11,
+          "capital_after": 93.31,
+          "remaining_to_target": 6.69,
           "target_reached": false
         },
         {
-          "step": 2,
-          "capital_before": 51.0,
-          "stake": 51.0,
-          "winnings": 79.05,
-          "capital_after": 130.05,
+          "step": 3,
+          "capital_before": 93.31,
+          "stake": 93.31,
+          "winnings": 108.24,
+          "capital_after": 201.55,
           "remaining_to_target": 0,
           "target_reached": true
         }
