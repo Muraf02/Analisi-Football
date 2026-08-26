@@ -37,6 +37,7 @@ from config.config import (
     LOG_DIR,
 )
 from src.db import get_connection
+from src.team_name_mapping import match_team_name
 
 os.makedirs(LOG_DIR, exist_ok=True)
 logging.basicConfig(
@@ -108,13 +109,11 @@ def match_odds_to_database(league_code, events, conn):
             our_date = datetime.fromisoformat(row["utc_date"].replace("Z", "+00:00"))
             if abs((our_date - event_date).total_seconds()) > 24 * 3600:
                 continue
-            # Confronto semplice: The Odds API di solito usa nomi molto
-            # simili a quelli ufficiali. Se in futuro emergono disallineamenti,
-            # possiamo riusare la stessa logica di team_name_mapping.py
-            if home_team.lower() in row["home_name"].lower() or row["home_name"].lower() in home_team.lower():
-                if away_team.lower() in row["away_name"].lower() or row["away_name"].lower() in away_team.lower():
-                    found = row
-                    break
+            # Usiamo la stessa logica di corrispondenza già collaudata per
+            # Understat (mappatura manuale + normalizzazione + similarità)
+            if match_team_name(home_team, row["home_name"]) and match_team_name(away_team, row["away_name"]):
+                found = row
+                break
 
         if not found:
             unmatched += 1
