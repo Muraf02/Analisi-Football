@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-26T12:54:21.919800+00:00",
+  "generated_at": "2026-08-26T13:05:09.062222+00:00",
   "parameters": {
     "starting_capital": 20.0,
     "target_capital": 100.0,
@@ -42,7 +42,7 @@
             },
             {
               "market": "1_over_2.5",
-              "probability": 0.3034
+              "probability": 0.3033
             }
           ],
           "injuries": [],
@@ -95,12 +95,12 @@
       "in_range": false,
       "distance_from_range": 0.293,
       "simulation": {
-        "probability_reach_target": 0.1428,
-        "probability_bust": 0.8572,
+        "probability_reach_target": 0.1457,
+        "probability_bust": 0.8543,
         "probability_stuck_in_between": 0.0,
         "avg_bets_if_successful": 3.0,
         "median_final_capital": 0.0,
-        "mean_final_capital": 26.19
+        "mean_final_capital": 26.72
       },
       "progression": [
         {
@@ -201,7 +201,7 @@
             },
             {
               "market": "1_under_3.5",
-              "probability": 0.2999
+              "probability": 0.3
             }
           ],
           "injuries": [],
@@ -217,12 +217,12 @@
       "in_range": false,
       "distance_from_range": 0.293,
       "simulation": {
-        "probability_reach_target": 0.1273,
-        "probability_bust": 0.8727,
+        "probability_reach_target": 0.1283,
+        "probability_bust": 0.8717,
         "probability_stuck_in_between": 0.0,
         "avg_bets_if_successful": 3.0,
         "median_final_capital": 0.0,
-        "mean_final_capital": 23.34
+        "mean_final_capital": 23.53
       },
       "progression": [
         {
@@ -262,11 +262,11 @@
           "date": "2026-08-30",
           "market": "over_under",
           "outcome": "under_2.5",
-          "model_probability": 0.6665,
+          "model_probability": 0.6666,
           "real_odd": 1.64,
           "n_bookmakers": 11,
           "implied_probability": 0.6098,
-          "edge": 0.0567,
+          "edge": 0.0568,
           "home_team_matches": 39,
           "away_team_matches": 39,
           "is_next_matchday": true,
@@ -290,7 +290,7 @@
             }
           ],
           "injuries": [],
-          "explanation": "Il modello stima una probabilità del 66.6% per questo esito, basandosi su 39 partite storiche della squadra di casa e 39 della squadra in trasferta. La quota reale (1.64) implica invece una probabilità del 61.0% secondo il mercato — una differenza di +5.7 punti percentuali. Forma recente (dalla più vecchia alla più recente): casa VPPVV, trasferta NNPPP (V=vittoria, N=pareggio, P=sconfitta). Scontri diretti recenti: SS Lazio 3-2 Genoa CFC (2026-01-30) · Genoa CFC 0-3 SS Lazio (2025-09-29). Riposo dall'ultima partita: casa 6 giorni e trasferta 8 giorni. Mercati combinati sulla stessa partita più probabili secondo il modello (stima, non verificata su una quota reale): 1_under_3.5 (37.4%), 1_btts_no (31.1%), 1_over_1.5 (29.1%). ✓ Affidabilità ALTA: entrambe le squadre hanno uno storico sufficiente per una stima solida.",
+          "explanation": "Il modello stima una probabilità del 66.7% per questo esito, basandosi su 39 partite storiche della squadra di casa e 39 della squadra in trasferta. La quota reale (1.64) implica invece una probabilità del 61.0% secondo il mercato — una differenza di +5.7 punti percentuali. Forma recente (dalla più vecchia alla più recente): casa VPPVV, trasferta NNPPP (V=vittoria, N=pareggio, P=sconfitta). Scontri diretti recenti: SS Lazio 3-2 Genoa CFC (2026-01-30) · Genoa CFC 0-3 SS Lazio (2025-09-29). Riposo dall'ultima partita: casa 6 giorni e trasferta 8 giorni. Mercati combinati sulla stessa partita più probabili secondo il modello (stima, non verificata su una quota reale): 1_under_3.5 (37.4%), 1_btts_no (31.1%), 1_over_1.5 (29.1%). ✓ Affidabilità ALTA: entrambe le squadre hanno uno storico sufficiente per una stima solida.",
           "reliability": "alta"
         },
         {
@@ -333,18 +333,18 @@
       ],
       "n_legs": 2,
       "combined_odd": 2.214,
-      "combined_true_probability": 0.5062,
+      "combined_true_probability": 0.5063,
       "combined_implied_probability": 0.4517,
-      "combined_edge": 0.0545,
+      "combined_edge": 0.0546,
       "in_range": false,
       "distance_from_range": 0.414,
       "simulation": {
-        "probability_reach_target": 0.1288,
-        "probability_bust": 0.8712,
+        "probability_reach_target": 0.1276,
+        "probability_bust": 0.8724,
         "probability_stuck_in_between": 0.0,
         "avg_bets_if_successful": 3.0,
         "median_final_capital": 0.0,
-        "mean_final_capital": 27.96
+        "mean_final_capital": 27.7
       },
       "progression": [
         {
@@ -461,12 +461,12 @@
       "in_range": false,
       "distance_from_range": 0.427,
       "simulation": {
-        "probability_reach_target": 0.1319,
-        "probability_bust": 0.8681,
+        "probability_reach_target": 0.1301,
+        "probability_bust": 0.8699,
         "probability_stuck_in_between": 0.0,
         "avg_bets_if_successful": 3.0,
         "median_final_capital": 0.0,
-        "mean_final_capital": 29.18
+        "mean_final_capital": 28.78
       },
       "progression": [
         {
@@ -530,7 +530,7 @@
             },
             {
               "market": "1_over_2.5",
-              "probability": 0.3034
+              "probability": 0.3033
             }
           ],
           "injuries": [],
@@ -543,11 +543,11 @@
           "date": "2026-08-26",
           "market": "over_under",
           "outcome": "over_2.5",
-          "model_probability": 0.7155,
+          "model_probability": 0.7154,
           "real_odd": 1.44,
           "n_bookmakers": 3,
           "implied_probability": 0.6944,
-          "edge": 0.0211,
+          "edge": 0.021,
           "home_team_matches": 39,
           "away_team_matches": 39,
           "is_next_matchday": true,
@@ -577,18 +577,18 @@
       ],
       "n_legs": 2,
       "combined_odd": 2.232,
-      "combined_true_probability": 0.4953,
+      "combined_true_probability": 0.4952,
       "combined_implied_probability": 0.448,
       "combined_edge": 0.0472,
       "in_range": false,
       "distance_from_range": 0.432,
       "simulation": {
-        "probability_reach_target": 0.1186,
-        "probability_bust": 0.8814,
+        "probability_reach_target": 0.1247,
+        "probability_bust": 0.8753,
         "probability_stuck_in_between": 0.0,
         "avg_bets_if_successful": 3.0,
         "median_final_capital": 0.0,
-        "mean_final_capital": 26.38
+        "mean_final_capital": 27.73
       },
       "progression": [
         {
@@ -650,7 +650,7 @@
             },
             {
               "market": "1_over_1.5",
-              "probability": 0.8907
+              "probability": 0.8908
             },
             {
               "market": "1_over_2.5",
@@ -707,12 +707,12 @@
       "in_range": false,
       "distance_from_range": 0.09,
       "simulation": {
-        "probability_reach_target": 0.4102,
-        "probability_bust": 0.5898,
+        "probability_reach_target": 0.4134,
+        "probability_bust": 0.5866,
         "probability_stuck_in_between": 0.0,
         "avg_bets_if_successful": 3.0,
         "median_final_capital": 0.0,
-        "mean_final_capital": 55.39
+        "mean_final_capital": 55.82
       },
       "progression": [
         {
@@ -772,7 +772,7 @@
             },
             {
               "market": "1_over_1.5",
-              "probability": 0.8907
+              "probability": 0.8908
             },
             {
               "market": "1_over_2.5",
@@ -789,11 +789,11 @@
           "date": "2026-08-26",
           "market": "over_under",
           "outcome": "over_2.5",
-          "model_probability": 0.7155,
+          "model_probability": 0.7154,
           "real_odd": 1.44,
           "n_bookmakers": 3,
           "implied_probability": 0.6944,
-          "edge": 0.0211,
+          "edge": 0.021,
           "home_team_matches": 39,
           "away_team_matches": 39,
           "is_next_matchday": true,
@@ -823,18 +823,18 @@
       ],
       "n_legs": 2,
       "combined_odd": 2.016,
-      "combined_true_probability": 0.6992,
+      "combined_true_probability": 0.6991,
       "combined_implied_probability": 0.496,
-      "combined_edge": 0.2032,
+      "combined_edge": 0.2031,
       "in_range": false,
       "distance_from_range": 0.216,
       "simulation": {
-        "probability_reach_target": 0.3419,
-        "probability_bust": 0.6581,
+        "probability_reach_target": 0.3394,
+        "probability_bust": 0.6606,
         "probability_stuck_in_between": 0.0,
         "avg_bets_if_successful": 3.0,
         "median_final_capital": 0.0,
-        "mean_final_capital": 56.03
+        "mean_final_capital": 55.62
       },
       "progression": [
         {
@@ -898,7 +898,7 @@
             },
             {
               "market": "1_over_2.5",
-              "probability": 0.3034
+              "probability": 0.3033
             }
           ],
           "injuries": [],
@@ -951,12 +951,12 @@
       "in_range": false,
       "distance_from_range": 0.293,
       "simulation": {
-        "probability_reach_target": 0.1467,
-        "probability_bust": 0.8533,
+        "probability_reach_target": 0.1491,
+        "probability_bust": 0.8509,
         "probability_stuck_in_between": 0.0,
         "avg_bets_if_successful": 3.0,
         "median_final_capital": 0.0,
-        "mean_final_capital": 26.9
+        "mean_final_capital": 27.34
       },
       "progression": [
         {
@@ -1057,7 +1057,7 @@
             },
             {
               "market": "1_under_3.5",
-              "probability": 0.2999
+              "probability": 0.3
             }
           ],
           "injuries": [],
@@ -1073,12 +1073,12 @@
       "in_range": false,
       "distance_from_range": 0.293,
       "simulation": {
-        "probability_reach_target": 0.1313,
-        "probability_bust": 0.8687,
+        "probability_reach_target": 0.1211,
+        "probability_bust": 0.8789,
         "probability_stuck_in_between": 0.0,
         "avg_bets_if_successful": 3.0,
         "median_final_capital": 0.0,
-        "mean_final_capital": 24.08
+        "mean_final_capital": 22.21
       },
       "progression": [
         {
@@ -1138,7 +1138,7 @@
             },
             {
               "market": "1_over_1.5",
-              "probability": 0.8907
+              "probability": 0.8908
             },
             {
               "market": "1_over_2.5",
@@ -1179,7 +1179,7 @@
             },
             {
               "market": "1_over_2.5",
-              "probability": 0.3034
+              "probability": 0.3033
             }
           ],
           "injuries": [],
@@ -1195,12 +1195,12 @@
       "in_range": false,
       "distance_from_range": 0.37,
       "simulation": {
-        "probability_reach_target": 0.3072,
-        "probability_bust": 0.6928,
+        "probability_reach_target": 0.3076,
+        "probability_bust": 0.6924,
         "probability_stuck_in_between": 0.0,
         "avg_bets_if_successful": 3.0,
         "median_final_capital": 0.0,
-        "mean_final_capital": 62.78
+        "mean_final_capital": 62.86
       },
       "progression": [
         {
