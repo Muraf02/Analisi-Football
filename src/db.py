@@ -80,6 +80,18 @@ CREATE TABLE IF NOT EXISTS pipeline_runs (
     error_message TEXT
 );
 
+-- Infortuni e squalifiche
+CREATE TABLE IF NOT EXISTS injuries (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    match_id INTEGER NOT NULL,
+    team_name TEXT NOT NULL,
+    player_name TEXT NOT NULL,
+    injury_type TEXT,              -- 'Injury' o 'Suspension' (o simili, dipende dalla fonte)
+    reason TEXT,                   -- es. 'Knee Injury', 'Suspended 3 matches'
+    fetched_at TEXT NOT NULL,
+    FOREIGN KEY (match_id) REFERENCES matches(match_id)
+);
+
 CREATE INDEX IF NOT EXISTS idx_matches_league_season ON matches(league_code, season);
 CREATE INDEX IF NOT EXISTS idx_matches_date ON matches(utc_date);
 CREATE INDEX IF NOT EXISTS idx_matches_status ON matches(status);
