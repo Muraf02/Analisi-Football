@@ -1,0 +1,36 @@
+name: Recupera infortuni e squalifiche
+
+# Da avviare manualmente quando vuoi dati aggiornati su infortuni/squalifiche.
+# Il piano gratuito di api-football.com da' 100 richieste/giorno, e ogni
+# esecuzione ne consuma circa 5 (recupero partite) + 1 per ogni partita con
+# infortuni trovati (tipicamente 20-40) — ben dentro il limite gratuito.
+on:
+  workflow_dispatch:
+
+jobs:
+  fetch-injuries:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Scarica il codice del progetto
+        uses: actions/checkout@v4
+
+      - name: Prepara Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Installa le dipendenze
+        run: pip install -r requirements.txt
+
+      - name: Recupera infortuni e squalifiche
+        env:
+          API_FOOTBALL_KEY: ${{ secrets.API_FOOTBALL_KEY }}
+        run: python src/fetch_injuries.py
+
+      - name: Salva i dati nel progetto
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/football.db
+          git diff --staged --quiet || git commit -m "Aggiornati infortuni e squalifiche"
+          git push
