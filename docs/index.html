@@ -623,26 +623,59 @@ async function load() {
   const content = document.getElementById('content');
   content.innerHTML = '';
 
-  content.appendChild(renderSection('A', 'Singole nel tuo range di quota', data.singles, renderSingle));
-  content.appendChild(renderSection('B', 'Doppie combinate', data.doubles, renderDouble));
-}
+  const legsLabel = p.n_legs === 1
+    ? `Singola nel range di quota ${p.odds_min}–${p.odds_max}`
+    : `Combinazione di ${p.n_legs} partite, quota combinata ${p.odds_min}–${p.odds_max}`;
 
-function renderSection(tag, title, items, renderFn) {
   const section = document.createElement('section');
   const head = document.createElement('div');
   head.className = 'section-head';
-  head.innerHTML = `<span class="tag">${tag}</span><h2>${title}</h2>`;
+  head.innerHTML = `<span class="tag">✓</span><h2>La tua richiesta — ${legsLabel}</h2>`;
   section.appendChild(head);
 
-  if (!items || items.length === 0) {
+  if (data.results && data.results.length > 0) {
+    data.results.forEach(item => section.appendChild(renderResult(item)));
+  } else {
     const empty = document.createElement('div');
     empty.className = 'empty-state';
-    empty.textContent = 'Nessuna proposta trovata in questo range al momento.';
+    if (p.n_legs === 1) {
+      empty.textContent = 'Nessuna singola trovata con quota reale in questo range al momento.';
+    } else {
+      empty.textContent = `Nessuna combinazione da ${p.n_legs} partite con vantaggio trovata in questo range esatto al momento.`;
+    }
     section.appendChild(empty);
-  } else {
-    items.forEach(item => section.appendChild(renderFn(item)));
+
+    if (data.near_misses && data.near_misses.length > 0) {
+      const nearTitle = document.createElement('div');
+      nearTitle.style.cssText = 'margin-top:20px; font-family:JetBrains Mono, monospace; font-size:13px; color:var(--muted);';
+      nearTitle.textContent = 'Le combinazioni REALI più vicine al tuo range (per riferimento):';
+      section.appendChild(nearTitle);
+      data.near_misses.forEach(nm => section.appendChild(renderNearMiss(nm)));
+
+      const hint = document.createElement('div');
+      hint.style.cssText = 'margin-top:12px; font-size:13px; color:var(--muted); font-style:italic;';
+      hint.textContent = 'Suggerimento: prova ad allargare il range di quota o cambiare il numero di partite da combinare.';
+      section.appendChild(hint);
+    }
   }
-  return section;
+
+  content.appendChild(section);
+}
+
+function renderNearMiss(nm) {
+  const card = document.createElement('div');
+  card.className = 'card';
+  card.style.opacity = '0.75';
+  const legsHtml = nm.legs.map(l => `<li>${l.match} @ ${l.real_odd}</li>`).join('');
+  const edgeLabel = nm.combined_edge > 0 ? `+${(nm.combined_edge*100).toFixed(1)}%` : `${(nm.combined_edge*100).toFixed(1)}%`;
+  card.innerHTML = `
+    <div class="card-top">
+      <div class="match-info"><ul class="legs-list">${legsHtml}</ul></div>
+      <div class="odd-box"><div class="val">${nm.combined_odd}</div><div class="label">quota combinata</div></div>
+    </div>
+    <div class="progression-line">Fuori dal tuo range · vantaggio stimato ${edgeLabel}</div>
+  `;
+  return card;
 }
 
 function edgeBadge(edge) {
@@ -702,52 +735,51 @@ function progressionLine(progression) {
     </div>`;
 }
 
-function renderSingle(c) {
+function renderResult(d) {
   const card = document.createElement('div');
   card.className = 'card';
-  card.innerHTML = `
-    <div class="card-top">
-      <div class="match-info">
-        <div class="league">${c.league} · ${c.market.toUpperCase()} ${c.outcome}</div>
-        <div class="teams">${c.match}</div>
-        <div class="date">${c.date} · ${c.n_bookmakers} bookmaker</div>
-      </div>
-      <div class="odd-box">
-        <div class="val">${c.real_odd}</div>
-        <div class="label">quota</div>
-      </div>
-    </div>
-    ${vantageBar(c.model_probability, c.implied_probability)}
-    ${edgeBadge(c.edge)}${reliabilityBadge(c.reliability)}
-    ${statsBlock(c.simulation)}
-    ${progressionLine(c.progression)}
-    ${explanationBox(c.explanation)}
-  `;
-  return card;
-}
+  const isSingle = d.legs.length === 1;
 
-function renderDouble(d) {
-  const card = document.createElement('div');
-  card.className = 'card';
-  const legsHtml = d.legs.map(l =>
-    `<li><b>${l.match}</b> — ${l.market.toUpperCase()} ${l.outcome} @ ${l.real_odd} <i>(affidabilità ${l.reliability})</i></li>`
-  ).join('');
-  card.innerHTML = `
-    <div class="card-top">
-      <div class="match-info">
-        <div class="league">Combinazione (${d.legs.length} partite)</div>
-        <ul class="legs-list">${legsHtml}</ul>
+  if (isSingle) {
+    const c = d.legs[0];
+    const legsHtml = `
+      <div class="league">${c.league} · ${c.market.toUpperCase()} ${c.outcome}</div>
+      <div class="teams">${c.match}</div>
+      <div class="date">${c.date} · ${c.n_bookmakers} bookmaker</div>
+    `;
+    card.innerHTML = `
+      <div class="card-top">
+        <div class="match-info">${legsHtml}</div>
+        <div class="odd-box"><div class="val">${d.combined_odd}</div><div class="label">quota</div></div>
       </div>
-      <div class="odd-box">
-        <div class="val">${d.combined_odd}</div>
-        <div class="label">quota combinata</div>
+      ${vantageBar(d.combined_true_probability, d.combined_implied_probability)}
+      ${edgeBadge(d.combined_edge)}${reliabilityBadge(c.reliability)}
+      ${statsBlock(d.simulation)}
+      ${progressionLine(d.progression)}
+      ${explanationBox(c.explanation)}
+    `;
+  } else {
+    const legsHtml = d.legs.map(l =>
+      `<li><b>${l.match}</b> — ${l.market.toUpperCase()} ${l.outcome} @ ${l.real_odd} <i>(affidabilità ${l.reliability})</i></li>`
+    ).join('');
+    const explanations = d.legs.map(l =>
+      `<div style="margin-top:8px;"><b>${l.match}:</b> ${l.explanation}</div>`
+    ).join('');
+    card.innerHTML = `
+      <div class="card-top">
+        <div class="match-info">
+          <div class="league">Combinazione (${d.legs.length} partite)</div>
+          <ul class="legs-list">${legsHtml}</ul>
+        </div>
+        <div class="odd-box"><div class="val">${d.combined_odd}</div><div class="label">quota combinata</div></div>
       </div>
-    </div>
-    ${vantageBar(d.combined_true_probability, d.combined_implied_probability)}
-    ${edgeBadge(d.combined_edge)}
-    ${statsBlock(d.simulation)}
-    ${progressionLine(d.progression)}
-  `;
+      ${vantageBar(d.combined_true_probability, d.combined_implied_probability)}
+      ${edgeBadge(d.combined_edge)}
+      ${statsBlock(d.simulation)}
+      ${progressionLine(d.progression)}
+      ${explanationBox(explanations)}
+    `;
+  }
   return card;
 }
 
