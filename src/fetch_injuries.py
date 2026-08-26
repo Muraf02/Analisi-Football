@@ -37,7 +37,7 @@ from config.config import (
     LOG_FILE,
     LOG_DIR,
 )
-from src.db import get_connection
+from src.db import get_connection, init_db
 from src.team_name_mapping import match_team_name
 
 os.makedirs(LOG_DIR, exist_ok=True)
@@ -162,6 +162,7 @@ def save_injuries(match_id, injuries_data, conn):
 
 def run():
     _check_api_key()
+    init_db()
     conn = get_connection()
     season = _current_season_year()
     total_matches_with_injuries = 0
