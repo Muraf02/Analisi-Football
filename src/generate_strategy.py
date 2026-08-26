@@ -25,7 +25,7 @@ from itertools import combinations
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from config.config import LEAGUES
-from src.db import get_connection
+from src.db import get_connection, init_db
 from src.model_poisson import DixonColesModel
 from src.markets import market_probabilities, combined_market_probabilities
 from src.train_model import load_finished_matches, MIN_MATCHES_REQUIRED
@@ -702,6 +702,12 @@ def print_report(candidates):
 
 
 def run():
+    # Difensivo: se il database esistente non ha ancora una tabella
+    # aggiunta in un aggiornamento successivo (es. 'injuries'), questo la
+    # crea al volo senza toccare i dati già presenti (CREATE TABLE IF NOT
+    # EXISTS è sicuro da rilanciare anche su un database già popolato).
+    init_db()
+
     conn = get_connection()
     try:
         t0 = time.time()
