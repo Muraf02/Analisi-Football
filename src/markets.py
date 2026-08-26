@@ -82,6 +82,43 @@ def market_probabilities(score_matrix):
     return result
 
 
+def combined_market_probabilities(score_matrix):
+    """
+    Calcola le probabilità di mercati COMBINATI sulla STESSA partita
+    (es. "Vittoria Casa & Under 2.5 gol", quello che i bookmaker chiamano
+    "bet builder" o "mercati combinati").
+
+    A differenza delle combinazioni tra partite diverse (che assumono
+    indipendenza tra gli eventi, un'approssimazione), questi valori sono
+    calcolati ESATTAMENTE dalla stessa matrice dei risultati — non c'è
+    nessuna assunzione di indipendenza da fare, perché derivano dalla
+    stessa distribuzione di probabilità congiunta.
+
+    NOTA: non abbiamo una fonte di quote reali per questi mercati
+    specifici, quindi questi sono SOLO stime del modello — vanno mostrate
+    come tali, senza calcolare un "vantaggio" verificato sul mercato.
+    """
+    max_goals = score_matrix.shape[0] - 1
+    combos = {}
+
+    for hg in range(max_goals + 1):
+        for ag in range(max_goals + 1):
+            p = score_matrix[hg][ag]
+            outcome_1x2 = "1" if hg > ag else ("X" if hg == ag else "2")
+            total_goals = hg + ag
+            btts_yes = hg >= 1 and ag >= 1
+
+            for threshold in [1.5, 2.5, 3.5]:
+                ou_key = f"over_{threshold}" if total_goals > threshold else f"under_{threshold}"
+                key = f"{outcome_1x2}_{ou_key}"
+                combos[key] = combos.get(key, 0.0) + p
+
+            btts_key = f"{outcome_1x2}_btts_{'si' if btts_yes else 'no'}"
+            combos[btts_key] = combos.get(btts_key, 0.0) + p
+
+    return {k: round(v, 4) for k, v in combos.items()}
+
+
 def all_market_outcomes(score_matrix):
     """
     Restituisce una lista piatta di TUTTI gli esiti calcolati, ciascuno
