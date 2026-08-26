@@ -10,6 +10,7 @@ import os
 # Mac/Linux (bash):      export FOOTBALL_DATA_API_KEY="la_tua_chiave"
 FOOTBALL_DATA_API_KEY = os.environ.get("FOOTBALL_DATA_API_KEY", "")
 ODDS_API_KEY = os.environ.get("ODDS_API_KEY", "")  # da the-odds-api.com (CON i trattini)
+API_FOOTBALL_KEY = os.environ.get("API_FOOTBALL_KEY", "")  # da api-football.com (infortuni/formazioni)
 
 # --- The Odds API: chiavi lega -> chiavi ufficiali del servizio quote ---
 # ATTENZIONE: registrarsi su the-odds-api.com (con i trattini), non su
@@ -25,6 +26,16 @@ ODDS_API_LEAGUES = {
 ODDS_API_BASE_URL = "https://api.the-odds-api.com/v4"
 ODDS_API_REGIONS = "eu"  # bookmaker europei (include i principali operatori italiani/europei)
 ODDS_API_MARKETS = "h2h,totals,btts,double_chance"  # 1X2, Over/Under, GG/NG, doppia chance
+
+# --- API-Football: chiavi lega -> ID numerici ufficiali del servizio ---
+API_FOOTBALL_BASE_URL = "https://v3.football.api-sports.io"
+API_FOOTBALL_LEAGUE_IDS = {
+    "SA": 135,    # Serie A
+    "PL": 39,     # Premier League
+    "PD": 140,    # La Liga
+    "FL1": 61,    # Ligue 1
+    "BL1": 78,    # Bundesliga
+}
 
 # --- LEGHE DA MONITORARE ---
 # Codici competizione di football-data.org (v4)
