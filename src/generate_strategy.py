@@ -167,6 +167,22 @@ def days_since_last_match(matches, team, before_date):
     return (before_date - last_date).days
 
 
+def get_injuries_for_match(match_id, conn):
+    """Recupera gli infortuni/squalifiche salvati per una partita, se
+    disponibili (richiede aver eseguito fetch_injuries.py in precedenza).
+    Restituisce una lista per squadra: {'home': [...], 'away': [...]}."""
+    cur = conn.cursor()
+    cur.execute(
+        "SELECT team_name, player_name, injury_type, reason FROM injuries WHERE match_id = ?",
+        (match_id,),
+    )
+    rows = cur.fetchall()
+    return [
+        {"team": r["team_name"], "player": r["player_name"], "type": r["injury_type"], "reason": r["reason"]}
+        for r in rows
+    ]
+
+
 def _team_appearance_counts(matches):
     """Conta quante partite storiche compaiono per ciascuna squadra —
     usato per il segnale di affidabilità (una neopromossa con poche
@@ -247,6 +263,15 @@ def explain_candidate(c):
         parts.append(
             "Mercati combinati sulla stessa partita più probabili secondo il modello "
             f"(stima, non verificata su una quota reale): {', '.join(combo_texts)}."
+        )
+
+    injuries = c.get("injuries") or []
+    if injuries:
+        injury_texts = [f"{inj['player']} ({inj['team']}, {inj['reason'] or inj['type']})" for inj in injuries]
+        parts.append(
+            f"⚠️ Assenze note per infortunio/squalifica: {', '.join(injury_texts)}. "
+            "Il modello statistico NON tiene conto di questo — è un'informazione aggiuntiva da "
+            "valutare tu, specialmente se riguarda un giocatore chiave."
         )
 
     if overall_rel == "bassa":
@@ -343,6 +368,7 @@ def build_candidates(conn):
                 "top_combined_markets": [
                     {"market": k, "probability": v} for k, v in top_combined
                 ],
+                "injuries": get_injuries_for_match(m["match_id"], conn),
             }
 
             for real_odd_entry in real_odds_for_match:
