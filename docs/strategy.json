@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-08-26T12:22:51.759753+00:00",
+  "generated_at": "2026-08-26T12:54:21.919800+00:00",
   "parameters": {
     "starting_capital": 20.0,
     "target_capital": 100.0,
-    "odds_min": 2.0,
-    "odds_max": 2.0,
+    "odds_min": 1.5,
+    "odds_max": 1.8,
     "n_legs": 2
   },
   "total_candidates": 148,
@@ -42,9 +42,10 @@
             },
             {
               "market": "1_over_2.5",
-              "probability": 0.3033
+              "probability": 0.3034
             }
           ],
+          "injuries": [],
           "explanation": "Il modello stima una probabilità del 69.2% per questo esito, basandosi su 35 partite storiche della squadra di casa e 35 della squadra in trasferta. La quota reale (1.55) implica invece una probabilità del 64.5% secondo il mercato — una differenza di +4.7 punti percentuali. Forma recente (dalla più vecchia alla più recente): casa NVPPV, trasferta NPVVV (V=vittoria, N=pareggio, P=sconfitta). Scontri diretti recenti: AS Monaco FC 2-1 Olympique de Marseille (2026-04-05) · Olympique de Marseille 1-0 AS Monaco FC (2025-12-14). Riposo dall'ultima partita: casa 7 giorni e trasferta 9 giorni. Mercati combinati sulla stessa partita più probabili secondo il modello (stima, non verificata su una quota reale): 1_over_1.5 (34.9%), 2_over_1.5 (33.0%), 1_over_2.5 (30.3%). ✓ Affidabilità ALTA: entrambe le squadre hanno uno storico sufficiente per una stima solida.",
           "reliability": "alta"
         },
@@ -81,6 +82,7 @@
               "probability": 0.4204
             }
           ],
+          "injuries": [],
           "explanation": "Il modello stima una probabilità del 75.9% per questo esito, basandosi su 39 partite storiche della squadra di casa e 39 della squadra in trasferta. La quota reale (1.35) implica invece una probabilità del 74.1% secondo il mercato — una differenza di +1.9 punti percentuali. Forma recente (dalla più vecchia alla più recente): casa PVVVV, trasferta NNPNP (V=vittoria, N=pareggio, P=sconfitta). Scontri diretti recenti: Real Madrid CF 4-1 Real Sociedad de Fútbol (2026-02-14) · Real Sociedad de Fútbol 1-2 Real Madrid CF (2025-09-13). Riposo dall'ultima partita: casa 3 giorni e trasferta 5 giorni. ⚠️ Nota: una delle due squadre ha giocato pochissimi giorni fa — possibile affaticamento non pienamente catturato dal modello statistico. Mercati combinati sulla stessa partita più probabili secondo il modello (stima, non verificata su una quota reale): 1_over_1.5 (69.2%), 1_over_2.5 (59.7%), 1_over_3.5 (42.0%). ✓ Affidabilità ALTA: entrambe le squadre hanno uno storico sufficiente per una stima solida.",
           "reliability": "alta"
         }
@@ -91,14 +93,14 @@
       "combined_implied_probability": 0.4779,
       "combined_edge": 0.0478,
       "in_range": false,
-      "distance_from_range": 0.093,
+      "distance_from_range": 0.293,
       "simulation": {
-        "probability_reach_target": 0.1477,
-        "probability_bust": 0.8523,
+        "probability_reach_target": 0.1428,
+        "probability_bust": 0.8572,
         "probability_stuck_in_between": 0.0,
         "avg_bets_if_successful": 3.0,
         "median_final_capital": 0.0,
-        "mean_final_capital": 27.08
+        "mean_final_capital": 26.19
       },
       "progression": [
         {
@@ -165,6 +167,7 @@
               "probability": 0.4204
             }
           ],
+          "injuries": [],
           "explanation": "Il modello stima una probabilità del 75.9% per questo esito, basandosi su 39 partite storiche della squadra di casa e 39 della squadra in trasferta. La quota reale (1.35) implica invece una probabilità del 74.1% secondo il mercato — una differenza di +1.9 punti percentuali. Forma recente (dalla più vecchia alla più recente): casa PVVVV, trasferta NNPNP (V=vittoria, N=pareggio, P=sconfitta). Scontri diretti recenti: Real Madrid CF 4-1 Real Sociedad de Fútbol (2026-02-14) · Real Sociedad de Fútbol 1-2 Real Madrid CF (2025-09-13). Riposo dall'ultima partita: casa 3 giorni e trasferta 5 giorni. ⚠️ Nota: una delle due squadre ha giocato pochissimi giorni fa — possibile affaticamento non pienamente catturato dal modello statistico. Mercati combinati sulla stessa partita più probabili secondo il modello (stima, non verificata su una quota reale): 1_over_1.5 (69.2%), 1_over_2.5 (59.7%), 1_over_3.5 (42.0%). ✓ Affidabilità ALTA: entrambe le squadre hanno uno storico sufficiente per una stima solida.",
           "reliability": "alta"
         },
@@ -198,9 +201,10 @@
             },
             {
               "market": "1_under_3.5",
-              "probability": 0.3
+              "probability": 0.2999
             }
           ],
+          "injuries": [],
           "explanation": "Il modello stima una probabilità del 66.3% per questo esito, basandosi su 39 partite storiche della squadra di casa e 39 della squadra in trasferta. La quota reale (1.55) implica invece una probabilità del 64.5% secondo il mercato — una differenza di +1.8 punti percentuali. Forma recente (dalla più vecchia alla più recente): casa PNPNN, trasferta VNPNP (V=vittoria, N=pareggio, P=sconfitta). Scontri diretti recenti: Nottingham Forest FC 0-1 Liverpool FC (2026-02-22) · Liverpool FC 0-3 Nottingham Forest FC (2025-11-22). Riposo dall'ultima partita: casa 5 giorni e trasferta 6 giorni. Mercati combinati sulla stessa partita più probabili secondo il modello (stima, non verificata su una quota reale): 1_over_1.5 (40.7%), 1_over_2.5 (32.6%), 1_under_3.5 (30.0%). ✓ Affidabilità ALTA: entrambe le squadre hanno uno storico sufficiente per una stima solida.",
           "reliability": "alta"
         }
@@ -211,14 +215,14 @@
       "combined_implied_probability": 0.4779,
       "combined_edge": 0.026,
       "in_range": false,
-      "distance_from_range": 0.093,
+      "distance_from_range": 0.293,
       "simulation": {
-        "probability_reach_target": 0.1323,
-        "probability_bust": 0.8677,
+        "probability_reach_target": 0.1273,
+        "probability_bust": 0.8727,
         "probability_stuck_in_between": 0.0,
         "avg_bets_if_successful": 3.0,
         "median_final_capital": 0.0,
-        "mean_final_capital": 24.26
+        "mean_final_capital": 23.34
       },
       "progression": [
         {
@@ -258,11 +262,11 @@
           "date": "2026-08-30",
           "market": "over_under",
           "outcome": "under_2.5",
-          "model_probability": 0.6666,
+          "model_probability": 0.6665,
           "real_odd": 1.64,
           "n_bookmakers": 11,
           "implied_probability": 0.6098,
-          "edge": 0.0568,
+          "edge": 0.0567,
           "home_team_matches": 39,
           "away_team_matches": 39,
           "is_next_matchday": true,
@@ -285,7 +289,8 @@
               "probability": 0.2907
             }
           ],
-          "explanation": "Il modello stima una probabilità del 66.7% per questo esito, basandosi su 39 partite storiche della squadra di casa e 39 della squadra in trasferta. La quota reale (1.64) implica invece una probabilità del 61.0% secondo il mercato — una differenza di +5.7 punti percentuali. Forma recente (dalla più vecchia alla più recente): casa VPPVV, trasferta NNPPP (V=vittoria, N=pareggio, P=sconfitta). Scontri diretti recenti: SS Lazio 3-2 Genoa CFC (2026-01-30) · Genoa CFC 0-3 SS Lazio (2025-09-29). Riposo dall'ultima partita: casa 6 giorni e trasferta 8 giorni. Mercati combinati sulla stessa partita più probabili secondo il modello (stima, non verificata su una quota reale): 1_under_3.5 (37.4%), 1_btts_no (31.1%), 1_over_1.5 (29.1%). ✓ Affidabilità ALTA: entrambe le squadre hanno uno storico sufficiente per una stima solida.",
+          "injuries": [],
+          "explanation": "Il modello stima una probabilità del 66.6% per questo esito, basandosi su 39 partite storiche della squadra di casa e 39 della squadra in trasferta. La quota reale (1.64) implica invece una probabilità del 61.0% secondo il mercato — una differenza di +5.7 punti percentuali. Forma recente (dalla più vecchia alla più recente): casa VPPVV, trasferta NNPPP (V=vittoria, N=pareggio, P=sconfitta). Scontri diretti recenti: SS Lazio 3-2 Genoa CFC (2026-01-30) · Genoa CFC 0-3 SS Lazio (2025-09-29). Riposo dall'ultima partita: casa 6 giorni e trasferta 8 giorni. Mercati combinati sulla stessa partita più probabili secondo il modello (stima, non verificata su una quota reale): 1_under_3.5 (37.4%), 1_btts_no (31.1%), 1_over_1.5 (29.1%). ✓ Affidabilità ALTA: entrambe le squadre hanno uno storico sufficiente per una stima solida.",
           "reliability": "alta"
         },
         {
@@ -321,24 +326,25 @@
               "probability": 0.4204
             }
           ],
+          "injuries": [],
           "explanation": "Il modello stima una probabilità del 75.9% per questo esito, basandosi su 39 partite storiche della squadra di casa e 39 della squadra in trasferta. La quota reale (1.35) implica invece una probabilità del 74.1% secondo il mercato — una differenza di +1.9 punti percentuali. Forma recente (dalla più vecchia alla più recente): casa PVVVV, trasferta NNPNP (V=vittoria, N=pareggio, P=sconfitta). Scontri diretti recenti: Real Madrid CF 4-1 Real Sociedad de Fútbol (2026-02-14) · Real Sociedad de Fútbol 1-2 Real Madrid CF (2025-09-13). Riposo dall'ultima partita: casa 3 giorni e trasferta 5 giorni. ⚠️ Nota: una delle due squadre ha giocato pochissimi giorni fa — possibile affaticamento non pienamente catturato dal modello statistico. Mercati combinati sulla stessa partita più probabili secondo il modello (stima, non verificata su una quota reale): 1_over_1.5 (69.2%), 1_over_2.5 (59.7%), 1_over_3.5 (42.0%). ✓ Affidabilità ALTA: entrambe le squadre hanno uno storico sufficiente per una stima solida.",
           "reliability": "alta"
         }
       ],
       "n_legs": 2,
       "combined_odd": 2.214,
-      "combined_true_probability": 0.5063,
+      "combined_true_probability": 0.5062,
       "combined_implied_probability": 0.4517,
-      "combined_edge": 0.0546,
+      "combined_edge": 0.0545,
       "in_range": false,
-      "distance_from_range": 0.214,
+      "distance_from_range": 0.414,
       "simulation": {
-        "probability_reach_target": 0.1351,
-        "probability_bust": 0.8649,
+        "probability_reach_target": 0.1288,
+        "probability_bust": 0.8712,
         "probability_stuck_in_between": 0.0,
         "avg_bets_if_successful": 3.0,
         "median_final_capital": 0.0,
-        "mean_final_capital": 29.32
+        "mean_final_capital": 27.96
       },
       "progression": [
         {
@@ -405,6 +411,7 @@
               "probability": 0.4732
             }
           ],
+          "injuries": [],
           "explanation": "Il modello stima una probabilità del 67.1% per questo esito, basandosi su 39 partite storiche della squadra di casa e 39 della squadra in trasferta. La quota reale (1.65) implica invece una probabilità del 60.6% secondo il mercato — una differenza di +6.5 punti percentuali. Forma recente (dalla più vecchia alla più recente): casa VPVVV, trasferta VVVVV (V=vittoria, N=pareggio, P=sconfitta). Scontri diretti recenti: AS Roma 1-0 US Lecce (2026-03-22) · US Lecce 0-2 AS Roma (2026-01-06). Riposo dall'ultima partita: casa 8 giorni e trasferta 6 giorni. Mercati combinati sulla stessa partita più probabili secondo il modello (stima, non verificata su una quota reale): 2_under_3.5 (50.0%), 2_over_1.5 (49.7%), 2_btts_no (47.3%). ✓ Affidabilità ALTA: entrambe le squadre hanno uno storico sufficiente per una stima solida.",
           "reliability": "alta"
         },
@@ -441,6 +448,7 @@
               "probability": 0.4204
             }
           ],
+          "injuries": [],
           "explanation": "Il modello stima una probabilità del 75.9% per questo esito, basandosi su 39 partite storiche della squadra di casa e 39 della squadra in trasferta. La quota reale (1.35) implica invece una probabilità del 74.1% secondo il mercato — una differenza di +1.9 punti percentuali. Forma recente (dalla più vecchia alla più recente): casa PVVVV, trasferta NNPNP (V=vittoria, N=pareggio, P=sconfitta). Scontri diretti recenti: Real Madrid CF 4-1 Real Sociedad de Fútbol (2026-02-14) · Real Sociedad de Fútbol 1-2 Real Madrid CF (2025-09-13). Riposo dall'ultima partita: casa 3 giorni e trasferta 5 giorni. ⚠️ Nota: una delle due squadre ha giocato pochissimi giorni fa — possibile affaticamento non pienamente catturato dal modello statistico. Mercati combinati sulla stessa partita più probabili secondo il modello (stima, non verificata su una quota reale): 1_over_1.5 (69.2%), 1_over_2.5 (59.7%), 1_over_3.5 (42.0%). ✓ Affidabilità ALTA: entrambe le squadre hanno uno storico sufficiente per una stima solida.",
           "reliability": "alta"
         }
@@ -451,14 +459,14 @@
       "combined_implied_probability": 0.4489,
       "combined_edge": 0.0604,
       "in_range": false,
-      "distance_from_range": 0.228,
+      "distance_from_range": 0.427,
       "simulation": {
-        "probability_reach_target": 0.1326,
-        "probability_bust": 0.8674,
+        "probability_reach_target": 0.1319,
+        "probability_bust": 0.8681,
         "probability_stuck_in_between": 0.0,
         "avg_bets_if_successful": 3.0,
         "median_final_capital": 0.0,
-        "mean_final_capital": 29.33
+        "mean_final_capital": 29.18
       },
       "progression": [
         {
@@ -522,9 +530,10 @@
             },
             {
               "market": "1_over_2.5",
-              "probability": 0.3033
+              "probability": 0.3034
             }
           ],
+          "injuries": [],
           "explanation": "Il modello stima una probabilità del 69.2% per questo esito, basandosi su 35 partite storiche della squadra di casa e 35 della squadra in trasferta. La quota reale (1.55) implica invece una probabilità del 64.5% secondo il mercato — una differenza di +4.7 punti percentuali. Forma recente (dalla più vecchia alla più recente): casa NVPPV, trasferta NPVVV (V=vittoria, N=pareggio, P=sconfitta). Scontri diretti recenti: AS Monaco FC 2-1 Olympique de Marseille (2026-04-05) · Olympique de Marseille 1-0 AS Monaco FC (2025-12-14). Riposo dall'ultima partita: casa 7 giorni e trasferta 9 giorni. Mercati combinati sulla stessa partita più probabili secondo il modello (stima, non verificata su una quota reale): 1_over_1.5 (34.9%), 2_over_1.5 (33.0%), 1_over_2.5 (30.3%). ✓ Affidabilità ALTA: entrambe le squadre hanno uno storico sufficiente per una stima solida.",
           "reliability": "alta"
         },
@@ -534,11 +543,11 @@
           "date": "2026-08-26",
           "market": "over_under",
           "outcome": "over_2.5",
-          "model_probability": 0.7154,
+          "model_probability": 0.7155,
           "real_odd": 1.44,
           "n_bookmakers": 3,
           "implied_probability": 0.6944,
-          "edge": 0.021,
+          "edge": 0.0211,
           "home_team_matches": 39,
           "away_team_matches": 39,
           "is_next_matchday": true,
@@ -561,24 +570,25 @@
               "probability": 0.4204
             }
           ],
+          "injuries": [],
           "explanation": "Il modello stima una probabilità del 71.5% per questo esito, basandosi su 39 partite storiche della squadra di casa e 39 della squadra in trasferta. La quota reale (1.44) implica invece una probabilità del 69.4% secondo il mercato — una differenza di +2.1 punti percentuali. Forma recente (dalla più vecchia alla più recente): casa PVVVV, trasferta NNPNP (V=vittoria, N=pareggio, P=sconfitta). Scontri diretti recenti: Real Madrid CF 4-1 Real Sociedad de Fútbol (2026-02-14) · Real Sociedad de Fútbol 1-2 Real Madrid CF (2025-09-13). Riposo dall'ultima partita: casa 3 giorni e trasferta 5 giorni. ⚠️ Nota: una delle due squadre ha giocato pochissimi giorni fa — possibile affaticamento non pienamente catturato dal modello statistico. Mercati combinati sulla stessa partita più probabili secondo il modello (stima, non verificata su una quota reale): 1_over_1.5 (69.2%), 1_over_2.5 (59.7%), 1_over_3.5 (42.0%). ✓ Affidabilità ALTA: entrambe le squadre hanno uno storico sufficiente per una stima solida.",
           "reliability": "alta"
         }
       ],
       "n_legs": 2,
       "combined_odd": 2.232,
-      "combined_true_probability": 0.4952,
+      "combined_true_probability": 0.4953,
       "combined_implied_probability": 0.448,
       "combined_edge": 0.0472,
       "in_range": false,
-      "distance_from_range": 0.232,
+      "distance_from_range": 0.432,
       "simulation": {
-        "probability_reach_target": 0.1257,
-        "probability_bust": 0.8743,
+        "probability_reach_target": 0.1186,
+        "probability_bust": 0.8814,
         "probability_stuck_in_between": 0.0,
         "avg_bets_if_successful": 3.0,
         "median_final_capital": 0.0,
-        "mean_final_capital": 27.95
+        "mean_final_capital": 26.38
       },
       "progression": [
         {
@@ -640,13 +650,14 @@
             },
             {
               "market": "1_over_1.5",
-              "probability": 0.8908
+              "probability": 0.8907
             },
             {
               "market": "1_over_2.5",
               "probability": 0.7265
             }
           ],
+          "injuries": [],
           "explanation": "Il modello stima una probabilità del 97.7% per questo esito, basandosi su 39 partite storiche della squadra di casa e 1 della squadra in trasferta. La quota reale (1.4) implica invece una probabilità del 71.4% secondo il mercato — una differenza di +26.3 punti percentuali. Forma recente (dalla più vecchia alla più recente): casa PPVPV, trasferta P (V=vittoria, N=pareggio, P=sconfitta). Riposo dall'ultima partita: casa 5 giorni e trasferta 5 giorni. Mercati combinati sulla stessa partita più probabili secondo il modello (stima, non verificata su una quota reale): 1_btts_no (97.7%), 1_over_1.5 (89.1%), 1_over_2.5 (72.7%). ⚠️ Affidabilità BASSA: almeno una delle due squadre ha pochissime partite storiche (probabile neopromossa o inizio stagione). Un vantaggio stimato in questa condizione va preso con molta cautela — potrebbe riflettere un limite del modello più che un'opportunità reale.",
           "reliability": "bassa"
         },
@@ -654,13 +665,13 @@
           "league": "La Liga",
           "match": "Real Madrid CF vs Real Sociedad de Fútbol",
           "date": "2026-08-26",
-          "market": "over_under",
-          "outcome": "over_2.5",
-          "model_probability": 0.7154,
-          "real_odd": 1.44,
-          "n_bookmakers": 3,
-          "implied_probability": 0.6944,
-          "edge": 0.021,
+          "market": "1x2",
+          "outcome": "1",
+          "model_probability": 0.7595,
+          "real_odd": 1.35,
+          "n_bookmakers": 21,
+          "implied_probability": 0.7407,
+          "edge": 0.0188,
           "home_team_matches": 39,
           "away_team_matches": 39,
           "is_next_matchday": true,
@@ -683,24 +694,147 @@
               "probability": 0.4204
             }
           ],
+          "injuries": [],
+          "explanation": "Il modello stima una probabilità del 75.9% per questo esito, basandosi su 39 partite storiche della squadra di casa e 39 della squadra in trasferta. La quota reale (1.35) implica invece una probabilità del 74.1% secondo il mercato — una differenza di +1.9 punti percentuali. Forma recente (dalla più vecchia alla più recente): casa PVVVV, trasferta NNPNP (V=vittoria, N=pareggio, P=sconfitta). Scontri diretti recenti: Real Madrid CF 4-1 Real Sociedad de Fútbol (2026-02-14) · Real Sociedad de Fútbol 1-2 Real Madrid CF (2025-09-13). Riposo dall'ultima partita: casa 3 giorni e trasferta 5 giorni. ⚠️ Nota: una delle due squadre ha giocato pochissimi giorni fa — possibile affaticamento non pienamente catturato dal modello statistico. Mercati combinati sulla stessa partita più probabili secondo il modello (stima, non verificata su una quota reale): 1_over_1.5 (69.2%), 1_over_2.5 (59.7%), 1_over_3.5 (42.0%). ✓ Affidabilità ALTA: entrambe le squadre hanno uno storico sufficiente per una stima solida.",
+          "reliability": "alta"
+        }
+      ],
+      "n_legs": 2,
+      "combined_odd": 1.89,
+      "combined_true_probability": 0.7422,
+      "combined_implied_probability": 0.5291,
+      "combined_edge": 0.2131,
+      "in_range": false,
+      "distance_from_range": 0.09,
+      "simulation": {
+        "probability_reach_target": 0.4102,
+        "probability_bust": 0.5898,
+        "probability_stuck_in_between": 0.0,
+        "avg_bets_if_successful": 3.0,
+        "median_final_capital": 0.0,
+        "mean_final_capital": 55.39
+      },
+      "progression": [
+        {
+          "step": 1,
+          "capital_before": 20.0,
+          "stake": 20.0,
+          "winnings": 17.8,
+          "capital_after": 37.8,
+          "remaining_to_target": 62.2,
+          "target_reached": false
+        },
+        {
+          "step": 2,
+          "capital_before": 37.8,
+          "stake": 37.8,
+          "winnings": 33.64,
+          "capital_after": 71.44,
+          "remaining_to_target": 28.56,
+          "target_reached": false
+        },
+        {
+          "step": 3,
+          "capital_before": 71.44,
+          "stake": 71.44,
+          "winnings": 63.58,
+          "capital_after": 135.02,
+          "remaining_to_target": 0,
+          "target_reached": true
+        }
+      ]
+    },
+    {
+      "legs": [
+        {
+          "league": "Serie A",
+          "match": "AC Milan vs Venezia FC",
+          "date": "2026-08-28",
+          "market": "1x2",
+          "outcome": "1",
+          "model_probability": 0.9772,
+          "real_odd": 1.4,
+          "n_bookmakers": 24,
+          "implied_probability": 0.7143,
+          "edge": 0.2629,
+          "home_team_matches": 39,
+          "away_team_matches": 1,
+          "is_next_matchday": true,
+          "home_form": "PPVPV",
+          "away_form": "P",
+          "head_to_head": "Nessuno scontro diretto recente disponibile nei dati storici.",
+          "home_rest_days": 5,
+          "away_rest_days": 5,
+          "top_combined_markets": [
+            {
+              "market": "1_btts_no",
+              "probability": 0.9772
+            },
+            {
+              "market": "1_over_1.5",
+              "probability": 0.8907
+            },
+            {
+              "market": "1_over_2.5",
+              "probability": 0.7265
+            }
+          ],
+          "injuries": [],
+          "explanation": "Il modello stima una probabilità del 97.7% per questo esito, basandosi su 39 partite storiche della squadra di casa e 1 della squadra in trasferta. La quota reale (1.4) implica invece una probabilità del 71.4% secondo il mercato — una differenza di +26.3 punti percentuali. Forma recente (dalla più vecchia alla più recente): casa PPVPV, trasferta P (V=vittoria, N=pareggio, P=sconfitta). Riposo dall'ultima partita: casa 5 giorni e trasferta 5 giorni. Mercati combinati sulla stessa partita più probabili secondo il modello (stima, non verificata su una quota reale): 1_btts_no (97.7%), 1_over_1.5 (89.1%), 1_over_2.5 (72.7%). ⚠️ Affidabilità BASSA: almeno una delle due squadre ha pochissime partite storiche (probabile neopromossa o inizio stagione). Un vantaggio stimato in questa condizione va preso con molta cautela — potrebbe riflettere un limite del modello più che un'opportunità reale.",
+          "reliability": "bassa"
+        },
+        {
+          "league": "La Liga",
+          "match": "Real Madrid CF vs Real Sociedad de Fútbol",
+          "date": "2026-08-26",
+          "market": "over_under",
+          "outcome": "over_2.5",
+          "model_probability": 0.7155,
+          "real_odd": 1.44,
+          "n_bookmakers": 3,
+          "implied_probability": 0.6944,
+          "edge": 0.0211,
+          "home_team_matches": 39,
+          "away_team_matches": 39,
+          "is_next_matchday": true,
+          "home_form": "PVVVV",
+          "away_form": "NNPNP",
+          "head_to_head": "Real Madrid CF 4-1 Real Sociedad de Fútbol (2026-02-14) · Real Sociedad de Fútbol 1-2 Real Madrid CF (2025-09-13)",
+          "home_rest_days": 3,
+          "away_rest_days": 5,
+          "top_combined_markets": [
+            {
+              "market": "1_over_1.5",
+              "probability": 0.6923
+            },
+            {
+              "market": "1_over_2.5",
+              "probability": 0.5969
+            },
+            {
+              "market": "1_over_3.5",
+              "probability": 0.4204
+            }
+          ],
+          "injuries": [],
           "explanation": "Il modello stima una probabilità del 71.5% per questo esito, basandosi su 39 partite storiche della squadra di casa e 39 della squadra in trasferta. La quota reale (1.44) implica invece una probabilità del 69.4% secondo il mercato — una differenza di +2.1 punti percentuali. Forma recente (dalla più vecchia alla più recente): casa PVVVV, trasferta NNPNP (V=vittoria, N=pareggio, P=sconfitta). Scontri diretti recenti: Real Madrid CF 4-1 Real Sociedad de Fútbol (2026-02-14) · Real Sociedad de Fútbol 1-2 Real Madrid CF (2025-09-13). Riposo dall'ultima partita: casa 3 giorni e trasferta 5 giorni. ⚠️ Nota: una delle due squadre ha giocato pochissimi giorni fa — possibile affaticamento non pienamente catturato dal modello statistico. Mercati combinati sulla stessa partita più probabili secondo il modello (stima, non verificata su una quota reale): 1_over_1.5 (69.2%), 1_over_2.5 (59.7%), 1_over_3.5 (42.0%). ✓ Affidabilità ALTA: entrambe le squadre hanno uno storico sufficiente per una stima solida.",
           "reliability": "alta"
         }
       ],
       "n_legs": 2,
       "combined_odd": 2.016,
-      "combined_true_probability": 0.6991,
+      "combined_true_probability": 0.6992,
       "combined_implied_probability": 0.496,
-      "combined_edge": 0.2031,
+      "combined_edge": 0.2032,
       "in_range": false,
-      "distance_from_range": 0.016,
+      "distance_from_range": 0.216,
       "simulation": {
-        "probability_reach_target": 0.3404,
-        "probability_bust": 0.6596,
+        "probability_reach_target": 0.3419,
+        "probability_bust": 0.6581,
         "probability_stuck_in_between": 0.0,
         "avg_bets_if_successful": 3.0,
         "median_final_capital": 0.0,
-        "mean_final_capital": 55.78
+        "mean_final_capital": 56.03
       },
       "progression": [
         {
@@ -764,9 +898,10 @@
             },
             {
               "market": "1_over_2.5",
-              "probability": 0.3033
+              "probability": 0.3034
             }
           ],
+          "injuries": [],
           "explanation": "Il modello stima una probabilità del 69.2% per questo esito, basandosi su 35 partite storiche della squadra di casa e 35 della squadra in trasferta. La quota reale (1.55) implica invece una probabilità del 64.5% secondo il mercato — una differenza di +4.7 punti percentuali. Forma recente (dalla più vecchia alla più recente): casa NVPPV, trasferta NPVVV (V=vittoria, N=pareggio, P=sconfitta). Scontri diretti recenti: AS Monaco FC 2-1 Olympique de Marseille (2026-04-05) · Olympique de Marseille 1-0 AS Monaco FC (2025-12-14). Riposo dall'ultima partita: casa 7 giorni e trasferta 9 giorni. Mercati combinati sulla stessa partita più probabili secondo il modello (stima, non verificata su una quota reale): 1_over_1.5 (34.9%), 2_over_1.5 (33.0%), 1_over_2.5 (30.3%). ✓ Affidabilità ALTA: entrambe le squadre hanno uno storico sufficiente per una stima solida.",
           "reliability": "alta"
         },
@@ -803,6 +938,7 @@
               "probability": 0.4204
             }
           ],
+          "injuries": [],
           "explanation": "Il modello stima una probabilità del 75.9% per questo esito, basandosi su 39 partite storiche della squadra di casa e 39 della squadra in trasferta. La quota reale (1.35) implica invece una probabilità del 74.1% secondo il mercato — una differenza di +1.9 punti percentuali. Forma recente (dalla più vecchia alla più recente): casa PVVVV, trasferta NNPNP (V=vittoria, N=pareggio, P=sconfitta). Scontri diretti recenti: Real Madrid CF 4-1 Real Sociedad de Fútbol (2026-02-14) · Real Sociedad de Fútbol 1-2 Real Madrid CF (2025-09-13). Riposo dall'ultima partita: casa 3 giorni e trasferta 5 giorni. ⚠️ Nota: una delle due squadre ha giocato pochissimi giorni fa — possibile affaticamento non pienamente catturato dal modello statistico. Mercati combinati sulla stessa partita più probabili secondo il modello (stima, non verificata su una quota reale): 1_over_1.5 (69.2%), 1_over_2.5 (59.7%), 1_over_3.5 (42.0%). ✓ Affidabilità ALTA: entrambe le squadre hanno uno storico sufficiente per una stima solida.",
           "reliability": "alta"
         }
@@ -813,14 +949,14 @@
       "combined_implied_probability": 0.4779,
       "combined_edge": 0.0478,
       "in_range": false,
-      "distance_from_range": 0.093,
+      "distance_from_range": 0.293,
       "simulation": {
-        "probability_reach_target": 0.146,
-        "probability_bust": 0.854,
+        "probability_reach_target": 0.1467,
+        "probability_bust": 0.8533,
         "probability_stuck_in_between": 0.0,
         "avg_bets_if_successful": 3.0,
         "median_final_capital": 0.0,
-        "mean_final_capital": 26.77
+        "mean_final_capital": 26.9
       },
       "progression": [
         {
@@ -887,6 +1023,7 @@
               "probability": 0.4204
             }
           ],
+          "injuries": [],
           "explanation": "Il modello stima una probabilità del 75.9% per questo esito, basandosi su 39 partite storiche della squadra di casa e 39 della squadra in trasferta. La quota reale (1.35) implica invece una probabilità del 74.1% secondo il mercato — una differenza di +1.9 punti percentuali. Forma recente (dalla più vecchia alla più recente): casa PVVVV, trasferta NNPNP (V=vittoria, N=pareggio, P=sconfitta). Scontri diretti recenti: Real Madrid CF 4-1 Real Sociedad de Fútbol (2026-02-14) · Real Sociedad de Fútbol 1-2 Real Madrid CF (2025-09-13). Riposo dall'ultima partita: casa 3 giorni e trasferta 5 giorni. ⚠️ Nota: una delle due squadre ha giocato pochissimi giorni fa — possibile affaticamento non pienamente catturato dal modello statistico. Mercati combinati sulla stessa partita più probabili secondo il modello (stima, non verificata su una quota reale): 1_over_1.5 (69.2%), 1_over_2.5 (59.7%), 1_over_3.5 (42.0%). ✓ Affidabilità ALTA: entrambe le squadre hanno uno storico sufficiente per una stima solida.",
           "reliability": "alta"
         },
@@ -920,9 +1057,10 @@
             },
             {
               "market": "1_under_3.5",
-              "probability": 0.3
+              "probability": 0.2999
             }
           ],
+          "injuries": [],
           "explanation": "Il modello stima una probabilità del 66.3% per questo esito, basandosi su 39 partite storiche della squadra di casa e 39 della squadra in trasferta. La quota reale (1.55) implica invece una probabilità del 64.5% secondo il mercato — una differenza di +1.8 punti percentuali. Forma recente (dalla più vecchia alla più recente): casa PNPNN, trasferta VNPNP (V=vittoria, N=pareggio, P=sconfitta). Scontri diretti recenti: Nottingham Forest FC 0-1 Liverpool FC (2026-02-22) · Liverpool FC 0-3 Nottingham Forest FC (2025-11-22). Riposo dall'ultima partita: casa 5 giorni e trasferta 6 giorni. Mercati combinati sulla stessa partita più probabili secondo il modello (stima, non verificata su una quota reale): 1_over_1.5 (40.7%), 1_over_2.5 (32.6%), 1_under_3.5 (30.0%). ✓ Affidabilità ALTA: entrambe le squadre hanno uno storico sufficiente per una stima solida.",
           "reliability": "alta"
         }
@@ -933,14 +1071,14 @@
       "combined_implied_probability": 0.4779,
       "combined_edge": 0.026,
       "in_range": false,
-      "distance_from_range": 0.093,
+      "distance_from_range": 0.293,
       "simulation": {
-        "probability_reach_target": 0.1268,
-        "probability_bust": 0.8732,
+        "probability_reach_target": 0.1313,
+        "probability_bust": 0.8687,
         "probability_stuck_in_between": 0.0,
         "avg_bets_if_successful": 3.0,
         "median_final_capital": 0.0,
-        "mean_final_capital": 23.25
+        "mean_final_capital": 24.08
       },
       "progression": [
         {
@@ -1000,133 +1138,14 @@
             },
             {
               "market": "1_over_1.5",
-              "probability": 0.8908
+              "probability": 0.8907
             },
             {
               "market": "1_over_2.5",
               "probability": 0.7265
             }
           ],
-          "explanation": "Il modello stima una probabilità del 97.7% per questo esito, basandosi su 39 partite storiche della squadra di casa e 1 della squadra in trasferta. La quota reale (1.4) implica invece una probabilità del 71.4% secondo il mercato — una differenza di +26.3 punti percentuali. Forma recente (dalla più vecchia alla più recente): casa PPVPV, trasferta P (V=vittoria, N=pareggio, P=sconfitta). Riposo dall'ultima partita: casa 5 giorni e trasferta 5 giorni. Mercati combinati sulla stessa partita più probabili secondo il modello (stima, non verificata su una quota reale): 1_btts_no (97.7%), 1_over_1.5 (89.1%), 1_over_2.5 (72.7%). ⚠️ Affidabilità BASSA: almeno una delle due squadre ha pochissime partite storiche (probabile neopromossa o inizio stagione). Un vantaggio stimato in questa condizione va preso con molta cautela — potrebbe riflettere un limite del modello più che un'opportunità reale.",
-          "reliability": "bassa"
-        },
-        {
-          "league": "La Liga",
-          "match": "Real Madrid CF vs Real Sociedad de Fútbol",
-          "date": "2026-08-26",
-          "market": "1x2",
-          "outcome": "1",
-          "model_probability": 0.7595,
-          "real_odd": 1.35,
-          "n_bookmakers": 21,
-          "implied_probability": 0.7407,
-          "edge": 0.0188,
-          "home_team_matches": 39,
-          "away_team_matches": 39,
-          "is_next_matchday": true,
-          "home_form": "PVVVV",
-          "away_form": "NNPNP",
-          "head_to_head": "Real Madrid CF 4-1 Real Sociedad de Fútbol (2026-02-14) · Real Sociedad de Fútbol 1-2 Real Madrid CF (2025-09-13)",
-          "home_rest_days": 3,
-          "away_rest_days": 5,
-          "top_combined_markets": [
-            {
-              "market": "1_over_1.5",
-              "probability": 0.6923
-            },
-            {
-              "market": "1_over_2.5",
-              "probability": 0.5969
-            },
-            {
-              "market": "1_over_3.5",
-              "probability": 0.4204
-            }
-          ],
-          "explanation": "Il modello stima una probabilità del 75.9% per questo esito, basandosi su 39 partite storiche della squadra di casa e 39 della squadra in trasferta. La quota reale (1.35) implica invece una probabilità del 74.1% secondo il mercato — una differenza di +1.9 punti percentuali. Forma recente (dalla più vecchia alla più recente): casa PVVVV, trasferta NNPNP (V=vittoria, N=pareggio, P=sconfitta). Scontri diretti recenti: Real Madrid CF 4-1 Real Sociedad de Fútbol (2026-02-14) · Real Sociedad de Fútbol 1-2 Real Madrid CF (2025-09-13). Riposo dall'ultima partita: casa 3 giorni e trasferta 5 giorni. ⚠️ Nota: una delle due squadre ha giocato pochissimi giorni fa — possibile affaticamento non pienamente catturato dal modello statistico. Mercati combinati sulla stessa partita più probabili secondo il modello (stima, non verificata su una quota reale): 1_over_1.5 (69.2%), 1_over_2.5 (59.7%), 1_over_3.5 (42.0%). ✓ Affidabilità ALTA: entrambe le squadre hanno uno storico sufficiente per una stima solida.",
-          "reliability": "alta"
-        }
-      ],
-      "n_legs": 2,
-      "combined_odd": 1.89,
-      "combined_true_probability": 0.7422,
-      "combined_implied_probability": 0.5291,
-      "combined_edge": 0.2131,
-      "in_range": false,
-      "distance_from_range": 0.11,
-      "simulation": {
-        "probability_reach_target": 0.4125,
-        "probability_bust": 0.5875,
-        "probability_stuck_in_between": 0.0,
-        "avg_bets_if_successful": 3.0,
-        "median_final_capital": 0.0,
-        "mean_final_capital": 55.7
-      },
-      "progression": [
-        {
-          "step": 1,
-          "capital_before": 20.0,
-          "stake": 20.0,
-          "winnings": 17.8,
-          "capital_after": 37.8,
-          "remaining_to_target": 62.2,
-          "target_reached": false
-        },
-        {
-          "step": 2,
-          "capital_before": 37.8,
-          "stake": 37.8,
-          "winnings": 33.64,
-          "capital_after": 71.44,
-          "remaining_to_target": 28.56,
-          "target_reached": false
-        },
-        {
-          "step": 3,
-          "capital_before": 71.44,
-          "stake": 71.44,
-          "winnings": 63.58,
-          "capital_after": 135.02,
-          "remaining_to_target": 0,
-          "target_reached": true
-        }
-      ]
-    },
-    {
-      "legs": [
-        {
-          "league": "Serie A",
-          "match": "AC Milan vs Venezia FC",
-          "date": "2026-08-28",
-          "market": "1x2",
-          "outcome": "1",
-          "model_probability": 0.9772,
-          "real_odd": 1.4,
-          "n_bookmakers": 24,
-          "implied_probability": 0.7143,
-          "edge": 0.2629,
-          "home_team_matches": 39,
-          "away_team_matches": 1,
-          "is_next_matchday": true,
-          "home_form": "PPVPV",
-          "away_form": "P",
-          "head_to_head": "Nessuno scontro diretto recente disponibile nei dati storici.",
-          "home_rest_days": 5,
-          "away_rest_days": 5,
-          "top_combined_markets": [
-            {
-              "market": "1_btts_no",
-              "probability": 0.9772
-            },
-            {
-              "market": "1_over_1.5",
-              "probability": 0.8908
-            },
-            {
-              "market": "1_over_2.5",
-              "probability": 0.7265
-            }
-          ],
+          "injuries": [],
           "explanation": "Il modello stima una probabilità del 97.7% per questo esito, basandosi su 39 partite storiche della squadra di casa e 1 della squadra in trasferta. La quota reale (1.4) implica invece una probabilità del 71.4% secondo il mercato — una differenza di +26.3 punti percentuali. Forma recente (dalla più vecchia alla più recente): casa PPVPV, trasferta P (V=vittoria, N=pareggio, P=sconfitta). Riposo dall'ultima partita: casa 5 giorni e trasferta 5 giorni. Mercati combinati sulla stessa partita più probabili secondo il modello (stima, non verificata su una quota reale): 1_btts_no (97.7%), 1_over_1.5 (89.1%), 1_over_2.5 (72.7%). ⚠️ Affidabilità BASSA: almeno una delle due squadre ha pochissime partite storiche (probabile neopromossa o inizio stagione). Un vantaggio stimato in questa condizione va preso con molta cautela — potrebbe riflettere un limite del modello più che un'opportunità reale.",
           "reliability": "bassa"
         },
@@ -1160,9 +1179,10 @@
             },
             {
               "market": "1_over_2.5",
-              "probability": 0.3033
+              "probability": 0.3034
             }
           ],
+          "injuries": [],
           "explanation": "Il modello stima una probabilità del 69.2% per questo esito, basandosi su 35 partite storiche della squadra di casa e 35 della squadra in trasferta. La quota reale (1.55) implica invece una probabilità del 64.5% secondo il mercato — una differenza di +4.7 punti percentuali. Forma recente (dalla più vecchia alla più recente): casa NVPPV, trasferta NPVVV (V=vittoria, N=pareggio, P=sconfitta). Scontri diretti recenti: AS Monaco FC 2-1 Olympique de Marseille (2026-04-05) · Olympique de Marseille 1-0 AS Monaco FC (2025-12-14). Riposo dall'ultima partita: casa 7 giorni e trasferta 9 giorni. Mercati combinati sulla stessa partita più probabili secondo il modello (stima, non verificata su una quota reale): 1_over_1.5 (34.9%), 2_over_1.5 (33.0%), 1_over_2.5 (30.3%). ✓ Affidabilità ALTA: entrambe le squadre hanno uno storico sufficiente per una stima solida.",
           "reliability": "alta"
         }
@@ -1173,14 +1193,14 @@
       "combined_implied_probability": 0.4609,
       "combined_edge": 0.2156,
       "in_range": false,
-      "distance_from_range": 0.17,
+      "distance_from_range": 0.37,
       "simulation": {
-        "probability_reach_target": 0.3145,
-        "probability_bust": 0.6855,
+        "probability_reach_target": 0.3072,
+        "probability_bust": 0.6928,
         "probability_stuck_in_between": 0.0,
         "avg_bets_if_successful": 3.0,
         "median_final_capital": 0.0,
-        "mean_final_capital": 64.27
+        "mean_final_capital": 62.78
       },
       "progression": [
         {
