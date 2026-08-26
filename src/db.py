@@ -18,6 +18,7 @@ CREATE TABLE IF NOT EXISTS teams (
     name TEXT NOT NULL,
     short_name TEXT,
     league_code TEXT NOT NULL,
+    crest_url TEXT,                       -- URL dello stemma della squadra
     UNIQUE(team_id)
 );
 
@@ -107,12 +108,35 @@ def get_connection():
     return conn
 
 
+def _migrate_missing_columns(conn):
+    """
+    A differenza di CREATE TABLE IF NOT EXISTS (che non tocca una tabella
+    già esistente), questa funzione aggiunge le COLONNE nuove a tabelle
+    già create in precedenza — necessario quando un aggiornamento del
+    progetto aggiunge un campo a una tabella che esiste già nel tuo
+    database (es. 'crest_url' su un database creato prima che esistesse).
+    """
+    migrations = {
+        "teams": [("crest_url", "TEXT")],
+    }
+    cur = conn.cursor()
+    for table, columns in migrations.items():
+        cur.execute(f"PRAGMA table_info({table})")
+        existing_columns = {row[1] for row in cur.fetchall()}
+        for col_name, col_type in columns:
+            if col_name not in existing_columns:
+                cur.execute(f"ALTER TABLE {table} ADD COLUMN {col_name} {col_type}")
+                print(f"Migrazione: aggiunta colonna '{col_name}' alla tabella '{table}'")
+    conn.commit()
+
+
 def init_db():
     """Inizializza lo schema del database. Sicuro da rilanciare (usa IF NOT EXISTS)."""
     conn = get_connection()
     try:
         conn.executescript(SCHEMA)
         conn.commit()
+        _migrate_missing_columns(conn)
         print(f"Database inizializzato correttamente in: {DB_PATH}")
     finally:
         conn.close()
