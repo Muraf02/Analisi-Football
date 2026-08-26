@@ -425,6 +425,7 @@
     <div class="actions-grid">
       <button class="action-btn" id="btn-update-data" onclick="runWorkflow('update-data.yml', {}, 'btn-update-data')">1. Aggiorna dati partite</button>
       <button class="action-btn" id="btn-fetch-odds" onclick="runWorkflow('fetch-odds.yml', {}, 'btn-fetch-odds')">2. Recupera quote</button>
+      <button class="action-btn" id="btn-fetch-injuries" onclick="runWorkflow('fetch-injuries.yml', {}, 'btn-fetch-injuries')">2b. Recupera infortuni</button>
       <button class="action-btn" id="btn-predict" onclick="runWorkflow('predict.yml', {}, 'btn-predict')">3. Genera previsioni</button>
       <button class="action-btn primary" id="btn-strategy" onclick="runStrategyWorkflow()">4. Genera strategia →</button>
     </div>
@@ -652,7 +653,8 @@ function renderLegend() {
       <b style="color:var(--text)">Vantaggio</b> — la differenza tra le due: positivo significa che il modello vede più probabilità di quanto paghi la quota (non è una garanzia di vincita).<br>
       <b style="color:var(--text)">Affidabilità</b> — quanto storico ha il modello sulle squadre coinvolte: bassa = pochi dati (es. neopromosse), da prendere con cautela.<br>
       <b style="color:var(--text)">Successo / Rovina</b> — simulando questa stessa giocata migliaia di volte, quante volte porta al tuo obiettivo o azzera il capitale.<br>
-      <b style="color:var(--text)">✓ nel tuo range / vicino al range</b> — se la quota combinata cade esattamente nei valori richiesti, o quanto ne è distante.
+      <b style="color:var(--text)">✓ nel tuo range / vicino al range</b> — se la quota combinata cade esattamente nei valori richiesti, o quanto ne è distante.<br>
+      <b style="color:var(--text)">⚕ assenze note</b> — infortuni o squalifiche note per una delle squadre coinvolte (se disponibili). Il modello statistico NON ne tiene conto: leggi sempre la spiegazione completa.
     </div>
   `;
   return box;
@@ -765,7 +767,7 @@ function renderResult(d) {
         <div class="odd-box"><div class="val">${d.combined_odd}</div><div class="label">quota</div></div>
       </div>
       ${vantageBar(d.combined_true_probability, d.combined_implied_probability)}
-      ${edgeBadge(d.combined_edge)}${reliabilityBadge(c.reliability)}${rangeBadge(d)}
+      ${edgeBadge(d.combined_edge)}${reliabilityBadge(c.reliability)}${rangeBadge(d)}${injuriesBadge(c.injuries)}
       ${statsBlock(d.simulation)}
       ${progressionLine(d.progression)}
       ${explanationBox(c.explanation)}
@@ -777,6 +779,7 @@ function renderResult(d) {
     const explanations = d.legs.map(l =>
       `<div style="margin-top:8px;"><b>${l.match}:</b> ${l.explanation}</div>`
     ).join('');
+    const anyInjuries = d.legs.some(l => l.injuries && l.injuries.length > 0);
     card.innerHTML = `
       <div class="card-top">
         <div class="match-info">
@@ -786,13 +789,18 @@ function renderResult(d) {
         <div class="odd-box"><div class="val">${d.combined_odd}</div><div class="label">quota combinata</div></div>
       </div>
       ${vantageBar(d.combined_true_probability, d.combined_implied_probability)}
-      ${edgeBadge(d.combined_edge)}${rangeBadge(d)}
+      ${edgeBadge(d.combined_edge)}${rangeBadge(d)}${anyInjuries ? injuriesBadge([1]) : ''}
       ${statsBlock(d.simulation)}
       ${progressionLine(d.progression)}
       ${explanationBox(explanations)}
     `;
   }
   return card;
+}
+
+function injuriesBadge(injuries) {
+  if (!injuries || injuries.length === 0) return '';
+  return `<span class="edge-badge edge-neg" style="margin-left:8px;">⚕ assenze note</span>`;
 }
 
 function rangeBadge(d) {
