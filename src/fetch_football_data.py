@@ -71,14 +71,15 @@ def fetch_teams(league_code, conn, season=None):
     for t in teams:
         cur.execute(
             """
-            INSERT INTO teams (team_id, name, short_name, league_code)
-            VALUES (?, ?, ?, ?)
+            INSERT INTO teams (team_id, name, short_name, league_code, crest_url)
+            VALUES (?, ?, ?, ?, ?)
             ON CONFLICT(team_id) DO UPDATE SET
                 name=excluded.name,
                 short_name=excluded.short_name,
-                league_code=excluded.league_code
+                league_code=excluded.league_code,
+                crest_url=excluded.crest_url
             """,
-            (t["id"], t["name"], t.get("shortName", t["name"]), league_code),
+            (t["id"], t["name"], t.get("shortName", t["name"]), league_code, t.get("crest")),
         )
     conn.commit()
     logger.info(f"[{league_code}] {len(teams)} squadre salvate/aggiornate")
@@ -174,4 +175,3 @@ def run_full_update():
 
 if __name__ == "__main__":
     run_full_update()
-
