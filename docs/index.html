@@ -6,613 +6,256 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Analisi Football — Strategia</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #0A0E1A;
-    --surface: #121729;
-    --surface-2: #1A2140;
-    --line: #262E4A;
-    --text: #ECEEF5;
-    --muted: #8991B3;
-    --gold: #F0A93C;
-    --gold-dim: #A8762A;
-    --teal: #22C58B;
-    --red: #E14F5A;
-    --accent: #5B7CFA;
-    --pitch-line: rgba(91,124,250,0.05);
+    --paper: #EEF0F4;
+    --surface: #FFFFFF;
+    --surface-2: #F4F6FA;
+    --line: #DBE1EA;
+    --ink: #12141C;
+    --muted: #5B6478;
+    --muted-2: #8890A3;
 
-    /* Colori distintivi per campionato — ispirati alle identità
-       ufficiali, usati come accenti (bordo/tag) */
-    --league-SA: #1E88E5;   /* Serie A: blu */
-    --league-PL: #9C4FE8;   /* Premier League: viola */
-    --league-PD: #F5892B;   /* La Liga: arancione */
-    --league-FL1: #C8E600;  /* Ligue 1: verde lime */
-    --league-BL1: #EF4557;  /* Bundesliga: rosso */
+    --model: #2952E3;
+    --market: #E2900C;
+    --teal: #0E9F6E;
+    --red: #DC2626;
+
+    --league-SA: #1D6FD1;
+    --league-PL: #7C3AED;
+    --league-PD: #EA6A12;
+    --league-FL1: #6FA80E;
+    --league-BL1: #D6203D;
+
+    --radius-sm: 6px;
+    --radius-md: 10px;
+    --radius-lg: 14px;
+    --sp-3: 12px; --sp-4: 16px; --sp-5: 20px; --sp-6: 24px; --sp-7: 32px; --sp-8: 44px;
   }
 
   * { box-sizing: border-box; }
+  ::selection { background: var(--model); color: #fff; }
 
   body {
     margin: 0;
-    background:
-      radial-gradient(circle at 1px 1px, var(--pitch-line) 1px, transparent 0) 0 0/28px 28px,
-      var(--bg);
-    color: var(--text);
-    font-family: 'Inter', sans-serif;
-    line-height: 1.5;
-    padding-bottom: 80px;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Source Serif 4', Georgia, serif;
+    line-height: 1.55;
+    padding-bottom: 90px;
+    -webkit-font-smoothing: antialiased;
   }
 
-  .wrap { max-width: 1040px; margin: 0 auto; padding: 0 20px; }
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 0 22px; }
+  a { color: var(--model); }
 
-  /* --- Barra di navigazione superiore, in stile piattaforma dati --- */
-  .topbar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 18px 24px;
-    border-bottom: 1px solid var(--line);
-    background: rgba(18,23,41,0.85);
-    backdrop-filter: blur(8px);
-    position: sticky;
-    top: 0;
-    z-index: 50;
-  }
-  .topbar .brand {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-family: 'Space Grotesk', sans-serif;
-    font-weight: 700;
-    font-size: 17px;
-  }
-  .topbar .brand .mark {
-    width: 30px; height: 30px;
-    border-radius: 8px;
-    background: linear-gradient(135deg, var(--accent), var(--gold));
-    display: flex; align-items: center; justify-content: center;
-    font-size: 15px;
-  }
-  .topbar .brand .sub {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 10px;
-    color: var(--muted);
-    font-weight: 400;
-    letter-spacing: 0.08em;
-  }
-  .topbar-meta {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 12px;
-    color: var(--muted);
-  }
+  .masthead { border-bottom: 1px solid var(--line); background: var(--surface); }
+  .masthead-inner { max-width: 1040px; margin: 0 auto; padding: 16px 22px; display: flex; align-items: center; justify-content: space-between; }
+  .brand { display: flex; align-items: center; gap: 12px; }
+  .brand .mark { width: 34px; height: 34px; border-radius: 8px; background: var(--ink); display: flex; align-items: center; justify-content: center; color: #fff; }
+  .brand .name { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 16.5px; letter-spacing: -0.01em; }
+  .brand .sub { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--muted-2); letter-spacing: 0.1em; }
+  .topbar-meta { display: flex; align-items: center; gap: 7px; font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--muted); }
+  .topbar-meta .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--teal); box-shadow: 0 0 0 3px rgba(14,159,110,0.15); }
+  .accent-rule { height: 3px; background: linear-gradient(90deg, var(--market), var(--model)); }
 
-  header.hero {
-    padding: 40px 20px 28px;
-    text-align: center;
-    border-bottom: 1px solid var(--line);
-    margin-bottom: 32px;
-  }
+  .command-bar { padding: 30px 0 26px; border-bottom: 1px solid var(--line); margin-bottom: 28px; }
+  .command-bar .inner { display: flex; align-items: flex-end; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+  .command-bar .eyebrow { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--market); margin-bottom: 8px; }
+  .command-bar h1 { font-family: 'Space Grotesk', sans-serif; font-size: 30px; font-weight: 700; margin: 0 0 8px; letter-spacing: -0.015em; color: var(--ink); }
+  .command-bar .meta-line { font-family: 'JetBrains Mono', monospace; font-size: 12.5px; color: var(--muted); }
+  .params-row { display: flex; gap: 10px; flex-wrap: wrap; font-family: 'JetBrains Mono', monospace; }
+  .param-pill { background: var(--ink); color: #fff; border-radius: 999px; padding: 7px 16px; font-size: 12.5px; white-space: nowrap; }
+  .param-pill b { color: #FFD98A; font-weight: 700; }
 
-  .eyebrow {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 12px;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 14px;
-  }
+  .stats-strip { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; margin-bottom: var(--sp-6); }
+  .stat-tile { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-md); padding: 15px 18px; border-top: 3px solid var(--line); }
+  .stat-tile .num { font-family: 'JetBrains Mono', monospace; font-size: 24px; font-weight: 700; color: var(--ink); }
+  .stat-tile .cap { font-family: 'Space Grotesk', sans-serif; font-size: 10.5px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; margin-top: 3px; }
+  .stat-tile.model { border-top-color: var(--model); } .stat-tile.model .num { color: var(--model); }
+  .stat-tile.market { border-top-color: var(--market); } .stat-tile.market .num { color: var(--market); }
+  .stat-tile.teal { border-top-color: var(--teal); } .stat-tile.teal .num { color: var(--teal); }
 
-  h1 {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: clamp(28px, 5vw, 44px);
-    font-weight: 700;
-    margin: 0 0 20px;
-    letter-spacing: -0.01em;
-  }
-
-  .params-row {
-    display: flex;
-    justify-content: center;
-    gap: 12px;
-    flex-wrap: wrap;
-    font-family: 'JetBrains Mono', monospace;
-  }
-
-  .param-pill {
-    background: var(--surface);
-    border: 1px solid var(--line);
-    border-radius: 999px;
-    padding: 8px 18px;
-    font-size: 14px;
-  }
-  .param-pill b { color: var(--gold); font-weight: 700; }
-
-  .meta-line {
-    margin-top: 18px;
-    font-size: 13px;
-    color: var(--muted);
-  }
-
-  /* --- Striscia statistiche stile dashboard --- */
-  .stats-strip {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-    gap: 1px;
-    background: var(--line);
-    border: 1px solid var(--line);
-    border-radius: 12px;
-    overflow: hidden;
-    margin-bottom: 28px;
-  }
-  .stat-tile {
-    background: var(--surface);
-    padding: 16px 18px;
-  }
-  .stat-tile .num {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 24px;
-    font-weight: 700;
-    color: var(--text);
-  }
-  .stat-tile .cap {
-    font-size: 11px;
-    color: var(--muted);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    margin-top: 2px;
-  }
-  .stat-tile.accent .num { color: var(--accent); }
-  .stat-tile.gold .num { color: var(--gold); }
-  .stat-tile.teal .num { color: var(--teal); }
-
-  section { margin-bottom: 56px; }
-
-  .section-head {
-    display: flex;
-    align-items: baseline;
-    gap: 12px;
-    margin-bottom: 20px;
-    padding-bottom: 12px;
-    border-bottom: 1px solid var(--line);
-  }
-
-  .section-head .tag {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 12px;
-    color: var(--bg);
-    background: var(--gold);
-    padding: 3px 9px;
-    border-radius: 4px;
-    font-weight: 700;
-  }
-
-  .section-head h2 {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 22px;
-    margin: 0;
-    font-weight: 600;
-  }
-
-  .card {
-    background: var(--surface);
-    border: 1px solid var(--line);
-    border-radius: 10px;
-    padding: 22px 24px;
-    margin-bottom: 16px;
-  }
-
-  .card-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 16px;
-    flex-wrap: wrap;
-    margin-bottom: 16px;
-  }
-
-  .match-info .league {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11px;
-    color: var(--muted);
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    margin-bottom: 4px;
-  }
-
-  .match-info .teams {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 18px;
-    font-weight: 600;
-  }
-
-  .match-info .date { font-size: 13px; color: var(--muted); margin-top: 2px; }
-
-  .odd-box {
-    text-align: center;
-    background: var(--surface-2);
-    border: 1px solid var(--line);
-    border-radius: 10px;
-    padding: 8px 16px;
-    min-width: 90px;
-  }
-  .odd-box .val {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 22px;
-    font-weight: 700;
-    color: var(--gold);
-  }
-  .odd-box .label { font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
-
-  .vantage {
-    margin: 18px 0;
-  }
-  .vantage-labels {
-    display: flex;
-    justify-content: space-between;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 12px;
-    margin-bottom: 6px;
-    color: var(--muted);
-  }
-  .vantage-bar {
-    position: relative;
-    height: 10px;
-    background: var(--surface-2);
-    border-radius: 6px;
-    overflow: hidden;
-  }
-  .vantage-bar .market {
-    position: absolute;
-    top: 0; left: 0; bottom: 0;
-    background: var(--line);
-  }
-  .vantage-bar .model {
-    position: absolute;
-    top: 0; left: 0; bottom: 0;
-    background: var(--gold);
-  }
-  .edge-badge {
-    display: inline-block;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 13px;
-    font-weight: 700;
-    padding: 4px 10px;
-    border-radius: 6px;
-    margin-top: 8px;
-  }
-  .edge-pos { background: rgba(63,167,150,0.15); color: var(--teal); }
-  .edge-neg { background: rgba(193,72,61,0.15); color: var(--red); }
-
-  .stats-row {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 12px;
-    margin-top: 18px;
-    padding-top: 16px;
-    border-top: 1px dashed var(--line);
-  }
-  .stat .num {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 20px;
-    font-weight: 700;
-  }
-  .stat .cap { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; }
-  .stat.success .num { color: var(--teal); }
-  .stat.bust .num { color: var(--red); }
-
-  .progression-line {
-    margin-top: 14px;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 13px;
-    color: var(--muted);
-    background: var(--surface-2);
-    border-radius: 8px;
-    padding: 10px 14px;
-  }
-  .progression-line b { color: var(--text); }
-
-  .legs-list {
-    font-size: 14px;
-    color: var(--muted);
-    margin: 10px 0 0;
-    padding-left: 18px;
-  }
-  .legs-list li { margin-bottom: 4px; }
-  .legs-list b { color: var(--text); }
-
-  .empty-state {
-    color: var(--muted);
-    font-style: italic;
-    padding: 20px;
-    text-align: center;
-    border: 1px dashed var(--line);
-    border-radius: 10px;
-  }
-
-  footer {
-    max-width: 920px;
-    margin: 0 auto;
-    padding: 24px 20px;
-    font-size: 13px;
-    color: var(--muted);
-    border-top: 1px solid var(--line);
-    text-align: center;
-  }
-
-  #loading {
-    text-align: center;
-    padding: 80px 20px;
-    color: var(--muted);
-    font-family: 'JetBrains Mono', monospace;
-  }
-
-  @media (max-width: 560px) {
-    .card-top { flex-direction: column; }
-    .odd-box { align-self: flex-start; }
-  }
-
-  /* --- Pannello di controllo --- */
-  .control-panel {
-    background: var(--surface);
-    border: 1px solid var(--line);
-    border-radius: 14px;
-    padding: 24px;
-    margin: 0 0 40px;
-  }
-  .control-panel .panel-title {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 16px;
-    font-weight: 600;
-    margin: 0 0 16px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-  .token-row {
-    display: flex;
-    gap: 8px;
-    margin-bottom: 18px;
-    flex-wrap: wrap;
-  }
-  .token-row input[type="password"], .token-row input[type="text"] {
-    flex: 1;
-    min-width: 200px;
-  }
-  .field-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-    gap: 12px;
-    margin-bottom: 18px;
-  }
-  .field-grid label {
-    display: block;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11px;
-    color: var(--muted);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    margin-bottom: 6px;
-  }
-  input[type="number"], input[type="password"], input[type="text"] {
-    width: 100%;
-    background: var(--surface-2);
-    border: 1px solid var(--line);
-    border-radius: 8px;
-    padding: 10px 12px;
-    color: var(--text);
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 14px;
-  }
-  input:focus { outline: 2px solid var(--gold-dim); outline-offset: 1px; }
-
-  .actions-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-    gap: 10px;
-  }
-  button.action-btn {
-    font-family: 'Inter', sans-serif;
-    font-size: 14px;
-    font-weight: 600;
-    padding: 12px 16px;
-    border-radius: 8px;
-    border: 1px solid var(--line);
-    background: var(--surface-2);
-    color: var(--text);
-    cursor: pointer;
-    transition: background 0.15s, transform 0.1s;
-    text-align: left;
-    position: relative;
-  }
-  button.action-btn:hover:not(:disabled) { background: #1D3A28; }
+  .control-panel { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-lg); padding: var(--sp-5) var(--sp-6); margin: 0 0 var(--sp-6); font-family: 'Inter', sans-serif; }
+  .panel-title { display: flex; align-items: center; gap: 9px; font-family: 'Space Grotesk', sans-serif; font-size: 15px; font-weight: 600; margin: 0 0 var(--sp-4); color: var(--ink); }
+  .panel-title svg { color: var(--model); }
+  .token-row { display: flex; gap: 8px; margin-bottom: var(--sp-4); flex-wrap: wrap; }
+  .token-row input { flex: 1; min-width: 220px; }
+  .field-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 12px; margin-bottom: var(--sp-4); }
+  .field-grid label { display: block; font-family: 'JetBrains Mono', monospace; font-size: 10.5px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 6px; }
+  input[type="number"], input[type="password"], input[type="text"] { width: 100%; background: var(--surface-2); border: 1px solid var(--line); border-radius: var(--radius-sm); padding: 10px 12px; color: var(--ink); font-family: 'JetBrains Mono', monospace; font-size: 14px; }
+  input:focus { outline: 2px solid var(--model); outline-offset: 1px; }
+  .actions-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; }
+  button.action-btn { display: flex; align-items: center; justify-content: center; gap: 7px; font-family: 'Space Grotesk', sans-serif; font-size: 13.5px; font-weight: 600; padding: 11px 14px; border-radius: var(--radius-sm); border: 1px solid var(--line); background: var(--surface-2); color: var(--ink); cursor: pointer; transition: background 0.15s, border-color 0.15s, transform 0.08s; }
+  button.action-btn:hover:not(:disabled) { background: #E9ECF2; border-color: var(--muted-2); }
   button.action-btn:active:not(:disabled) { transform: scale(0.98); }
   button.action-btn:disabled { opacity: 0.5; cursor: not-allowed; }
-  button.action-btn.primary {
-    background: var(--gold);
-    color: var(--bg);
-    border-color: var(--gold);
-  }
-  button.action-btn.primary:hover:not(:disabled) { background: #E3B65C; }
-  button.small-link {
-    background: none;
-    border: none;
-    color: var(--muted);
-    font-size: 12px;
-    text-decoration: underline;
-    cursor: pointer;
-    padding: 0;
-  }
+  button.action-btn.primary { background: var(--market); color: #fff; border-color: var(--market); font-weight: 700; }
+  button.action-btn.primary:hover:not(:disabled) { background: #C77E09; }
+  button.small-link { background: none; border: none; color: var(--model); font-size: 12px; text-decoration: underline; cursor: pointer; padding: 0; }
+  .status-log { margin-top: var(--sp-4); font-family: 'JetBrains Mono', monospace; font-size: 12.5px; max-height: 160px; overflow-y: auto; }
+  .status-log .line { padding: 5px 0; color: var(--muted); border-bottom: 1px dashed var(--line); }
+  .status-log .line.ok { color: var(--teal); } .status-log .line.err { color: var(--red); } .status-log .line.run { color: var(--market); }
+  .status-log .line a { color: var(--model); font-weight: 700; }
+  .help-text { font-size: 12px; color: var(--muted); margin-top: 8px; line-height: 1.5; }
+  .spin { animation: spin 1s linear infinite; }
+  @keyframes spin { to { transform: rotate(360deg); } }
 
-  .status-log {
-    margin-top: 16px;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 13px;
-    max-height: 160px;
-    overflow-y: auto;
-  }
-  .status-log .line { padding: 4px 0; color: var(--muted); border-bottom: 1px dashed var(--line); }
-  .status-log .line.ok { color: var(--teal); }
-  .status-log .line.err { color: var(--red); }
-  .status-log .line.run { color: var(--gold); }
-  .status-log .line a { color: var(--gold); font-weight: 700; }
+  details.legend-box { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-lg); padding: var(--sp-4) var(--sp-5); margin-bottom: var(--sp-6); }
+  details.legend-box summary { display: flex; align-items: center; gap: 9px; font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 14.5px; cursor: pointer; list-style: none; color: var(--ink); }
+  details.legend-box summary::-webkit-details-marker { display: none; }
+  details.legend-box summary .chev { margin-left: auto; color: var(--muted); transition: transform 0.15s; }
+  details.legend-box[open] summary .chev { transform: rotate(180deg); }
+  .legend-body { margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--line); font-size: 14px; line-height: 1.8; color: var(--muted); }
+  .legend-body b { color: var(--ink); font-family: 'Inter', sans-serif; }
 
-  .help-text {
-    font-size: 12px;
-    color: var(--muted);
-    margin-top: 8px;
-    line-height: 1.5;
-  }
-  .help-text a { color: var(--gold); }
+  .main-tabs { display: flex; gap: 6px; margin-bottom: var(--sp-6); border-bottom: 2px solid var(--line); }
+  .main-tab { display: flex; align-items: center; gap: 7px; background: none; border: none; color: var(--muted); font-family: 'Space Grotesk', sans-serif; font-size: 14.5px; font-weight: 600; padding: 10px 16px; cursor: pointer; border-bottom: 3px solid transparent; margin-bottom: -2px; transition: color 0.15s, border-color 0.15s; }
+  .main-tab:hover { color: var(--ink); }
+  .main-tab.active { color: var(--ink); border-bottom-color: var(--market); }
 
-  /* --- Tab principali --- */
-  .main-tabs {
-    display: flex;
-    gap: 8px;
-    margin-bottom: 24px;
+  section { margin-bottom: var(--sp-8); }
+  .section-head { display: flex; align-items: baseline; gap: 12px; margin-bottom: 6px; padding-bottom: 12px; border-bottom: 1px solid var(--line); }
+  .section-head .tag { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #fff; background: var(--ink); padding: 3px 9px; border-radius: 4px; font-weight: 700; }
+  .section-head h2 { font-family: 'Space Grotesk', sans-serif; font-size: 19px; margin: 0; font-weight: 600; color: var(--ink); }
+  .section-sub { font-size: 14px; color: var(--muted); margin-bottom: 18px; font-style: italic; }
+
+  /* ---------- Barra filtri / ordinamento / vista ---------- */
+  .explore-bar {
+    display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+    background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-md);
+    padding: 12px 14px; margin-bottom: var(--sp-5); font-family: 'Inter', sans-serif;
+  }
+  .explore-group { display: flex; align-items: center; gap: 7px; flex-wrap: wrap; }
+  .explore-label { font-family: 'JetBrains Mono', monospace; font-size: 10.5px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; margin-right: 2px; }
+  .chip { background: var(--surface-2); border: 1px solid var(--line); color: var(--muted); font-family: 'JetBrains Mono', monospace; font-size: 11.5px; padding: 5px 12px; border-radius: 999px; cursor: pointer; transition: all 0.15s; }
+  .chip:hover { border-color: var(--muted-2); color: var(--ink); }
+  .chip.active { background: var(--ink); color: #fff; border-color: var(--ink); font-weight: 700; }
+  select.sort-select {
+    background: var(--surface-2); border: 1px solid var(--line); border-radius: var(--radius-sm);
+    padding: 6px 10px; font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--ink); cursor: pointer;
+  }
+  .view-toggle { display: flex; gap: 2px; background: var(--surface-2); border: 1px solid var(--line); border-radius: var(--radius-sm); padding: 2px; margin-left: auto; }
+  .view-toggle button { background: none; border: none; padding: 6px 12px; font-family: 'Space Grotesk', sans-serif; font-size: 12px; font-weight: 600; color: var(--muted); cursor: pointer; border-radius: 4px; }
+  .view-toggle button.active { background: var(--surface); color: var(--ink); box-shadow: 0 1px 2px rgba(0,0,0,0.08); }
+
+  /* ---------- Vista tabella ---------- */
+  .results-table { width: 100%; border-collapse: collapse; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-md); overflow: hidden; font-family: 'Inter', sans-serif; font-size: 13px; }
+  .results-table th {
+    text-align: left; font-family: 'JetBrains Mono', monospace; font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.05em;
+    color: var(--muted); background: var(--surface-2); padding: 10px 14px; cursor: pointer; user-select: none; white-space: nowrap;
     border-bottom: 1px solid var(--line);
   }
-  .main-tab {
-    background: none;
-    border: none;
-    color: var(--muted);
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 15px;
-    font-weight: 600;
-    padding: 10px 18px;
-    cursor: pointer;
-    border-bottom: 2px solid transparent;
-    transition: color 0.15s, border-color 0.15s;
-  }
-  .main-tab:hover { color: var(--text); }
-  .main-tab.active { color: var(--gold); border-bottom-color: var(--gold); }
+  .results-table th:hover { color: var(--ink); }
+  .results-table th .arrow { margin-left: 4px; opacity: 0.5; }
+  .results-table th.sorted .arrow { opacity: 1; color: var(--model); }
+  .results-table td { padding: 10px 14px; border-bottom: 1px solid var(--line); vertical-align: middle; }
+  .results-table tr:last-child td { border-bottom: none; }
+  .results-table tr:hover td { background: var(--surface-2); }
+  .results-table .t-odd { font-family: 'JetBrains Mono', monospace; font-weight: 700; color: var(--market); }
+  .results-table .t-edge-pos { font-family: 'JetBrains Mono', monospace; font-weight: 700; color: var(--teal); }
+  .results-table .t-edge-neg { font-family: 'JetBrains Mono', monospace; font-weight: 700; color: var(--red); }
+  .results-table .t-league-dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 6px; }
+  .results-table .t-match { font-family: 'Space Grotesk', sans-serif; font-weight: 600; }
 
-  /* --- Filtri lega --- */
-  .league-filters {
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-    margin-bottom: 20px;
-  }
-  .league-filter-btn {
-    background: var(--surface);
-    border: 1px solid var(--line);
-    color: var(--muted);
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 12px;
-    padding: 6px 14px;
-    border-radius: 999px;
-    cursor: pointer;
-    transition: all 0.15s;
-  }
-  .league-filter-btn:hover { border-color: var(--gold-dim); color: var(--text); }
-  .league-filter-btn.active { background: var(--gold); color: var(--bg); border-color: var(--gold); font-weight: 700; }
+  .card, .match-card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-md); overflow: hidden; box-shadow: 0 1px 3px rgba(18,20,28,0.06); margin-bottom: 16px; }
+  .card-band { color: #fff; padding: 12px 20px; display: flex; align-items: center; justify-content: space-between; gap: 14px; flex-wrap: wrap; }
+  .card-band .league-tag { display: flex; align-items: center; gap: 6px; font-family: 'JetBrains Mono', monospace; font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.06em; opacity: 0.85; }
+  .card-band .teams-with-crests { display: flex; align-items: center; gap: 9px; flex-wrap: wrap; margin-top: 5px; }
+  .card-band .teams { font-family: 'Space Grotesk', sans-serif; font-size: 16.5px; font-weight: 700; color: #fff; }
+  .card-band .vs { font-family: 'JetBrains Mono', monospace; font-size: 11px; opacity: 0.7; }
+  .card-band .date { font-size: 11.5px; opacity: 0.8; margin-top: 3px; font-family: 'JetBrains Mono', monospace; }
+  .card-body { padding: 18px 20px 20px; }
+  .odd-box { text-align: center; background: rgba(255,255,255,0.14); border: 1px solid rgba(255,255,255,0.25); border-radius: var(--radius-sm); padding: 7px 15px; min-width: 82px; }
+  .odd-box .val { font-family: 'JetBrains Mono', monospace; font-size: 20px; font-weight: 700; color: #fff; }
+  .odd-box .label { font-size: 9px; color: rgba(255,255,255,0.75); text-transform: uppercase; letter-spacing: 0.05em; }
 
-  /* --- Card partita (vista giornata) --- */
-  .matchday-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
-    gap: 14px;
-  }
-  .match-card {
-    background: var(--surface);
-    border: 1px solid var(--line);
-    border-radius: 10px;
-    padding: 20px 22px;
-    margin-bottom: 0;
-  }
-  .match-card-head {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    margin-bottom: 14px;
-  }
-  .match-card-head .teams { font-family: 'Space Grotesk', sans-serif; font-size: 17px; font-weight: 600; }
-  .match-card-head .meta { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--muted); }
+  .gauge-wrap { margin: 4px 0 14px; }
+  .gauge-labels { display: flex; justify-content: space-between; font-family: 'JetBrains Mono', monospace; font-size: 11.5px; margin-bottom: 8px; }
+  .gauge-labels .market-lbl { color: var(--market); } .gauge-labels .model-lbl { color: var(--model); }
+  .gauge-track { position: relative; height: 6px; background: var(--surface-2); border: 1px solid var(--line); border-radius: 999px; margin: 10px 2px; }
+  .gauge-track .gap-fill { position: absolute; top: 0; bottom: 0; border-radius: 999px; background: linear-gradient(90deg, var(--market), var(--model)); opacity: 0.35; }
+  .gauge-track .tick { position: absolute; top: -3px; width: 1px; height: 12px; background: var(--line); }
+  .gauge-track .marker { position: absolute; top: 50%; width: 13px; height: 13px; border-radius: 50%; transform: translate(-50%, -50%); border: 2.5px solid var(--surface); box-shadow: 0 1px 3px rgba(0,0,0,0.25); }
+  .gauge-track .marker.market { background: var(--market); } .gauge-track .marker.model { background: var(--model); z-index: 2; }
+
+  .badge-row { display: flex; flex-wrap: wrap; gap: 7px; margin: 4px 0 14px; }
+  .edge-badge { display: inline-flex; align-items: center; gap: 5px; font-family: 'JetBrains Mono', monospace; font-size: 11.5px; font-weight: 700; padding: 4px 10px; border-radius: var(--radius-sm); background: var(--surface-2); color: var(--ink); border: 1px solid var(--line); }
+  .edge-pos { background: rgba(14,159,110,0.1); color: var(--teal); border-color: rgba(14,159,110,0.3); }
+  .edge-neg { background: rgba(220,38,38,0.08); color: var(--red); border-color: rgba(220,38,38,0.25); }
+
+  .stats-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; margin: 14px 0; padding: 14px 0; border-top: 1px dashed var(--line); border-bottom: 1px dashed var(--line); font-family: 'Inter', sans-serif; }
+  .stat .num { font-family: 'JetBrains Mono', monospace; font-size: 18px; font-weight: 700; }
+  .stat .cap { font-family: 'Space Grotesk', sans-serif; font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; }
+  .stat.success .num { color: var(--teal); } .stat.bust .num { color: var(--red); }
+
+  .progression-line { margin-top: 12px; font-family: 'Inter', sans-serif; font-size: 13px; color: var(--muted); background: var(--surface-2); border-left: 3px solid var(--model); border-radius: var(--radius-sm); padding: 10px 14px; }
+  .progression-line b { color: var(--ink); font-family: 'JetBrains Mono', monospace; }
+  .legs-list { font-size: 13.5px; color: var(--muted); margin: 10px 0 0; padding-left: 4px; list-style: none; font-family: 'Inter', sans-serif; }
+  .legs-list li { display: flex; align-items: center; gap: 6px; margin-bottom: 6px; }
+  .legs-list b { color: var(--ink); }
+  .explanation-text { font-family: 'Source Serif 4', serif; font-size: 14.5px; line-height: 1.7; color: #35394A; }
+
+  .empty-state { color: var(--muted); font-style: italic; padding: 22px; text-align: center; border: 1px dashed var(--line); border-radius: var(--radius-md); font-size: 14px; background: var(--surface); }
+  #loading, #loading-matchday { text-align: center; padding: 70px 20px; color: var(--muted); font-family: 'JetBrains Mono', monospace; }
+
+  .crest { width: 26px; height: 26px; object-fit: contain; flex-shrink: 0; filter: drop-shadow(0 1px 2px rgba(0,0,0,0.3)); }
+  .crest-sm { width: 15px; height: 15px; flex-shrink: 0; }
+
+  .league-filters { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: var(--sp-5); }
+  .league-filter-btn { background: var(--surface); border: 1px solid var(--line); color: var(--muted); font-family: 'JetBrains Mono', monospace; font-size: 11.5px; padding: 6px 14px; border-radius: 999px; cursor: pointer; transition: all 0.15s; }
+  .league-filter-btn:hover { border-color: var(--muted-2); color: var(--ink); }
+  .league-filter-btn.active { background: var(--ink); color: #fff; border-color: var(--ink); font-weight: 700; }
+
+  .matchday-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(370px, 1fr)); gap: 16px; }
+  .score-pill { display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 12px; background: var(--surface-2); border: 1px solid var(--line); border-radius: var(--radius-sm); padding: 4px 10px; margin: 10px 0 14px; color: var(--ink); }
   .prob-bars { display: flex; gap: 6px; margin-bottom: 12px; }
-  .prob-bar {
-    flex: 1;
-    text-align: center;
-    background: var(--surface-2);
-    border-radius: 8px;
-    padding: 10px 6px;
-  }
-  .prob-bar .pct { font-family: 'JetBrains Mono', monospace; font-size: 18px; font-weight: 700; color: var(--gold); }
-  .prob-bar .lbl { font-size: 10px; color: var(--muted); text-transform: uppercase; margin-top: 2px; }
-  .score-pill {
-    display: inline-block;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 13px;
-    background: var(--surface-2);
-    border: 1px solid var(--line);
-    border-radius: 6px;
-    padding: 4px 10px;
-    margin-bottom: 12px;
+  .prob-bar { flex: 1; text-align: center; background: var(--surface-2); border: 1px solid var(--line); border-radius: var(--radius-sm); padding: 10px 6px; }
+  .prob-bar .pct { font-family: 'JetBrains Mono', monospace; font-size: 17px; font-weight: 700; color: var(--ink); }
+  .prob-bar .lbl { font-family: 'Space Grotesk', sans-serif; font-size: 9.5px; color: var(--muted); text-transform: uppercase; margin-top: 2px; }
+  .match-meta-row { font-family: 'Inter', sans-serif; font-size: 12.5px; color: var(--muted); }
+
+  @media (max-width: 560px) {
+    .card-band { flex-direction: column; align-items: flex-start; }
+    .command-bar .inner { flex-direction: column; align-items: flex-start; }
   }
 
-  /* --- Stemmi squadre e campionati --- */
-  .crest {
-    width: 28px;
-    height: 28px;
-    object-fit: contain;
-    flex-shrink: 0;
-    filter: drop-shadow(0 1px 2px rgba(0,0,0,0.4));
-  }
-  .crest-lg { width: 40px; height: 40px; }
-  .crest-sm { width: 16px; height: 16px; vertical-align: -3px; margin-right: 5px; }
-  .teams-with-crests {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-  .teams-with-crests .vs {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11px;
-    color: var(--muted);
-  }
-  .league-tag {
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
-  }
-
-  /* Card con bordo sinistro colorato in base al campionato */
-  .card, .match-card {
-    border-left: 3px solid var(--card-league-color, var(--line));
-    box-shadow: 0 2px 10px rgba(0,0,0,0.18);
-    transition: transform 0.12s, box-shadow 0.12s;
-  }
-  .card:hover, .match-card:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 4px 16px rgba(0,0,0,0.28);
-  }
+  footer { max-width: 1040px; margin: 40px auto 0; padding: 24px 22px; font-size: 13px; color: var(--muted); border-top: 1px solid var(--line); text-align: center; font-family: 'Inter', sans-serif; }
 </style>
 </head>
 <body>
 
-<div class="topbar">
-  <div class="brand">
-    <div class="mark">⬡</div>
-    <div>
-      Analisi Football
-      <div class="sub">DIXON-COLES ENGINE · v2</div>
+<div class="masthead">
+  <div class="masthead-inner">
+    <div class="brand">
+      <div class="mark" id="brand-mark"></div>
+      <div>
+        <div class="name">Analisi Football</div>
+        <div class="sub">DIXON-COLES RESEARCH DESK</div>
+      </div>
     </div>
+    <div class="topbar-meta"><span class="dot"></span><span id="topbar-meta">—</span></div>
   </div>
-  <div class="topbar-meta" id="topbar-meta">—</div>
 </div>
+<div class="accent-rule"></div>
 
-<header class="hero">
-  <div class="eyebrow">Piattaforma di analisi statistica</div>
-  <h1>La tua strategia</h1>
-  <div class="params-row" id="params-row"></div>
-  <div class="meta-line" id="meta-line"></div>
-</header>
+<div class="command-bar">
+  <div class="wrap inner">
+    <div>
+      <div class="eyebrow">Rapporto di strategia</div>
+      <h1>La tua strategia</h1>
+      <div class="meta-line" id="meta-line"></div>
+    </div>
+    <div class="params-row" id="params-row"></div>
+  </div>
+</div>
 
 <div class="wrap">
   <div class="stats-strip" id="stats-strip"></div>
 
   <div class="control-panel" id="control-panel">
-    <div class="panel-title">⚙️ Pannello di controllo</div>
+    <div class="panel-title" id="panel-title-slot"></div>
 
     <div id="token-section">
       <div class="token-row">
@@ -636,24 +279,24 @@
       <div><label>Quota minima</label><input type="number" id="input-odds-min" value="1.5" min="1.01" step="0.01"></div>
       <div><label>Quota massima</label><input type="number" id="input-odds-max" value="1.8" min="1.01" step="0.01"></div>
       <div><label>N° partite da combinare</label><input type="number" id="input-n-legs" value="2" min="1" max="5" step="1"></div>
-
     </div>
 
     <div class="actions-grid">
-      <button class="action-btn" id="btn-update-data" onclick="runWorkflow('update-data.yml', {}, 'btn-update-data')">1. Aggiorna dati partite</button>
-      <button class="action-btn" id="btn-fetch-odds" onclick="runWorkflow('fetch-odds.yml', {}, 'btn-fetch-odds')">2. Recupera quote</button>
-      <button class="action-btn" id="btn-fetch-injuries" onclick="runWorkflow('fetch-injuries.yml', {}, 'btn-fetch-injuries')">2b. Recupera infortuni</button>
-      <button class="action-btn" id="btn-predict" onclick="runWorkflow('predict.yml', {}, 'btn-predict')">3. Genera previsioni</button>
-      <button class="action-btn primary" id="btn-strategy" onclick="runStrategyWorkflow()">4. Genera strategia →</button>
+      <button class="action-btn" id="btn-update-data" onclick="runWorkflow('update-data.yml', {}, 'btn-update-data')">Aggiorna dati partite</button>
+      <button class="action-btn" id="btn-fetch-odds" onclick="runWorkflow('fetch-odds.yml', {}, 'btn-fetch-odds')">Recupera quote</button>
+      <button class="action-btn" id="btn-fetch-injuries" onclick="runWorkflow('fetch-injuries.yml', {}, 'btn-fetch-injuries')">Recupera infortuni</button>
+      <button class="action-btn" id="btn-predict" onclick="runWorkflow('predict.yml', {}, 'btn-predict')">Genera previsioni</button>
+      <button class="action-btn primary" id="btn-strategy" onclick="runStrategyWorkflow()">Genera strategia</button>
     </div>
 
     <div class="status-log" id="status-log"></div>
   </div>
-  <!-- fine control-panel -->
+
+  <details class="legend-box" id="legend-box"></details>
 
   <div class="main-tabs" id="main-tabs">
-    <button class="main-tab active" data-tab="strategy" onclick="switchMainTab('strategy')">📊 Strategia</button>
-    <button class="main-tab" data-tab="matchday" onclick="switchMainTab('matchday')">⚽ Prossima Giornata</button>
+    <button class="main-tab active" data-tab="strategy" onclick="switchMainTab('strategy')" id="tab-btn-strategy"></button>
+    <button class="main-tab" data-tab="matchday" onclick="switchMainTab('matchday')" id="tab-btn-matchday"></button>
   </div>
 
   <div id="tab-strategy">
@@ -669,7 +312,6 @@
     </div>
   </div>
 </div>
-<!-- fine .wrap -->
 
 <footer>
   Un vantaggio stimato positivo significa che il modello vede quella probabilità
@@ -678,8 +320,22 @@
 </footer>
 
 <script>
-// --- Rilevo automaticamente proprietario/nome del repository dall'URL della pagina
-// (es. https://muraf02.github.io/Analisi-Football/ -> owner=muraf02, repo=Analisi-Football)
+const ICONS = {
+  settings: `<svg width="17" height="17" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="10" r="2.6"/><path d="M10 2.5v2.2M10 15.3v2.2M17.5 10h-2.2M4.7 10H2.5M15.1 4.9l-1.55 1.55M6.45 13.55L4.9 15.1M15.1 15.1l-1.55-1.55M6.45 6.45L4.9 4.9"/></svg>`,
+  info: `<svg width="17" height="17" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="10" r="7.5"/><path d="M10 9.2v4.6"/><circle cx="10" cy="6.5" r="0.9" fill="currentColor" stroke="none"/></svg>`,
+  check: `<svg width="13" height="13" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5l3.8 3.8L16 6"/></svg>`,
+  warn: `<svg width="13" height="13" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3.2L2.5 16h15L10 3.2z"/><path d="M10 8.2v3.6"/><circle cx="10" cy="13.7" r="0.9" fill="currentColor" stroke="none"/></svg>`,
+  medical: `<svg width="13" height="13" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M10 4v12M4 10h12"/></svg>`,
+  sync: `<svg width="15" height="15" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 6.5A6.5 6.5 0 004.6 8.5M4 4v4.5h4.5"/><path d="M4 13.5A6.5 6.5 0 0015.4 11.5M16 16v-4.5h-4.5"/></svg>`,
+  chevron: `<svg width="15" height="15" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5.5 8l4.5 4.5L14.5 8"/></svg>`,
+  target: `<svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="10" cy="10" r="7"/><circle cx="10" cy="10" r="3.6"/><circle cx="10" cy="10" r="0.9" fill="currentColor" stroke="none"/></svg>`,
+  chart: `<svg width="15" height="15" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 16.5h14M6 16.5V11M10 16.5V6M14 16.5V9"/></svg>`,
+  ball: `<svg width="15" height="15" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="10" cy="10" r="7.2"/><path d="M10 6.3l3 2.2-1.1 3.5H8.1L7 8.5z" stroke-linejoin="round"/><path d="M10 2.8v3.5M4.6 6.3l2.4 2.2M15.4 6.3l-2.4 2.2M6.3 15.8l1.8-3.8M13.7 15.8l-1.8-3.8"/></svg>`,
+};
+function icon(name, extraClass) {
+  return `<span class="icon ${extraClass||''}" style="display:inline-flex; vertical-align:-3px;">${ICONS[name]||''}</span>`;
+}
+
 const REPO_OWNER = location.hostname.split('.')[0];
 const REPO_NAME = location.pathname.split('/').filter(Boolean)[0] || '';
 const API_BASE = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}`;
@@ -711,9 +367,6 @@ function logStatus(msg, cls) {
 }
 
 function logStatusHtml(htmlMsg, cls) {
-  // Come logStatus, ma permette un link cliccabile dentro il messaggio.
-  // Usata solo con contenuto che costruiamo noi (link restituiti dalla
-  // API di GitHub), mai con testo digitato dall'utente.
   const log = document.getElementById('status-log');
   const line = document.createElement('div');
   line.className = 'line' + (cls ? ' ' + cls : '');
@@ -726,7 +379,7 @@ function setButtonBusy(btnId, busy, labelWhenIdle) {
   const btn = document.getElementById(btnId);
   if (!btn) return;
   btn.disabled = busy;
-  btn.textContent = busy ? '⏳ In esecuzione...' : labelWhenIdle;
+  btn.innerHTML = busy ? `${icon('sync','spin')} In esecuzione...` : labelWhenIdle;
 }
 
 async function dispatchWorkflow(filename, inputs) {
@@ -741,25 +394,15 @@ async function dispatchWorkflow(filename, inputs) {
   try {
     res = await fetch(`${API_BASE}/actions/workflows/${filename}/dispatches`, {
       method: 'POST',
-      headers: {
-        'Authorization': `Bearer ${token}`,
-        'Accept': 'application/vnd.github+json',
-      },
+      headers: { 'Authorization': `Bearer ${token}`, 'Accept': 'application/vnd.github+json' },
       body: JSON.stringify({ ref: 'main', inputs: inputs || {} }),
     });
   } catch (networkErr) {
-    throw new Error(
-      'Impossibile contattare GitHub (blocco di rete/CORS). Controlla la connessione, ' +
-      'disattiva eventuali blocchi pubblicitari per questa pagina, e riprova.'
-    );
+    throw new Error('Impossibile contattare GitHub (blocco di rete/CORS). Controlla la connessione, disattiva eventuali blocchi pubblicitari per questa pagina, e riprova.');
   }
   if (!res.ok) {
-    if (res.status === 401 || res.status === 403) {
-      throw new Error('Token non valido o senza i permessi giusti (serve "Actions: Read and write").');
-    }
-    if (res.status === 404) {
-      throw new Error('Workflow non trovato. Controlla di aver caricato tutti i file .yml su GitHub.');
-    }
+    if (res.status === 401 || res.status === 403) throw new Error('Token non valido o senza i permessi giusti (serve "Actions: Read and write").');
+    if (res.status === 404) throw new Error('Workflow non trovato. Controlla di aver caricato tutti i file .yml su GitHub.');
     const text = await res.text();
     throw new Error(`Errore GitHub (${res.status}): ${text.slice(0, 200)}`);
   }
@@ -767,33 +410,21 @@ async function dispatchWorkflow(filename, inputs) {
 
 async function waitForRunCompletion(filename) {
   const token = getToken();
-  // Aspetto qualche secondo che GitHub registri la nuova esecuzione
   await new Promise(r => setTimeout(r, 4000));
-
   let linkShown = false;
-
-  for (let attempt = 0; attempt < 90; attempt++) {  // fino a ~9 minuti di attesa
+  for (let attempt = 0; attempt < 90; attempt++) {
     const res = await fetch(`${API_BASE}/actions/workflows/${filename}/runs?per_page=1`, {
-      headers: {
-        'Authorization': `Bearer ${token}`,
-        'Accept': 'application/vnd.github+json',
-      },
+      headers: { 'Authorization': `Bearer ${token}`, 'Accept': 'application/vnd.github+json' },
     });
     if (!res.ok) throw new Error(`Errore nel controllare lo stato (${res.status})`);
     const data = await res.json();
     const run = data.workflow_runs && data.workflow_runs[0];
-
     if (run && !linkShown && run.html_url) {
       logStatusHtml(`Puoi seguirla direttamente qui: <a href="${run.html_url}" target="_blank" rel="noopener">apri su GitHub Actions ↗</a>`, 'run');
       linkShown = true;
     }
-
-    if (run && run.status === 'completed') {
-      return run.conclusion;  // 'success', 'failure', ecc.
-    }
-    if (run) {
-      logStatus(`In corso... (${run.status})`, 'run');
-    }
+    if (run && run.status === 'completed') return run.conclusion;
+    if (run) logStatus(`In corso... (${run.status})`, 'run');
     await new Promise(r => setTimeout(r, 6000));
   }
   throw new Error('Timeout: sta impiegando più del previsto, controlla direttamente su GitHub Actions.');
@@ -801,7 +432,7 @@ async function waitForRunCompletion(filename) {
 
 async function runWorkflow(filename, inputs, btnId) {
   const btn = document.getElementById(btnId);
-  const originalLabel = btn.textContent;
+  const originalLabel = btn.innerHTML;
   try {
     setButtonBusy(btnId, true);
     logStatus(`Avvio "${filename}"...`, 'run');
@@ -837,11 +468,23 @@ async function runStrategyWorkflow() {
   }
 }
 
-</script>
-<script>
+document.getElementById('brand-mark').innerHTML = icon('target');
+document.getElementById('panel-title-slot').innerHTML = `${icon('settings')} Pannello di controllo`;
+document.getElementById('tab-btn-strategy').innerHTML = `${icon('chart')} Strategia`;
+document.getElementById('tab-btn-matchday').innerHTML = `${icon('ball')} Prossima Giornata`;
+
+// --- Stato globale dei dati e dei controlli esplorativi (filtro/ordina/vista) ---
+let strategyData = null;
+let exploreLeagueFilter = 'all';
+let exploreSortKey = 'edge_desc';
+let exploreView = 'cards';
+let tableSortCol = 'edge';
+let tableSortDir = -1;
+
 async function load() {
   const res = await fetch('strategy.json?_=' + Date.now());
   const data = await res.json();
+  strategyData = data;
 
   const p = data.parameters;
   document.getElementById('params-row').innerHTML = `
@@ -853,55 +496,184 @@ async function load() {
     `Aggiornato il ${genDate.toLocaleDateString('it-IT')} alle ${genDate.toLocaleTimeString('it-IT', {hour:'2-digit', minute:'2-digit'})} · ` +
     `${data.total_candidates} esiti confrontati, ${data.positive_edge_count} con vantaggio positivo`;
 
-  document.getElementById('topbar-meta').textContent =
-    `Sincronizzato · ${genDate.toLocaleTimeString('it-IT', {hour:'2-digit', minute:'2-digit'})}`;
+  document.getElementById('topbar-meta').textContent = `Sincronizzato · ${genDate.toLocaleTimeString('it-IT', {hour:'2-digit', minute:'2-digit'})}`;
 
   const strictHits = (data.strict_results || []).filter(r => r.in_range).length;
   const extendedHits = (data.extended_results || []).filter(r => r.in_range).length;
   const moltiplicatore = (p.target_capital / p.starting_capital).toFixed(1);
   document.getElementById('stats-strip').innerHTML = `
-    <div class="stat-tile accent"><div class="num">${data.total_candidates}</div><div class="cap">Esiti analizzati</div></div>
-    <div class="stat-tile gold"><div class="num">${data.positive_edge_count}</div><div class="cap">Vantaggio positivo</div></div>
+    <div class="stat-tile model"><div class="num">${data.total_candidates}</div><div class="cap">Esiti analizzati</div></div>
+    <div class="stat-tile market"><div class="num">${data.positive_edge_count}</div><div class="cap">Vantaggio positivo</div></div>
     <div class="stat-tile teal"><div class="num">${strictHits + extendedHits}</div><div class="cap">Nel tuo range</div></div>
     <div class="stat-tile"><div class="num">${moltiplicatore}×</div><div class="cap">Obiettivo capitale</div></div>
   `;
 
-  const content = document.getElementById('content');
-  content.innerHTML = '';
-
-  content.appendChild(renderLegend());
-
-  const legsLabel = p.n_legs === 1 ? 'singola' : `combinazione di ${p.n_legs} partite`;
-
-  content.appendChild(renderResultsSection(
-    'A', `Ricerca rigorosa — ${legsLabel}, solo affidabilità media/alta`,
-    'Massima affidabilità: usa solo squadre con storico sufficiente sulla prossima giornata di campionato.',
-    data.strict_results
-  ));
-
-  content.appendChild(renderResultsSection(
-    'B', `Ricerca estesa — ${legsLabel}, include affidabilità bassa`,
-    'Più probabile trovare un risultato esatto nel tuo range: include anche squadre con storico limitato (es. neopromosse) sulla stessa prossima giornata — qualità dei dati potenzialmente inferiore, controlla sempre l\'affidabilità di ogni gamba.',
-    data.extended_results
-  ));
+  renderLegendBox();
+  renderAllResults();
 }
 
-function renderLegend() {
-  const box = document.createElement('div');
-  box.className = 'control-panel';
-  box.innerHTML = `
-    <div class="panel-title">📖 Come leggere questi numeri</div>
-    <div style="font-size:13px; line-height:1.8; color:var(--muted);">
-      <b style="color:var(--text)">Quota / Quota combinata</b> — il moltiplicatore reale offerto dal bookmaker.<br>
-      <b style="color:var(--text)">Mercato vs Modello</b> — la probabilità implicita nella quota del bookmaker, confrontata con quella stimata dal nostro modello statistico.<br>
-      <b style="color:var(--text)">Vantaggio</b> — la differenza tra le due: positivo significa che il modello vede più probabilità di quanto paghi la quota (non è una garanzia di vincita).<br>
-      <b style="color:var(--text)">Affidabilità</b> — quanto storico ha il modello sulle squadre coinvolte: bassa = pochi dati (es. neopromosse), da prendere con cautela.<br>
-      <b style="color:var(--text)">Successo / Rovina</b> — simulando questa stessa giocata migliaia di volte, quante volte porta al tuo obiettivo o azzera il capitale.<br>
-      <b style="color:var(--text)">✓ nel tuo range / vicino al range</b> — se la quota combinata cade esattamente nei valori richiesti, o quanto ne è distante.<br>
-      <b style="color:var(--text)">⚕ assenze note</b> — infortuni o squalifiche note per una delle squadre coinvolte (se disponibili). Il modello statistico NON ne tiene conto: leggi sempre la spiegazione completa.
+/* Elenco delle leghe presenti nei risultati (un risultato combinato può
+   coinvolgere più leghe: contiamo tutte quelle coinvolte) */
+function leaguesInResults() {
+  const all = [...(strategyData.strict_results||[]), ...(strategyData.extended_results||[])];
+  const set = new Set();
+  all.forEach(r => r.legs.forEach(l => set.add(l.league)));
+  return [...set].sort();
+}
+
+function applyFilterSort(results) {
+  let out = results || [];
+  if (exploreLeagueFilter !== 'all') {
+    out = out.filter(r => r.legs.some(l => l.league === exploreLeagueFilter));
+  }
+  const sorters = {
+    edge_desc: (a,b) => b.combined_edge - a.combined_edge,
+    edge_asc: (a,b) => a.combined_edge - b.combined_edge,
+    odd_asc: (a,b) => a.combined_odd - b.combined_odd,
+    odd_desc: (a,b) => b.combined_odd - a.combined_odd,
+    range_first: (a,b) => (b.in_range - a.in_range) || (b.combined_edge - a.combined_edge),
+  };
+  return [...out].sort(sorters[exploreSortKey] || sorters.edge_desc);
+}
+
+function renderExploreBar() {
+  const leagues = leaguesInResults();
+  const leagueChips = [`<span class="chip ${exploreLeagueFilter==='all'?'active':''}" onclick="setExploreLeague('all')">Tutte le leghe</span>`]
+    .concat(leagues.map(lg => `<span class="chip ${exploreLeagueFilter===lg?'active':''}" onclick="setExploreLeague('${lg}')">${lg}</span>`))
+    .join('');
+
+  const bar = document.createElement('div');
+  bar.className = 'explore-bar';
+  bar.innerHTML = `
+    <div class="explore-group"><span class="explore-label">Filtra</span>${leagueChips}</div>
+    <div class="explore-group">
+      <span class="explore-label">Ordina</span>
+      <select class="sort-select" id="sort-select" onchange="setExploreSort(this.value)">
+        <option value="edge_desc" ${exploreSortKey==='edge_desc'?'selected':''}>Vantaggio: alto → basso</option>
+        <option value="edge_asc" ${exploreSortKey==='edge_asc'?'selected':''}>Vantaggio: basso → alto</option>
+        <option value="odd_asc" ${exploreSortKey==='odd_asc'?'selected':''}>Quota: bassa → alta</option>
+        <option value="odd_desc" ${exploreSortKey==='odd_desc'?'selected':''}>Quota: alta → bassa</option>
+        <option value="range_first" ${exploreSortKey==='range_first'?'selected':''}>Nel range prima</option>
+      </select>
+    </div>
+    <div class="view-toggle">
+      <button class="${exploreView==='cards'?'active':''}" onclick="setExploreView('cards')">${icon('chart')} Card</button>
+      <button class="${exploreView==='table'?'active':''}" onclick="setExploreView('table')">▤ Tabella</button>
     </div>
   `;
-  return box;
+  return bar;
+}
+
+function setExploreLeague(lg) { exploreLeagueFilter = lg; renderAllResults(); }
+function setExploreSort(key) { exploreSortKey = key; renderAllResults(); }
+function setExploreView(view) { exploreView = view; renderAllResults(); }
+
+function renderAllResults() {
+  const content = document.getElementById('content');
+  content.innerHTML = '';
+  const p = strategyData.parameters;
+  const legsLabel = p.n_legs === 1 ? 'singola' : `combinazione di ${p.n_legs} partite`;
+
+  content.appendChild(renderExploreBar());
+
+  content.appendChild(renderResultsSection('A', `Ricerca rigorosa — ${legsLabel}, solo affidabilità media/alta`,
+    'Massima affidabilità: usa solo squadre con storico sufficiente sulla prossima giornata di campionato.',
+    applyFilterSort(strategyData.strict_results)));
+  content.appendChild(renderResultsSection('B', `Ricerca estesa — ${legsLabel}, include affidabilità bassa`,
+    'Più probabile trovare un risultato esatto nel tuo range: include anche squadre con storico limitato (es. neopromosse) — qualità dei dati potenzialmente inferiore, controlla sempre l\'affidabilità di ogni gamba.',
+    applyFilterSort(strategyData.extended_results)));
+}
+
+function renderResultsAsTable(results) {
+  if (!results || results.length === 0) {
+    const empty = document.createElement('div');
+    empty.className = 'empty-state';
+    empty.textContent = 'Nessuna combinazione reale possibile al momento (probabilmente troppo poche partite disponibili, o il filtro attivo esclude tutto).';
+    return empty;
+  }
+
+  const cols = [
+    { key: 'match', label: 'Partita' },
+    { key: 'market', label: 'Mercato' },
+    { key: 'odd', label: 'Quota' },
+    { key: 'edge', label: 'Vantaggio' },
+    { key: 'reliability', label: 'Affidabilità' },
+    { key: 'range', label: 'Range' },
+  ];
+
+  const sorted = [...results].sort((a, b) => {
+    const va = tableSortValue(a, tableSortCol);
+    const vb = tableSortValue(b, tableSortCol);
+    if (va < vb) return -1 * tableSortDir;
+    if (va > vb) return 1 * tableSortDir;
+    return 0;
+  });
+
+  const wrap = document.createElement('div');
+  wrap.style.overflowX = 'auto';
+  const table = document.createElement('table');
+  table.className = 'results-table';
+
+  const thead = document.createElement('thead');
+  thead.innerHTML = `<tr>${cols.map(c => {
+    const isSorted = tableSortCol === c.key;
+    const arrow = isSorted ? (tableSortDir === 1 ? '↑' : '↓') : '↕';
+    return `<th class="${isSorted?'sorted':''}" onclick="setTableSort('${c.key}')">${c.label}<span class="arrow">${arrow}</span></th>`;
+  }).join('')}</tr>`;
+  table.appendChild(thead);
+
+  const tbody = document.createElement('tbody');
+  sorted.forEach(d => {
+    const matchLabel = d.legs.length === 1 ? d.legs[0].match : `Combo · ${d.legs.length} partite`;
+    const marketLabel = d.legs.length === 1 ? `${d.legs[0].market.toUpperCase()} ${d.legs[0].outcome}` : d.legs.map(l=>l.outcome).join(' + ');
+    const rel = d.legs.length === 1 ? d.legs[0].reliability : '—';
+    const edgeCls = d.combined_edge > 0 ? 't-edge-pos' : 't-edge-neg';
+    const dotColor = d.legs[0] ? leagueColorVar(d.legs[0].league_code) : 'var(--line)';
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td class="t-match"><span class="t-league-dot" style="background:${dotColor}"></span>${matchLabel}</td>
+      <td>${marketLabel}</td>
+      <td class="t-odd">${d.combined_odd}</td>
+      <td class="${edgeCls}">${d.combined_edge>0?'+':''}${(d.combined_edge*100).toFixed(1)}%</td>
+      <td>${rel}</td>
+      <td>${d.in_range ? icon('check') + ' nel range' : `fuori di ${d.distance_from_range}`}</td>
+    `;
+    tbody.appendChild(tr);
+  });
+  table.appendChild(tbody);
+  wrap.appendChild(table);
+  return wrap;
+}
+
+function tableSortValue(d, key) {
+  if (key === 'match') return d.legs[0] ? d.legs[0].match : '';
+  if (key === 'market') return d.legs[0] ? d.legs[0].outcome : '';
+  if (key === 'odd') return d.combined_odd;
+  if (key === 'edge') return d.combined_edge;
+  if (key === 'reliability') return d.legs[0] ? d.legs[0].reliability : '';
+  if (key === 'range') return d.in_range ? 1 : 0;
+  return 0;
+}
+
+function setTableSort(col) {
+  if (tableSortCol === col) { tableSortDir *= -1; } else { tableSortCol = col; tableSortDir = -1; }
+  renderAllResults();
+}
+
+function renderLegendBox() {
+  const box = document.getElementById('legend-box');
+  box.innerHTML = `
+    <summary>${icon('info')} Come leggere questi numeri <span class="chev">${ICONS.chevron}</span></summary>
+    <div class="legend-body">
+      <b>Quota / Quota combinata</b> — il moltiplicatore reale offerto dal bookmaker.<br>
+      <b>Gauge Mercato ↔ Modello</b> — il punto ambra è la probabilità implicita nella quota del bookmaker, il punto blu è la stima del nostro modello statistico, sulla stessa scala 0–100%.<br>
+      <b>Vantaggio</b> — la differenza tra le due: positivo significa che il modello vede più probabilità di quanto paghi la quota (non è una garanzia di vincita).<br>
+      <b>Affidabilità</b> — quanto storico ha il modello sulle squadre coinvolte: bassa = pochi dati (es. neopromosse), da prendere con cautela.<br>
+      <b>Successo / Rovina</b> — simulando questa stessa giocata migliaia di volte, quante volte porta al tuo obiettivo o azzera il capitale.<br>
+      <b>Nel tuo range / vicino al range</b> — se la quota combinata cade esattamente nei valori richiesti, o quanto ne è distante.<br>
+      <b>Assenze note</b> — infortuni o squalifiche note (se disponibili). Il modello statistico NON ne tiene conto: leggi sempre la spiegazione completa.
+    </div>
+  `;
 }
 
 function renderResultsSection(tag, title, subtitle, results) {
@@ -910,9 +682,8 @@ function renderResultsSection(tag, title, subtitle, results) {
   head.className = 'section-head';
   head.innerHTML = `<span class="tag">${tag}</span><h2>${title}</h2>`;
   section.appendChild(head);
-
   const sub = document.createElement('div');
-  sub.style.cssText = 'font-size:13px; color:var(--muted); margin-bottom:16px; margin-top:-8px;';
+  sub.className = 'section-sub';
   sub.textContent = subtitle;
   section.appendChild(sub);
 
@@ -920,21 +691,23 @@ function renderResultsSection(tag, title, subtitle, results) {
     const anyInRange = results.some(r => r.in_range);
     if (!anyInRange) {
       const note = document.createElement('div');
-      note.style.cssText = 'margin-bottom:16px; font-size:13px; color:var(--muted); font-style:italic;';
+      note.style.cssText = 'margin-bottom:14px; font-size:13.5px; color:var(--muted); font-style:italic;';
       note.textContent = 'Nessuna combinazione cade esattamente nel tuo range in questo momento — ecco le più vicine disponibili davvero.';
       section.appendChild(note);
     }
-    results.forEach(item => section.appendChild(renderResult(item)));
+    if (exploreView === 'table') {
+      section.appendChild(renderResultsAsTable(results));
+    } else {
+      results.forEach(item => section.appendChild(renderResult(item)));
+    }
   } else {
     const empty = document.createElement('div');
     empty.className = 'empty-state';
-    empty.textContent = 'Nessuna combinazione reale possibile al momento (probabilmente troppo poche partite disponibili).';
+    empty.textContent = 'Nessuna combinazione reale possibile al momento (probabilmente troppo poche partite disponibili, o il filtro attivo esclude tutto).';
     section.appendChild(empty);
   }
-
   return section;
 }
-
 
 function edgeBadge(edge) {
   const pct = (edge * 100).toFixed(1);
@@ -942,33 +715,45 @@ function edgeBadge(edge) {
   const sign = edge > 0 ? '+' : '';
   return `<span class="edge-badge ${cls}">vantaggio ${sign}${pct}%</span>`;
 }
-
 function reliabilityBadge(reliability) {
   const map = {
-    'alta': { cls: 'edge-pos', label: '✓ affidabilità alta' },
-    'media': { cls: '', label: '⚠ affidabilità media' },
-    'bassa': { cls: 'edge-neg', label: '⚠ affidabilità bassa' },
+    'alta': { cls: 'edge-pos', ic: 'check', label: 'affidabilità alta' },
+    'media': { cls: '', ic: 'warn', label: 'affidabilità media' },
+    'bassa': { cls: 'edge-neg', ic: 'warn', label: 'affidabilità bassa' },
   };
   const info = map[reliability] || map['media'];
-  return `<span class="edge-badge ${info.cls}" style="margin-left:8px;">${info.label}</span>`;
+  return `<span class="edge-badge ${info.cls}">${icon(info.ic)} ${info.label}</span>`;
 }
-
+function injuriesBadge(injuries) {
+  if (!injuries || injuries.length === 0) return '';
+  return `<span class="edge-badge edge-neg">${icon('medical')} assenze note</span>`;
+}
+function rangeBadge(d) {
+  if (d.in_range) return `<span class="edge-badge edge-pos">${icon('check')} nel tuo range</span>`;
+  return `<span class="edge-badge">vicino al range (fuori di ${d.distance_from_range})</span>`;
+}
 function explanationBox(text) {
   if (!text) return '';
-  return `<div class="progression-line" style="margin-top:10px; color: var(--text); opacity:0.85;">${text}</div>`;
+  return `<div class="progression-line explanation-text">${text}</div>`;
 }
 
-function vantageBar(modelProb, marketProb) {
-  const max = Math.max(modelProb, marketProb, 0.01);
+function gauge(modelProb, marketProb) {
+  const modelPct = Math.max(0, Math.min(100, modelProb * 100));
+  const marketPct = Math.max(0, Math.min(100, marketProb * 100));
+  const left = Math.min(modelPct, marketPct);
+  const right = Math.max(modelPct, marketPct);
   return `
-    <div class="vantage">
-      <div class="vantage-labels">
-        <span>Mercato ${(marketProb*100).toFixed(1)}%</span>
-        <span>Modello ${(modelProb*100).toFixed(1)}%</span>
+    <div class="gauge-wrap">
+      <div class="gauge-labels">
+        <span class="market-lbl">● Mercato ${(marketProb*100).toFixed(1)}%</span>
+        <span class="model-lbl">● Modello ${(modelProb*100).toFixed(1)}%</span>
       </div>
-      <div class="vantage-bar">
-        <div class="market" style="width:${(marketProb/max)*100}%"></div>
-        <div class="model" style="width:${(modelProb/max)*100}%; opacity:0.85;"></div>
+      <div class="gauge-track">
+        <div class="tick" style="left:0%"></div><div class="tick" style="left:25%"></div>
+        <div class="tick" style="left:50%"></div><div class="tick" style="left:75%"></div><div class="tick" style="left:100%"></div>
+        <div class="gap-fill" style="left:${left}%; width:${right-left}%;"></div>
+        <div class="marker market" style="left:${marketPct}%;"></div>
+        <div class="marker model" style="left:${modelPct}%;"></div>
       </div>
     </div>`;
 }
@@ -981,7 +766,6 @@ function statsBlock(sim) {
       <div class="stat"><div class="num">${sim.avg_bets_if_successful ?? '—'}</div><div class="cap">Puntate medie</div></div>
     </div>`;
 }
-
 function progressionLine(progression) {
   if (!progression || progression.length === 0) return '';
   const first = progression[0];
@@ -992,6 +776,11 @@ function progressionLine(progression) {
       · vincendo sempre: obiettivo in <b>${progression.length}</b> giocate
     </div>`;
 }
+function leagueColorVar(code) { return `var(--league-${code}, var(--ink))`; }
+function crestImg(url, alt, cls) {
+  if (!url) return `<div class="${cls}" style="background:rgba(255,255,255,0.2); border-radius:50%;"></div>`;
+  return `<img src="${url}" alt="${alt}" class="${cls}" loading="lazy" onerror="this.style.display='none'">`;
+}
 
 function renderResult(d) {
   const card = document.createElement('div');
@@ -1000,80 +789,58 @@ function renderResult(d) {
 
   if (isSingle) {
     const c = d.legs[0];
-    card.style.setProperty('--card-league-color', leagueColorVar(c.league_code));
-    const legsHtml = `
-      <div class="league league-tag">${crestImg(c.league_emblem, c.league, 'crest-sm')} ${c.league} · ${c.market.toUpperCase()} ${c.outcome}</div>
-      <div class="teams-with-crests" style="margin-top:6px;">
-        ${crestImg(c.home_crest, '', 'crest')}
-        <span class="teams">${c.match}</span>
-        ${crestImg(c.away_crest, '', 'crest')}
-      </div>
-      <div class="date">${c.date} · ${c.n_bookmakers} bookmaker</div>
-    `;
     card.innerHTML = `
-      <div class="card-top">
-        <div class="match-info">${legsHtml}</div>
+      <div class="card-band" style="background:${leagueColorVar(c.league_code)};">
+        <div>
+          <div class="league-tag">${crestImg(c.league_emblem, c.league, 'crest-sm')} ${c.league} · ${c.market.toUpperCase()} ${c.outcome}</div>
+          <div class="teams-with-crests">
+            ${crestImg(c.home_crest, '', 'crest')}<span class="teams">${c.match}</span>${crestImg(c.away_crest, '', 'crest')}
+          </div>
+          <div class="date">${c.date} · ${c.n_bookmakers} bookmaker</div>
+        </div>
         <div class="odd-box"><div class="val">${d.combined_odd}</div><div class="label">quota</div></div>
       </div>
-      ${vantageBar(d.combined_true_probability, d.combined_implied_probability)}
-      ${edgeBadge(d.combined_edge)}${reliabilityBadge(c.reliability)}${rangeBadge(d)}${injuriesBadge(c.injuries)}
-      ${statsBlock(d.simulation)}
-      ${progressionLine(d.progression)}
-      ${explanationBox(c.explanation)}
+      <div class="card-body">
+        ${gauge(d.combined_true_probability, d.combined_implied_probability)}
+        <div class="badge-row">${edgeBadge(d.combined_edge)}${reliabilityBadge(c.reliability)}${rangeBadge(d)}${injuriesBadge(c.injuries)}</div>
+        ${statsBlock(d.simulation)}
+        ${progressionLine(d.progression)}
+        ${explanationBox(c.explanation)}
+      </div>
     `;
   } else {
     const legsHtml = d.legs.map(l =>
       `<li>${crestImg(l.home_crest, '', 'crest-sm')}<b>${l.match}</b> — ${l.market.toUpperCase()} ${l.outcome} @ ${l.real_odd} <i>(affidabilità ${l.reliability})</i></li>`
     ).join('');
-    const explanations = d.legs.map(l =>
-      `<div style="margin-top:8px;"><b>${l.match}:</b> ${l.explanation}</div>`
-    ).join('');
+    const explanations = d.legs.map(l => `<div style="margin-top:8px;"><b>${l.match}:</b> ${l.explanation}</div>`).join('');
     const anyInjuries = d.legs.some(l => l.injuries && l.injuries.length > 0);
     card.innerHTML = `
-      <div class="card-top">
-        <div class="match-info">
-          <div class="league">Combinazione (${d.legs.length} partite)</div>
-          <ul class="legs-list">${legsHtml}</ul>
-        </div>
+      <div class="card-band" style="background:var(--ink);">
+        <div><div class="league-tag">Combinazione · ${d.legs.length} partite</div></div>
         <div class="odd-box"><div class="val">${d.combined_odd}</div><div class="label">quota combinata</div></div>
       </div>
-      ${vantageBar(d.combined_true_probability, d.combined_implied_probability)}
-      ${edgeBadge(d.combined_edge)}${rangeBadge(d)}${anyInjuries ? injuriesBadge([1]) : ''}
-      ${statsBlock(d.simulation)}
-      ${progressionLine(d.progression)}
-      ${explanationBox(explanations)}
+      <div class="card-body">
+        <ul class="legs-list">${legsHtml}</ul>
+        ${gauge(d.combined_true_probability, d.combined_implied_probability)}
+        <div class="badge-row">${edgeBadge(d.combined_edge)}${rangeBadge(d)}${anyInjuries ? injuriesBadge([1]) : ''}</div>
+        ${statsBlock(d.simulation)}
+        ${progressionLine(d.progression)}
+        ${explanationBox(explanations)}
+      </div>
     `;
   }
   return card;
 }
 
-function injuriesBadge(injuries) {
-  if (!injuries || injuries.length === 0) return '';
-  return `<span class="edge-badge edge-neg" style="margin-left:8px;">⚕ assenze note</span>`;
-}
-
-function rangeBadge(d) {
-  if (d.in_range) {
-    return `<span class="edge-badge edge-pos" style="margin-left:8px;">✓ nel tuo range</span>`;
-  }
-  return `<span class="edge-badge" style="margin-left:8px;">vicino al range (fuori di ${d.distance_from_range})</span>`;
-}
-
-// --- Tab principali (Strategia / Prossima Giornata) ---
 let matchdayLoaded = false;
 let matchdayData = null;
 let activeLeagueFilter = 'all';
 
 function switchMainTab(tab) {
-  document.querySelectorAll('.main-tab').forEach(btn => {
-    btn.classList.toggle('active', btn.dataset.tab === tab);
-  });
+  document.querySelectorAll('.main-tab').forEach(btn => btn.classList.toggle('active', btn.dataset.tab === tab));
   document.getElementById('tab-strategy').style.display = tab === 'strategy' ? 'block' : 'none';
   document.getElementById('tab-matchday').style.display = tab === 'matchday' ? 'block' : 'none';
-
-  if (tab === 'matchday' && !matchdayLoaded) {
-    loadMatchdayOverview();
-  }
+  if (tab === 'matchday' && !matchdayLoaded) loadMatchdayOverview();
 }
 
 async function loadMatchdayOverview() {
@@ -1085,14 +852,13 @@ async function loadMatchdayOverview() {
     renderMatchdayMatches();
   } catch (err) {
     document.getElementById('matchday-content').innerHTML =
-      `<div class="empty-state">Impossibile caricare la panoramica (${err.message}). Lancia prima "4. Genera strategia" — crea anche questo file.</div>`;
+      `<div class="empty-state">Impossibile caricare la panoramica (${err.message}). Lancia prima "Genera strategia" — crea anche questo file.</div>`;
   }
 }
 
 function renderLeagueFilters() {
   const container = document.getElementById('league-filters');
   if (!matchdayData || !matchdayData.matches.length) { container.innerHTML = ''; return; }
-
   const leagues = [...new Set(matchdayData.matches.map(m => m.league))].sort();
   let html = `<button class="league-filter-btn active" data-league="all" onclick="filterByLeague('all')">Tutte (${matchdayData.matches.length})</button>`;
   leagues.forEach(lg => {
@@ -1104,29 +870,22 @@ function renderLeagueFilters() {
 
 function filterByLeague(league) {
   activeLeagueFilter = league;
-  document.querySelectorAll('.league-filter-btn').forEach(btn => {
-    btn.classList.toggle('active', btn.dataset.league === league);
-  });
+  document.querySelectorAll('.league-filter-btn').forEach(btn => btn.classList.toggle('active', btn.dataset.league === league));
   renderMatchdayMatches();
 }
 
 function renderMatchdayMatches() {
   const container = document.getElementById('matchday-content');
   if (!matchdayData || !matchdayData.matches.length) {
-    container.innerHTML = '<div class="empty-state">Nessuna partita trovata nella prossima giornata. Lancia "1. Aggiorna dati partite" e poi "4. Genera strategia".</div>';
+    container.innerHTML = '<div class="empty-state">Nessuna partita trovata nella prossima giornata. Lancia "Aggiorna dati partite" e poi "Genera strategia".</div>';
     return;
   }
-
   const genDate = new Date(matchdayData.generated_at);
-  const filtered = activeLeagueFilter === 'all'
-    ? matchdayData.matches
-    : matchdayData.matches.filter(m => m.league === activeLeagueFilter);
-
-  let html = `<div style="font-size:13px; color:var(--muted); margin-bottom:16px;">
+  const filtered = activeLeagueFilter === 'all' ? matchdayData.matches : matchdayData.matches.filter(m => m.league === activeLeagueFilter);
+  let html = `<div style="font-family:'Inter',sans-serif; font-size:13px; color:var(--muted); margin-bottom:16px;">
     Aggiornato il ${genDate.toLocaleDateString('it-IT')} alle ${genDate.toLocaleTimeString('it-IT', {hour:'2-digit', minute:'2-digit'})}
     · ${filtered.length} partite mostrate
   </div>`;
-
   if (filtered.length === 0) {
     html += '<div class="empty-state">Nessuna partita per questo filtro.</div>';
   } else {
@@ -1137,54 +896,40 @@ function renderMatchdayMatches() {
   container.innerHTML = html;
 }
 
-function leagueColorVar(code) {
-  return `var(--league-${code}, var(--line))`;
-}
-
-function crestImg(url, alt, cls) {
-  if (!url) return `<div class="${cls}" style="background:var(--surface-2); border-radius:50%;"></div>`;
-  return `<img src="${url}" alt="${alt}" class="${cls}" loading="lazy" onerror="this.style.display='none'">`;
-}
-
 function renderMatchCard(m) {
   const injuriesHtml = (m.injuries && m.injuries.length > 0)
-    ? `<div class="progression-line" style="margin-top:10px; border-color:var(--red);">
-         ⚕ Assenze note: ${m.injuries.map(i => `${i.player} (${i.team}, ${i.reason || i.type})`).join(', ')}
-       </div>`
-    : '';
+    ? `<div class="progression-line" style="border-left-color:var(--red);">
+         ${icon('medical')} Assenze note: ${m.injuries.map(i => `${i.player} (${i.team}, ${i.reason || i.type})`).join(', ')}
+       </div>` : '';
   const h2hHtml = (m.head_to_head && !m.head_to_head.startsWith('Nessuno'))
-    ? `<div style="font-size:12px; color:var(--muted); margin-top:8px;">Scontri diretti: ${m.head_to_head}</div>`
-    : '';
+    ? `<div class="match-meta-row" style="margin-top:8px;">Scontri diretti: ${m.head_to_head}</div>` : '';
 
   return `
-    <div class="match-card" style="--card-league-color:${leagueColorVar(m.league_code)};">
-      <div class="match-card-head">
+    <div class="match-card">
+      <div class="card-band" style="background:${leagueColorVar(m.league_code)};">
         <div>
-          <div class="meta league-tag">
-            ${crestImg(m.league_emblem, m.league, 'crest-sm')} ${m.league} · ${m.date} ${m.time}
-          </div>
-          <div class="teams-with-crests" style="margin-top:6px;">
-            ${crestImg(m.home_crest, m.home_team, 'crest')}
-            <span class="teams">${m.home_team}</span>
-            <span class="vs">vs</span>
-            <span class="teams">${m.away_team}</span>
-            ${crestImg(m.away_crest, m.away_team, 'crest')}
+          <div class="league-tag">${crestImg(m.league_emblem, m.league, 'crest-sm')} ${m.league} · ${m.date} ${m.time}</div>
+          <div class="teams-with-crests">
+            ${crestImg(m.home_crest, m.home_team, 'crest')}<span class="teams">${m.home_team}</span>
+            <span class="vs">vs</span><span class="teams">${m.away_team}</span>${crestImg(m.away_crest, m.away_team, 'crest')}
           </div>
         </div>
       </div>
-      <div class="score-pill">Risultato più probabile: ${m.most_likely_score} · gol attesi ${m.home_expected_goals.toFixed(1)}-${m.away_expected_goals.toFixed(1)}</div>
-      <div class="prob-bars">
-        <div class="prob-bar"><div class="pct">${(m.home_win*100).toFixed(0)}%</div><div class="lbl">1 (casa)</div></div>
-        <div class="prob-bar"><div class="pct">${(m.draw*100).toFixed(0)}%</div><div class="lbl">X (pareggio)</div></div>
-        <div class="prob-bar"><div class="pct">${(m.away_win*100).toFixed(0)}%</div><div class="lbl">2 (trasferta)</div></div>
+      <div class="card-body">
+        <div class="score-pill">Risultato più probabile: ${m.most_likely_score} · gol attesi ${m.home_expected_goals.toFixed(1)}–${m.away_expected_goals.toFixed(1)}</div>
+        <div class="prob-bars">
+          <div class="prob-bar"><div class="pct">${(m.home_win*100).toFixed(0)}%</div><div class="lbl">1 (casa)</div></div>
+          <div class="prob-bar"><div class="pct">${(m.draw*100).toFixed(0)}%</div><div class="lbl">X (pareggio)</div></div>
+          <div class="prob-bar"><div class="pct">${(m.away_win*100).toFixed(0)}%</div><div class="lbl">2 (trasferta)</div></div>
+        </div>
+        <div class="match-meta-row">
+          Forma: casa <b style="color:var(--ink)">${m.home_form}</b> · trasferta <b style="color:var(--ink)">${m.away_form}</b>
+          ${m.home_rest_days !== null ? ` · riposo casa ${m.home_rest_days}g` : ''}
+          ${m.away_rest_days !== null ? ` · trasferta ${m.away_rest_days}g` : ''}
+        </div>
+        ${h2hHtml}
+        ${injuriesHtml}
       </div>
-      <div style="font-size:12px; color:var(--muted);">
-        Forma: casa <b style="color:var(--text)">${m.home_form}</b> · trasferta <b style="color:var(--text)">${m.away_form}</b>
-        ${m.home_rest_days !== null ? ` · riposo casa ${m.home_rest_days}g` : ''}
-        ${m.away_rest_days !== null ? ` · trasferta ${m.away_rest_days}g` : ''}
-      </div>
-      ${h2hHtml}
-      ${injuriesHtml}
     </div>`;
 }
 
