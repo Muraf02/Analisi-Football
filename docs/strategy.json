@@ -1,11 +1,11 @@
 {
-  "generated_at": "2026-08-28T22:15:36.880616+00:00",
+  "generated_at": "2026-08-28T22:17:42.073120+00:00",
   "parameters": {
     "starting_capital": 35.0,
     "target_capital": 65.0,
     "odds_min": 1.5,
     "odds_max": 1.8,
-    "n_legs": 2
+    "n_legs": 1
   },
   "total_candidates": 167,
   "positive_edge_count": 82,
@@ -13,118 +13,6 @@
     {
       "legs": [
         {
-          "league": "Ligue 1",
-          "league_code": "FL1",
-          "league_emblem": "https://crests.football-data.org/FL1.png",
-          "match": "AS Monaco FC vs Olympique de Marseille",
-          "home_crest": "https://crests.football-data.org/548.png",
-          "away_crest": "https://crests.football-data.org/516.png",
-          "date": "2026-08-30",
-          "market": "over_under",
-          "outcome": "over_2.5",
-          "model_probability": 0.6901,
-          "real_odd": 1.55,
-          "n_bookmakers": 3,
-          "implied_probability": 0.6452,
-          "edge": 0.0449,
-          "home_team_matches": 35,
-          "away_team_matches": 35,
-          "is_next_matchday": true,
-          "home_form": "NVPPV",
-          "away_form": "NPVVV",
-          "head_to_head": "AS Monaco FC 2-1 Olympique de Marseille (2026-04-05) · Olympique de Marseille 1-0 AS Monaco FC (2025-12-14)",
-          "home_rest_days": 7,
-          "away_rest_days": 9,
-          "top_combined_markets": [
-            {
-              "market": "1_over_1.5",
-              "probability": 0.349
-            },
-            {
-              "market": "2_over_1.5",
-              "probability": 0.3291
-            },
-            {
-              "market": "1_over_2.5",
-              "probability": 0.3026
-            }
-          ],
-          "injuries": [],
-          "explanation": "Il modello stima una probabilità del 69.0% per questo esito, basandosi su 35 partite storiche della squadra di casa e 35 della squadra in trasferta. La quota reale (1.55) implica invece una probabilità del 64.5% secondo il mercato — una differenza di +4.5 punti percentuali. Forma recente (dalla più vecchia alla più recente): casa NVPPV, trasferta NPVVV (V=vittoria, N=pareggio, P=sconfitta). Scontri diretti recenti: AS Monaco FC 2-1 Olympique de Marseille (2026-04-05) · Olympique de Marseille 1-0 AS Monaco FC (2025-12-14). Riposo dall'ultima partita: casa 7 giorni e trasferta 9 giorni. Mercati combinati sulla stessa partita più probabili secondo il modello (stima, non verificata su una quota reale): 1_over_1.5 (34.9%), 2_over_1.5 (32.9%), 1_over_2.5 (30.3%). ✓ Affidabilità ALTA: entrambe le squadre hanno uno storico sufficiente per una stima solida.",
-          "reliability": "alta"
-        },
-        {
-          "league": "Premier League",
-          "league_code": "PL",
-          "league_emblem": "https://crests.football-data.org/PL.png",
-          "match": "Liverpool FC vs Nottingham Forest FC",
-          "home_crest": "https://crests.football-data.org/64.png",
-          "away_crest": "https://crests.football-data.org/351.png",
-          "date": "2026-08-29",
-          "market": "over_under",
-          "outcome": "under_3.5",
-          "model_probability": 0.6663,
-          "real_odd": 1.55,
-          "n_bookmakers": 1,
-          "implied_probability": 0.6452,
-          "edge": 0.0211,
-          "home_team_matches": 39,
-          "away_team_matches": 39,
-          "is_next_matchday": true,
-          "home_form": "PNPNN",
-          "away_form": "VNPNP",
-          "head_to_head": "Nottingham Forest FC 0-1 Liverpool FC (2026-02-22) · Liverpool FC 0-3 Nottingham Forest FC (2025-11-22)",
-          "home_rest_days": 5,
-          "away_rest_days": 6,
-          "top_combined_markets": [
-            {
-              "market": "1_over_1.5",
-              "probability": 0.402
-            },
-            {
-              "market": "1_over_2.5",
-              "probability": 0.3221
-            },
-            {
-              "market": "1_under_3.5",
-              "probability": 0.2987
-            }
-          ],
-          "injuries": [],
-          "explanation": "Il modello stima una probabilità del 66.6% per questo esito, basandosi su 39 partite storiche della squadra di casa e 39 della squadra in trasferta. La quota reale (1.55) implica invece una probabilità del 64.5% secondo il mercato — una differenza di +2.1 punti percentuali. Forma recente (dalla più vecchia alla più recente): casa PNPNN, trasferta VNPNP (V=vittoria, N=pareggio, P=sconfitta). Scontri diretti recenti: Nottingham Forest FC 0-1 Liverpool FC (2026-02-22) · Liverpool FC 0-3 Nottingham Forest FC (2025-11-22). Riposo dall'ultima partita: casa 5 giorni e trasferta 6 giorni. Mercati combinati sulla stessa partita più probabili secondo il modello (stima, non verificata su una quota reale): 1_over_1.5 (40.2%), 1_over_2.5 (32.2%), 1_under_3.5 (29.9%). ✓ Affidabilità ALTA: entrambe le squadre hanno uno storico sufficiente per una stima solida.",
-          "reliability": "alta"
-        }
-      ],
-      "n_legs": 2,
-      "combined_odd": 2.403,
-      "combined_true_probability": 0.4598,
-      "combined_implied_probability": 0.4163,
-      "combined_edge": 0.0435,
-      "in_range": false,
-      "distance_from_range": 0.603,
-      "simulation": {
-        "probability_reach_target": 0.4544,
-        "probability_bust": 0.5456,
-        "probability_stuck_in_between": 0.0,
-        "avg_bets_if_successful": 1.0,
-        "median_final_capital": 0.0,
-        "mean_final_capital": 38.22
-      },
-      "progression": [
-        {
-          "step": 1,
-          "capital_before": 35.0,
-          "stake": 35.0,
-          "winnings": 49.11,
-          "capital_after": 84.11,
-          "remaining_to_target": 0,
-          "target_reached": true
-        }
-      ]
-    },
-    {
-      "legs": [
-        {
           "league": "La Liga",
           "league_code": "PD",
           "league_emblem": "https://crests.football-data.org/PD.png",
@@ -164,71 +52,39 @@
           "injuries": [],
           "explanation": "Il modello stima una probabilità del 78.5% per questo esito, basandosi su 40 partite storiche della squadra di casa e 40 della squadra in trasferta. La quota reale (1.58) implica invece una probabilità del 63.3% secondo il mercato — una differenza di +15.2 punti percentuali. Forma recente (dalla più vecchia alla più recente): casa PPPNV, trasferta VPVPV (V=vittoria, N=pareggio, P=sconfitta). Scontri diretti recenti: Getafe CF 1-0 CA Osasuna (2026-05-23) · CA Osasuna 2-1 Getafe CF (2025-10-03). Riposo dall'ultima partita: casa 3 giorni e trasferta 8 giorni. ⚠️ Nota: una delle due squadre ha giocato pochissimi giorni fa — possibile affaticamento non pienamente catturato dal modello statistico. Mercati combinati sulla stessa partita più probabili secondo il modello (stima, non verificata su una quota reale): 1_under_3.5 (38.9%), 1_btts_no (33.8%), X_under_2.5 (32.6%). ✓ Affidabilità ALTA: entrambe le squadre hanno uno storico sufficiente per una stima solida.",
           "reliability": "alta"
-        },
-        {
-          "league": "Ligue 1",
-          "league_code": "FL1",
-          "league_emblem": "https://crests.football-data.org/FL1.png",
-          "match": "AS Monaco FC vs Olympique de Marseille",
-          "home_crest": "https://crests.football-data.org/548.png",
-          "away_crest": "https://crests.football-data.org/516.png",
-          "date": "2026-08-30",
-          "market": "over_under",
-          "outcome": "over_2.5",
-          "model_probability": 0.6901,
-          "real_odd": 1.55,
-          "n_bookmakers": 3,
-          "implied_probability": 0.6452,
-          "edge": 0.0449,
-          "home_team_matches": 35,
-          "away_team_matches": 35,
-          "is_next_matchday": true,
-          "home_form": "NVPPV",
-          "away_form": "NPVVV",
-          "head_to_head": "AS Monaco FC 2-1 Olympique de Marseille (2026-04-05) · Olympique de Marseille 1-0 AS Monaco FC (2025-12-14)",
-          "home_rest_days": 7,
-          "away_rest_days": 9,
-          "top_combined_markets": [
-            {
-              "market": "1_over_1.5",
-              "probability": 0.349
-            },
-            {
-              "market": "2_over_1.5",
-              "probability": 0.3291
-            },
-            {
-              "market": "1_over_2.5",
-              "probability": 0.3026
-            }
-          ],
-          "injuries": [],
-          "explanation": "Il modello stima una probabilità del 69.0% per questo esito, basandosi su 35 partite storiche della squadra di casa e 35 della squadra in trasferta. La quota reale (1.55) implica invece una probabilità del 64.5% secondo il mercato — una differenza di +4.5 punti percentuali. Forma recente (dalla più vecchia alla più recente): casa NVPPV, trasferta NPVVV (V=vittoria, N=pareggio, P=sconfitta). Scontri diretti recenti: AS Monaco FC 2-1 Olympique de Marseille (2026-04-05) · Olympique de Marseille 1-0 AS Monaco FC (2025-12-14). Riposo dall'ultima partita: casa 7 giorni e trasferta 9 giorni. Mercati combinati sulla stessa partita più probabili secondo il modello (stima, non verificata su una quota reale): 1_over_1.5 (34.9%), 2_over_1.5 (32.9%), 1_over_2.5 (30.3%). ✓ Affidabilità ALTA: entrambe le squadre hanno uno storico sufficiente per una stima solida.",
-          "reliability": "alta"
         }
       ],
-      "n_legs": 2,
-      "combined_odd": 2.449,
-      "combined_true_probability": 0.542,
-      "combined_implied_probability": 0.4083,
-      "combined_edge": 0.1337,
-      "in_range": false,
-      "distance_from_range": 0.649,
+      "n_legs": 1,
+      "combined_odd": 1.58,
+      "combined_true_probability": 0.7854,
+      "combined_implied_probability": 0.6329,
+      "combined_edge": 0.1525,
+      "in_range": true,
+      "distance_from_range": 0.0,
       "simulation": {
-        "probability_reach_target": 0.5438,
-        "probability_bust": 0.4562,
+        "probability_reach_target": 0.6191,
+        "probability_bust": 0.3809,
         "probability_stuck_in_between": 0.0,
-        "avg_bets_if_successful": 1.0,
-        "median_final_capital": 85.71,
-        "mean_final_capital": 46.61
+        "avg_bets_if_successful": 2.0,
+        "median_final_capital": 87.37,
+        "mean_final_capital": 54.09
       },
       "progression": [
         {
           "step": 1,
           "capital_before": 35.0,
           "stake": 35.0,
-          "winnings": 50.71,
-          "capital_after": 85.71,
+          "winnings": 20.3,
+          "capital_after": 55.3,
+          "remaining_to_target": 9.7,
+          "target_reached": false
+        },
+        {
+          "step": 2,
+          "capital_before": 55.3,
+          "stake": 55.3,
+          "winnings": 32.07,
+          "capital_after": 87.37,
           "remaining_to_target": 0,
           "target_reached": true
         }
@@ -237,222 +93,78 @@
     {
       "legs": [
         {
-          "league": "La Liga",
-          "league_code": "PD",
-          "league_emblem": "https://crests.football-data.org/PD.png",
-          "match": "CA Osasuna vs Getafe CF",
-          "home_crest": "https://crests.football-data.org/79.png",
-          "away_crest": "https://crests.football-data.org/82.png",
-          "date": "2026-08-31",
-          "market": "over_under",
-          "outcome": "under_2.5",
-          "model_probability": 0.7854,
-          "real_odd": 1.58,
-          "n_bookmakers": 4,
-          "implied_probability": 0.6329,
-          "edge": 0.1525,
-          "home_team_matches": 40,
-          "away_team_matches": 40,
-          "is_next_matchday": true,
-          "home_form": "PPPNV",
-          "away_form": "VPVPV",
-          "head_to_head": "Getafe CF 1-0 CA Osasuna (2026-05-23) · CA Osasuna 2-1 Getafe CF (2025-10-03)",
-          "home_rest_days": 3,
-          "away_rest_days": 8,
-          "top_combined_markets": [
-            {
-              "market": "1_under_3.5",
-              "probability": 0.3885
-            },
-            {
-              "market": "1_btts_no",
-              "probability": 0.3383
-            },
-            {
-              "market": "X_under_2.5",
-              "probability": 0.3255
-            }
-          ],
-          "injuries": [],
-          "explanation": "Il modello stima una probabilità del 78.5% per questo esito, basandosi su 40 partite storiche della squadra di casa e 40 della squadra in trasferta. La quota reale (1.58) implica invece una probabilità del 63.3% secondo il mercato — una differenza di +15.2 punti percentuali. Forma recente (dalla più vecchia alla più recente): casa PPPNV, trasferta VPVPV (V=vittoria, N=pareggio, P=sconfitta). Scontri diretti recenti: Getafe CF 1-0 CA Osasuna (2026-05-23) · CA Osasuna 2-1 Getafe CF (2025-10-03). Riposo dall'ultima partita: casa 3 giorni e trasferta 8 giorni. ⚠️ Nota: una delle due squadre ha giocato pochissimi giorni fa — possibile affaticamento non pienamente catturato dal modello statistico. Mercati combinati sulla stessa partita più probabili secondo il modello (stima, non verificata su una quota reale): 1_under_3.5 (38.9%), 1_btts_no (33.8%), X_under_2.5 (32.6%). ✓ Affidabilità ALTA: entrambe le squadre hanno uno storico sufficiente per una stima solida.",
-          "reliability": "alta"
-        },
-        {
-          "league": "Premier League",
-          "league_code": "PL",
-          "league_emblem": "https://crests.football-data.org/PL.png",
-          "match": "Liverpool FC vs Nottingham Forest FC",
-          "home_crest": "https://crests.football-data.org/64.png",
-          "away_crest": "https://crests.football-data.org/351.png",
+          "league": "Bundesliga",
+          "league_code": "BL1",
+          "league_emblem": "https://crests.football-data.org/BL1.png",
+          "match": "Borussia Dortmund vs Hamburger SV",
+          "home_crest": "https://crests.football-data.org/4.png",
+          "away_crest": "https://crests.football-data.org/7.png",
           "date": "2026-08-29",
           "market": "over_under",
           "outcome": "under_3.5",
-          "model_probability": 0.6663,
-          "real_odd": 1.55,
-          "n_bookmakers": 1,
-          "implied_probability": 0.6452,
-          "edge": 0.0211,
-          "home_team_matches": 39,
-          "away_team_matches": 39,
+          "model_probability": 0.6693,
+          "real_odd": 1.71,
+          "n_bookmakers": 5,
+          "implied_probability": 0.5848,
+          "edge": 0.0845,
+          "home_team_matches": 34,
+          "away_team_matches": 34,
           "is_next_matchday": true,
-          "home_form": "PNPNN",
-          "away_form": "VNPNP",
-          "head_to_head": "Nottingham Forest FC 0-1 Liverpool FC (2026-02-22) · Liverpool FC 0-3 Nottingham Forest FC (2025-11-22)",
-          "home_rest_days": 5,
-          "away_rest_days": 6,
+          "home_form": "PVPVV",
+          "away_form": "PPVVN",
+          "head_to_head": "Borussia Dortmund 3-2 Hamburger SV (2026-03-21) · Hamburger SV 1-1 Borussia Dortmund (2025-11-08)",
+          "home_rest_days": 105,
+          "away_rest_days": 105,
           "top_combined_markets": [
             {
               "market": "1_over_1.5",
-              "probability": 0.402
+              "probability": 0.5963
             },
             {
               "market": "1_over_2.5",
-              "probability": 0.3221
+              "probability": 0.4633
             },
             {
               "market": "1_under_3.5",
-              "probability": 0.2987
+              "probability": 0.4433
             }
           ],
           "injuries": [],
-          "explanation": "Il modello stima una probabilità del 66.6% per questo esito, basandosi su 39 partite storiche della squadra di casa e 39 della squadra in trasferta. La quota reale (1.55) implica invece una probabilità del 64.5% secondo il mercato — una differenza di +2.1 punti percentuali. Forma recente (dalla più vecchia alla più recente): casa PNPNN, trasferta VNPNP (V=vittoria, N=pareggio, P=sconfitta). Scontri diretti recenti: Nottingham Forest FC 0-1 Liverpool FC (2026-02-22) · Liverpool FC 0-3 Nottingham Forest FC (2025-11-22). Riposo dall'ultima partita: casa 5 giorni e trasferta 6 giorni. Mercati combinati sulla stessa partita più probabili secondo il modello (stima, non verificata su una quota reale): 1_over_1.5 (40.2%), 1_over_2.5 (32.2%), 1_under_3.5 (29.9%). ✓ Affidabilità ALTA: entrambe le squadre hanno uno storico sufficiente per una stima solida.",
+          "explanation": "Il modello stima una probabilità del 66.9% per questo esito, basandosi su 34 partite storiche della squadra di casa e 34 della squadra in trasferta. La quota reale (1.71) implica invece una probabilità del 58.5% secondo il mercato — una differenza di +8.5 punti percentuali. Forma recente (dalla più vecchia alla più recente): casa PVPVV, trasferta PPVVN (V=vittoria, N=pareggio, P=sconfitta). Scontri diretti recenti: Borussia Dortmund 3-2 Hamburger SV (2026-03-21) · Hamburger SV 1-1 Borussia Dortmund (2025-11-08). Riposo dall'ultima partita: casa 105 giorni e trasferta 105 giorni. Mercati combinati sulla stessa partita più probabili secondo il modello (stima, non verificata su una quota reale): 1_over_1.5 (59.6%), 1_over_2.5 (46.3%), 1_under_3.5 (44.3%). ✓ Affidabilità ALTA: entrambe le squadre hanno uno storico sufficiente per una stima solida.",
           "reliability": "alta"
         }
       ],
-      "n_legs": 2,
-      "combined_odd": 2.449,
-      "combined_true_probability": 0.5233,
-      "combined_implied_probability": 0.4083,
-      "combined_edge": 0.115,
-      "in_range": false,
-      "distance_from_range": 0.649,
+      "n_legs": 1,
+      "combined_odd": 1.71,
+      "combined_true_probability": 0.6693,
+      "combined_implied_probability": 0.5848,
+      "combined_edge": 0.0845,
+      "in_range": true,
+      "distance_from_range": 0.0,
       "simulation": {
-        "probability_reach_target": 0.5123,
-        "probability_bust": 0.4877,
+        "probability_reach_target": 0.4431,
+        "probability_bust": 0.5569,
         "probability_stuck_in_between": 0.0,
-        "avg_bets_if_successful": 1.0,
-        "median_final_capital": 85.71,
-        "mean_final_capital": 43.91
-      },
-      "progression": [
-        {
-          "step": 1,
-          "capital_before": 35.0,
-          "stake": 35.0,
-          "winnings": 50.71,
-          "capital_after": 85.71,
-          "remaining_to_target": 0,
-          "target_reached": true
-        }
-      ]
-    },
-    {
-      "legs": [
-        {
-          "league": "Serie A",
-          "league_code": "SA",
-          "league_emblem": "https://crests.football-data.org/SA.png",
-          "match": "SS Lazio vs Genoa CFC",
-          "home_crest": "https://crests.football-data.org/110.png",
-          "away_crest": "https://crests.football-data.org/107.png",
-          "date": "2026-08-30",
-          "market": "over_under",
-          "outcome": "under_2.5",
-          "model_probability": 0.6666,
-          "real_odd": 1.64,
-          "n_bookmakers": 11,
-          "implied_probability": 0.6098,
-          "edge": 0.0568,
-          "home_team_matches": 39,
-          "away_team_matches": 39,
-          "is_next_matchday": true,
-          "home_form": "VPPVV",
-          "away_form": "NNPPP",
-          "head_to_head": "SS Lazio 3-2 Genoa CFC (2026-01-30) · Genoa CFC 0-3 SS Lazio (2025-09-29)",
-          "home_rest_days": 6,
-          "away_rest_days": 8,
-          "top_combined_markets": [
-            {
-              "market": "1_under_3.5",
-              "probability": 0.3732
-            },
-            {
-              "market": "1_btts_no",
-              "probability": 0.3093
-            },
-            {
-              "market": "1_over_1.5",
-              "probability": 0.2895
-            }
-          ],
-          "injuries": [],
-          "explanation": "Il modello stima una probabilità del 66.7% per questo esito, basandosi su 39 partite storiche della squadra di casa e 39 della squadra in trasferta. La quota reale (1.64) implica invece una probabilità del 61.0% secondo il mercato — una differenza di +5.7 punti percentuali. Forma recente (dalla più vecchia alla più recente): casa VPPVV, trasferta NNPPP (V=vittoria, N=pareggio, P=sconfitta). Scontri diretti recenti: SS Lazio 3-2 Genoa CFC (2026-01-30) · Genoa CFC 0-3 SS Lazio (2025-09-29). Riposo dall'ultima partita: casa 6 giorni e trasferta 8 giorni. Mercati combinati sulla stessa partita più probabili secondo il modello (stima, non verificata su una quota reale): 1_under_3.5 (37.3%), 1_btts_no (30.9%), 1_over_1.5 (28.9%). ✓ Affidabilità ALTA: entrambe le squadre hanno uno storico sufficiente per una stima solida.",
-          "reliability": "alta"
-        },
-        {
-          "league": "Ligue 1",
-          "league_code": "FL1",
-          "league_emblem": "https://crests.football-data.org/FL1.png",
-          "match": "AS Monaco FC vs Olympique de Marseille",
-          "home_crest": "https://crests.football-data.org/548.png",
-          "away_crest": "https://crests.football-data.org/516.png",
-          "date": "2026-08-30",
-          "market": "over_under",
-          "outcome": "over_2.5",
-          "model_probability": 0.6901,
-          "real_odd": 1.55,
-          "n_bookmakers": 3,
-          "implied_probability": 0.6452,
-          "edge": 0.0449,
-          "home_team_matches": 35,
-          "away_team_matches": 35,
-          "is_next_matchday": true,
-          "home_form": "NVPPV",
-          "away_form": "NPVVV",
-          "head_to_head": "AS Monaco FC 2-1 Olympique de Marseille (2026-04-05) · Olympique de Marseille 1-0 AS Monaco FC (2025-12-14)",
-          "home_rest_days": 7,
-          "away_rest_days": 9,
-          "top_combined_markets": [
-            {
-              "market": "1_over_1.5",
-              "probability": 0.349
-            },
-            {
-              "market": "2_over_1.5",
-              "probability": 0.3291
-            },
-            {
-              "market": "1_over_2.5",
-              "probability": 0.3026
-            }
-          ],
-          "injuries": [],
-          "explanation": "Il modello stima una probabilità del 69.0% per questo esito, basandosi su 35 partite storiche della squadra di casa e 35 della squadra in trasferta. La quota reale (1.55) implica invece una probabilità del 64.5% secondo il mercato — una differenza di +4.5 punti percentuali. Forma recente (dalla più vecchia alla più recente): casa NVPPV, trasferta NPVVV (V=vittoria, N=pareggio, P=sconfitta). Scontri diretti recenti: AS Monaco FC 2-1 Olympique de Marseille (2026-04-05) · Olympique de Marseille 1-0 AS Monaco FC (2025-12-14). Riposo dall'ultima partita: casa 7 giorni e trasferta 9 giorni. Mercati combinati sulla stessa partita più probabili secondo il modello (stima, non verificata su una quota reale): 1_over_1.5 (34.9%), 2_over_1.5 (32.9%), 1_over_2.5 (30.3%). ✓ Affidabilità ALTA: entrambe le squadre hanno uno storico sufficiente per una stima solida.",
-          "reliability": "alta"
-        }
-      ],
-      "n_legs": 2,
-      "combined_odd": 2.542,
-      "combined_true_probability": 0.46,
-      "combined_implied_probability": 0.3934,
-      "combined_edge": 0.0666,
-      "in_range": false,
-      "distance_from_range": 0.742,
-      "simulation": {
-        "probability_reach_target": 0.4526,
-        "probability_bust": 0.5474,
-        "probability_stuck_in_between": 0.0,
-        "avg_bets_if_successful": 1.0,
+        "avg_bets_if_successful": 2.0,
         "median_final_capital": 0.0,
-        "mean_final_capital": 40.27
+        "mean_final_capital": 45.35
       },
       "progression": [
         {
           "step": 1,
           "capital_before": 35.0,
           "stake": 35.0,
-          "winnings": 53.97,
-          "capital_after": 88.97,
+          "winnings": 24.85,
+          "capital_after": 59.85,
+          "remaining_to_target": 5.15,
+          "target_reached": false
+        },
+        {
+          "step": 2,
+          "capital_before": 59.85,
+          "stake": 59.85,
+          "winnings": 42.49,
+          "capital_after": 102.34,
           "remaining_to_target": 0,
           "target_reached": true
         }
@@ -461,560 +173,78 @@
     {
       "legs": [
         {
-          "league": "Serie A",
-          "league_code": "SA",
-          "league_emblem": "https://crests.football-data.org/SA.png",
-          "match": "SS Lazio vs Genoa CFC",
-          "home_crest": "https://crests.football-data.org/110.png",
-          "away_crest": "https://crests.football-data.org/107.png",
-          "date": "2026-08-30",
-          "market": "over_under",
-          "outcome": "under_2.5",
-          "model_probability": 0.6666,
-          "real_odd": 1.64,
-          "n_bookmakers": 11,
-          "implied_probability": 0.6098,
-          "edge": 0.0568,
-          "home_team_matches": 39,
-          "away_team_matches": 39,
-          "is_next_matchday": true,
-          "home_form": "VPPVV",
-          "away_form": "NNPPP",
-          "head_to_head": "SS Lazio 3-2 Genoa CFC (2026-01-30) · Genoa CFC 0-3 SS Lazio (2025-09-29)",
-          "home_rest_days": 6,
-          "away_rest_days": 8,
-          "top_combined_markets": [
-            {
-              "market": "1_under_3.5",
-              "probability": 0.3732
-            },
-            {
-              "market": "1_btts_no",
-              "probability": 0.3093
-            },
-            {
-              "market": "1_over_1.5",
-              "probability": 0.2895
-            }
-          ],
-          "injuries": [],
-          "explanation": "Il modello stima una probabilità del 66.7% per questo esito, basandosi su 39 partite storiche della squadra di casa e 39 della squadra in trasferta. La quota reale (1.64) implica invece una probabilità del 61.0% secondo il mercato — una differenza di +5.7 punti percentuali. Forma recente (dalla più vecchia alla più recente): casa VPPVV, trasferta NNPPP (V=vittoria, N=pareggio, P=sconfitta). Scontri diretti recenti: SS Lazio 3-2 Genoa CFC (2026-01-30) · Genoa CFC 0-3 SS Lazio (2025-09-29). Riposo dall'ultima partita: casa 6 giorni e trasferta 8 giorni. Mercati combinati sulla stessa partita più probabili secondo il modello (stima, non verificata su una quota reale): 1_under_3.5 (37.3%), 1_btts_no (30.9%), 1_over_1.5 (28.9%). ✓ Affidabilità ALTA: entrambe le squadre hanno uno storico sufficiente per una stima solida.",
-          "reliability": "alta"
-        },
-        {
-          "league": "Premier League",
-          "league_code": "PL",
-          "league_emblem": "https://crests.football-data.org/PL.png",
-          "match": "Liverpool FC vs Nottingham Forest FC",
-          "home_crest": "https://crests.football-data.org/64.png",
-          "away_crest": "https://crests.football-data.org/351.png",
+          "league": "Bundesliga",
+          "league_code": "BL1",
+          "league_emblem": "https://crests.football-data.org/BL1.png",
+          "match": "1. FC Union Berlin vs Eintracht Frankfurt",
+          "home_crest": "https://crests.football-data.org/28.png",
+          "away_crest": "https://crests.football-data.org/19.png",
           "date": "2026-08-29",
           "market": "over_under",
-          "outcome": "under_3.5",
-          "model_probability": 0.6663,
-          "real_odd": 1.55,
-          "n_bookmakers": 1,
-          "implied_probability": 0.6452,
-          "edge": 0.0211,
-          "home_team_matches": 39,
-          "away_team_matches": 39,
-          "is_next_matchday": true,
-          "home_form": "PNPNN",
-          "away_form": "VNPNP",
-          "head_to_head": "Nottingham Forest FC 0-1 Liverpool FC (2026-02-22) · Liverpool FC 0-3 Nottingham Forest FC (2025-11-22)",
-          "home_rest_days": 5,
-          "away_rest_days": 6,
-          "top_combined_markets": [
-            {
-              "market": "1_over_1.5",
-              "probability": 0.402
-            },
-            {
-              "market": "1_over_2.5",
-              "probability": 0.3221
-            },
-            {
-              "market": "1_under_3.5",
-              "probability": 0.2987
-            }
-          ],
-          "injuries": [],
-          "explanation": "Il modello stima una probabilità del 66.6% per questo esito, basandosi su 39 partite storiche della squadra di casa e 39 della squadra in trasferta. La quota reale (1.55) implica invece una probabilità del 64.5% secondo il mercato — una differenza di +2.1 punti percentuali. Forma recente (dalla più vecchia alla più recente): casa PNPNN, trasferta VNPNP (V=vittoria, N=pareggio, P=sconfitta). Scontri diretti recenti: Nottingham Forest FC 0-1 Liverpool FC (2026-02-22) · Liverpool FC 0-3 Nottingham Forest FC (2025-11-22). Riposo dall'ultima partita: casa 5 giorni e trasferta 6 giorni. Mercati combinati sulla stessa partita più probabili secondo il modello (stima, non verificata su una quota reale): 1_over_1.5 (40.2%), 1_over_2.5 (32.2%), 1_under_3.5 (29.9%). ✓ Affidabilità ALTA: entrambe le squadre hanno uno storico sufficiente per una stima solida.",
-          "reliability": "alta"
-        }
-      ],
-      "n_legs": 2,
-      "combined_odd": 2.542,
-      "combined_true_probability": 0.4442,
-      "combined_implied_probability": 0.3934,
-      "combined_edge": 0.0507,
-      "in_range": false,
-      "distance_from_range": 0.742,
-      "simulation": {
-        "probability_reach_target": 0.43,
-        "probability_bust": 0.57,
-        "probability_stuck_in_between": 0.0,
-        "avg_bets_if_successful": 1.0,
-        "median_final_capital": 0.0,
-        "mean_final_capital": 38.26
-      },
-      "progression": [
-        {
-          "step": 1,
-          "capital_before": 35.0,
-          "stake": 35.0,
-          "winnings": 53.97,
-          "capital_after": 88.97,
-          "remaining_to_target": 0,
-          "target_reached": true
-        }
-      ]
-    }
-  ],
-  "extended_results": [
-    {
-      "legs": [
-        {
-          "league": "La Liga",
-          "league_code": "PD",
-          "league_emblem": "https://crests.football-data.org/PD.png",
-          "match": "Real Madrid CF vs Málaga CF",
-          "home_crest": "https://crests.football-data.org/86.png",
-          "away_crest": "https://crests.football-data.org/84.png",
-          "date": "2026-08-30",
-          "market": "1x2",
-          "outcome": "1",
-          "model_probability": 0.8929,
-          "real_odd": 1.2,
-          "n_bookmakers": 20,
-          "implied_probability": 0.8333,
-          "edge": 0.0596,
-          "home_team_matches": 40,
-          "away_team_matches": 2,
-          "is_next_matchday": true,
-          "home_form": "VVVVV",
-          "away_form": "PN",
-          "head_to_head": "Nessuno scontro diretto recente disponibile nei dati storici.",
-          "home_rest_days": 3,
-          "away_rest_days": 5,
-          "top_combined_markets": [
-            {
-              "market": "1_over_1.5",
-              "probability": 0.7618
-            },
-            {
-              "market": "1_btts_no",
-              "probability": 0.7235
-            },
-            {
-              "market": "1_over_2.5",
-              "probability": 0.5781
-            }
-          ],
-          "injuries": [],
-          "explanation": "Il modello stima una probabilità del 89.3% per questo esito, basandosi su 40 partite storiche della squadra di casa e 2 della squadra in trasferta. La quota reale (1.2) implica invece una probabilità del 83.3% secondo il mercato — una differenza di +6.0 punti percentuali. Forma recente (dalla più vecchia alla più recente): casa VVVVV, trasferta PN (V=vittoria, N=pareggio, P=sconfitta). Riposo dall'ultima partita: casa 3 giorni e trasferta 5 giorni. ⚠️ Nota: una delle due squadre ha giocato pochissimi giorni fa — possibile affaticamento non pienamente catturato dal modello statistico. Mercati combinati sulla stessa partita più probabili secondo il modello (stima, non verificata su una quota reale): 1_over_1.5 (76.2%), 1_btts_no (72.4%), 1_over_2.5 (57.8%). ⚠️ Affidabilità BASSA: almeno una delle due squadre ha pochissime partite storiche (probabile neopromossa o inizio stagione). Un vantaggio stimato in questa condizione va preso con molta cautela — potrebbe riflettere un limite del modello più che un'opportunità reale.",
-          "reliability": "bassa"
-        },
-        {
-          "league": "Ligue 1",
-          "league_code": "FL1",
-          "league_emblem": "https://crests.football-data.org/FL1.png",
-          "match": "AS Monaco FC vs Olympique de Marseille",
-          "home_crest": "https://crests.football-data.org/548.png",
-          "away_crest": "https://crests.football-data.org/516.png",
-          "date": "2026-08-30",
-          "market": "over_under",
           "outcome": "over_2.5",
-          "model_probability": 0.6901,
-          "real_odd": 1.55,
-          "n_bookmakers": 3,
-          "implied_probability": 0.6452,
-          "edge": 0.0449,
-          "home_team_matches": 35,
-          "away_team_matches": 35,
+          "model_probability": 0.6401,
+          "real_odd": 1.74,
+          "n_bookmakers": 13,
+          "implied_probability": 0.5747,
+          "edge": 0.0654,
+          "home_team_matches": 34,
+          "away_team_matches": 34,
           "is_next_matchday": true,
-          "home_form": "NVPPV",
-          "away_form": "NPVVV",
-          "head_to_head": "AS Monaco FC 2-1 Olympique de Marseille (2026-04-05) · Olympique de Marseille 1-0 AS Monaco FC (2025-12-14)",
-          "home_rest_days": 7,
-          "away_rest_days": 9,
+          "home_form": "PPNVV",
+          "away_form": "PNPPN",
+          "head_to_head": "1. FC Union Berlin 1-1 Eintracht Frankfurt (2026-02-06) · Eintracht Frankfurt 3-4 1. FC Union Berlin (2025-09-21)",
+          "home_rest_days": 105,
+          "away_rest_days": 105,
           "top_combined_markets": [
             {
               "market": "1_over_1.5",
-              "probability": 0.349
+              "probability": 0.3402
             },
             {
               "market": "2_over_1.5",
-              "probability": 0.3291
+              "probability": 0.3077
             },
             {
               "market": "1_over_2.5",
-              "probability": 0.3026
+              "probability": 0.2874
             }
           ],
           "injuries": [],
-          "explanation": "Il modello stima una probabilità del 69.0% per questo esito, basandosi su 35 partite storiche della squadra di casa e 35 della squadra in trasferta. La quota reale (1.55) implica invece una probabilità del 64.5% secondo il mercato — una differenza di +4.5 punti percentuali. Forma recente (dalla più vecchia alla più recente): casa NVPPV, trasferta NPVVV (V=vittoria, N=pareggio, P=sconfitta). Scontri diretti recenti: AS Monaco FC 2-1 Olympique de Marseille (2026-04-05) · Olympique de Marseille 1-0 AS Monaco FC (2025-12-14). Riposo dall'ultima partita: casa 7 giorni e trasferta 9 giorni. Mercati combinati sulla stessa partita più probabili secondo il modello (stima, non verificata su una quota reale): 1_over_1.5 (34.9%), 2_over_1.5 (32.9%), 1_over_2.5 (30.3%). ✓ Affidabilità ALTA: entrambe le squadre hanno uno storico sufficiente per una stima solida.",
+          "explanation": "Il modello stima una probabilità del 64.0% per questo esito, basandosi su 34 partite storiche della squadra di casa e 34 della squadra in trasferta. La quota reale (1.74) implica invece una probabilità del 57.5% secondo il mercato — una differenza di +6.5 punti percentuali. Forma recente (dalla più vecchia alla più recente): casa PPNVV, trasferta PNPPN (V=vittoria, N=pareggio, P=sconfitta). Scontri diretti recenti: 1. FC Union Berlin 1-1 Eintracht Frankfurt (2026-02-06) · Eintracht Frankfurt 3-4 1. FC Union Berlin (2025-09-21). Riposo dall'ultima partita: casa 105 giorni e trasferta 105 giorni. Mercati combinati sulla stessa partita più probabili secondo il modello (stima, non verificata su una quota reale): 1_over_1.5 (34.0%), 2_over_1.5 (30.8%), 1_over_2.5 (28.7%). ✓ Affidabilità ALTA: entrambe le squadre hanno uno storico sufficiente per una stima solida.",
           "reliability": "alta"
         }
       ],
-      "n_legs": 2,
-      "combined_odd": 1.86,
-      "combined_true_probability": 0.6162,
-      "combined_implied_probability": 0.5376,
-      "combined_edge": 0.0785,
-      "in_range": false,
-      "distance_from_range": 0.06,
+      "n_legs": 1,
+      "combined_odd": 1.74,
+      "combined_true_probability": 0.6401,
+      "combined_implied_probability": 0.5747,
+      "combined_edge": 0.0654,
+      "in_range": true,
+      "distance_from_range": 0.0,
       "simulation": {
-        "probability_reach_target": 0.6114,
-        "probability_bust": 0.3886,
+        "probability_reach_target": 0.4109,
+        "probability_bust": 0.5891,
         "probability_stuck_in_between": 0.0,
-        "avg_bets_if_successful": 1.0,
-        "median_final_capital": 65.1,
-        "mean_final_capital": 39.8
+        "avg_bets_if_successful": 2.0,
+        "median_final_capital": 0.0,
+        "mean_final_capital": 43.54
       },
       "progression": [
         {
           "step": 1,
           "capital_before": 35.0,
           "stake": 35.0,
-          "winnings": 30.1,
-          "capital_after": 65.1,
-          "remaining_to_target": 0,
-          "target_reached": true
-        }
-      ]
-    },
-    {
-      "legs": [
-        {
-          "league": "La Liga",
-          "league_code": "PD",
-          "league_emblem": "https://crests.football-data.org/PD.png",
-          "match": "Real Madrid CF vs Málaga CF",
-          "home_crest": "https://crests.football-data.org/86.png",
-          "away_crest": "https://crests.football-data.org/84.png",
-          "date": "2026-08-30",
-          "market": "1x2",
-          "outcome": "1",
-          "model_probability": 0.8929,
-          "real_odd": 1.2,
-          "n_bookmakers": 20,
-          "implied_probability": 0.8333,
-          "edge": 0.0596,
-          "home_team_matches": 40,
-          "away_team_matches": 2,
-          "is_next_matchday": true,
-          "home_form": "VVVVV",
-          "away_form": "PN",
-          "head_to_head": "Nessuno scontro diretto recente disponibile nei dati storici.",
-          "home_rest_days": 3,
-          "away_rest_days": 5,
-          "top_combined_markets": [
-            {
-              "market": "1_over_1.5",
-              "probability": 0.7618
-            },
-            {
-              "market": "1_btts_no",
-              "probability": 0.7235
-            },
-            {
-              "market": "1_over_2.5",
-              "probability": 0.5781
-            }
-          ],
-          "injuries": [],
-          "explanation": "Il modello stima una probabilità del 89.3% per questo esito, basandosi su 40 partite storiche della squadra di casa e 2 della squadra in trasferta. La quota reale (1.2) implica invece una probabilità del 83.3% secondo il mercato — una differenza di +6.0 punti percentuali. Forma recente (dalla più vecchia alla più recente): casa VVVVV, trasferta PN (V=vittoria, N=pareggio, P=sconfitta). Riposo dall'ultima partita: casa 3 giorni e trasferta 5 giorni. ⚠️ Nota: una delle due squadre ha giocato pochissimi giorni fa — possibile affaticamento non pienamente catturato dal modello statistico. Mercati combinati sulla stessa partita più probabili secondo il modello (stima, non verificata su una quota reale): 1_over_1.5 (76.2%), 1_btts_no (72.4%), 1_over_2.5 (57.8%). ⚠️ Affidabilità BASSA: almeno una delle due squadre ha pochissime partite storiche (probabile neopromossa o inizio stagione). Un vantaggio stimato in questa condizione va preso con molta cautela — potrebbe riflettere un limite del modello più che un'opportunità reale.",
-          "reliability": "bassa"
+          "winnings": 25.9,
+          "capital_after": 60.9,
+          "remaining_to_target": 4.1,
+          "target_reached": false
         },
         {
-          "league": "Premier League",
-          "league_code": "PL",
-          "league_emblem": "https://crests.football-data.org/PL.png",
-          "match": "Liverpool FC vs Nottingham Forest FC",
-          "home_crest": "https://crests.football-data.org/64.png",
-          "away_crest": "https://crests.football-data.org/351.png",
-          "date": "2026-08-29",
-          "market": "over_under",
-          "outcome": "under_3.5",
-          "model_probability": 0.6663,
-          "real_odd": 1.55,
-          "n_bookmakers": 1,
-          "implied_probability": 0.6452,
-          "edge": 0.0211,
-          "home_team_matches": 39,
-          "away_team_matches": 39,
-          "is_next_matchday": true,
-          "home_form": "PNPNN",
-          "away_form": "VNPNP",
-          "head_to_head": "Nottingham Forest FC 0-1 Liverpool FC (2026-02-22) · Liverpool FC 0-3 Nottingham Forest FC (2025-11-22)",
-          "home_rest_days": 5,
-          "away_rest_days": 6,
-          "top_combined_markets": [
-            {
-              "market": "1_over_1.5",
-              "probability": 0.402
-            },
-            {
-              "market": "1_over_2.5",
-              "probability": 0.3221
-            },
-            {
-              "market": "1_under_3.5",
-              "probability": 0.2987
-            }
-          ],
-          "injuries": [],
-          "explanation": "Il modello stima una probabilità del 66.6% per questo esito, basandosi su 39 partite storiche della squadra di casa e 39 della squadra in trasferta. La quota reale (1.55) implica invece una probabilità del 64.5% secondo il mercato — una differenza di +2.1 punti percentuali. Forma recente (dalla più vecchia alla più recente): casa PNPNN, trasferta VNPNP (V=vittoria, N=pareggio, P=sconfitta). Scontri diretti recenti: Nottingham Forest FC 0-1 Liverpool FC (2026-02-22) · Liverpool FC 0-3 Nottingham Forest FC (2025-11-22). Riposo dall'ultima partita: casa 5 giorni e trasferta 6 giorni. Mercati combinati sulla stessa partita più probabili secondo il modello (stima, non verificata su una quota reale): 1_over_1.5 (40.2%), 1_over_2.5 (32.2%), 1_under_3.5 (29.9%). ✓ Affidabilità ALTA: entrambe le squadre hanno uno storico sufficiente per una stima solida.",
-          "reliability": "alta"
-        }
-      ],
-      "n_legs": 2,
-      "combined_odd": 1.86,
-      "combined_true_probability": 0.5949,
-      "combined_implied_probability": 0.5376,
-      "combined_edge": 0.0573,
-      "in_range": false,
-      "distance_from_range": 0.06,
-      "simulation": {
-        "probability_reach_target": 0.6019,
-        "probability_bust": 0.3981,
-        "probability_stuck_in_between": 0.0,
-        "avg_bets_if_successful": 1.0,
-        "median_final_capital": 65.1,
-        "mean_final_capital": 39.18
-      },
-      "progression": [
-        {
-          "step": 1,
-          "capital_before": 35.0,
-          "stake": 35.0,
-          "winnings": 30.1,
-          "capital_after": 65.1,
-          "remaining_to_target": 0,
-          "target_reached": true
-        }
-      ]
-    },
-    {
-      "legs": [
-        {
-          "league": "La Liga",
-          "league_code": "PD",
-          "league_emblem": "https://crests.football-data.org/PD.png",
-          "match": "CA Osasuna vs Getafe CF",
-          "home_crest": "https://crests.football-data.org/79.png",
-          "away_crest": "https://crests.football-data.org/82.png",
-          "date": "2026-08-31",
-          "market": "over_under",
-          "outcome": "under_2.5",
-          "model_probability": 0.7854,
-          "real_odd": 1.58,
-          "n_bookmakers": 4,
-          "implied_probability": 0.6329,
-          "edge": 0.1525,
-          "home_team_matches": 40,
-          "away_team_matches": 40,
-          "is_next_matchday": true,
-          "home_form": "PPPNV",
-          "away_form": "VPVPV",
-          "head_to_head": "Getafe CF 1-0 CA Osasuna (2026-05-23) · CA Osasuna 2-1 Getafe CF (2025-10-03)",
-          "home_rest_days": 3,
-          "away_rest_days": 8,
-          "top_combined_markets": [
-            {
-              "market": "1_under_3.5",
-              "probability": 0.3885
-            },
-            {
-              "market": "1_btts_no",
-              "probability": 0.3383
-            },
-            {
-              "market": "X_under_2.5",
-              "probability": 0.3255
-            }
-          ],
-          "injuries": [],
-          "explanation": "Il modello stima una probabilità del 78.5% per questo esito, basandosi su 40 partite storiche della squadra di casa e 40 della squadra in trasferta. La quota reale (1.58) implica invece una probabilità del 63.3% secondo il mercato — una differenza di +15.2 punti percentuali. Forma recente (dalla più vecchia alla più recente): casa PPPNV, trasferta VPVPV (V=vittoria, N=pareggio, P=sconfitta). Scontri diretti recenti: Getafe CF 1-0 CA Osasuna (2026-05-23) · CA Osasuna 2-1 Getafe CF (2025-10-03). Riposo dall'ultima partita: casa 3 giorni e trasferta 8 giorni. ⚠️ Nota: una delle due squadre ha giocato pochissimi giorni fa — possibile affaticamento non pienamente catturato dal modello statistico. Mercati combinati sulla stessa partita più probabili secondo il modello (stima, non verificata su una quota reale): 1_under_3.5 (38.9%), 1_btts_no (33.8%), X_under_2.5 (32.6%). ✓ Affidabilità ALTA: entrambe le squadre hanno uno storico sufficiente per una stima solida.",
-          "reliability": "alta"
-        },
-        {
-          "league": "La Liga",
-          "league_code": "PD",
-          "league_emblem": "https://crests.football-data.org/PD.png",
-          "match": "Real Madrid CF vs Málaga CF",
-          "home_crest": "https://crests.football-data.org/86.png",
-          "away_crest": "https://crests.football-data.org/84.png",
-          "date": "2026-08-30",
-          "market": "1x2",
-          "outcome": "1",
-          "model_probability": 0.8929,
-          "real_odd": 1.2,
-          "n_bookmakers": 20,
-          "implied_probability": 0.8333,
-          "edge": 0.0596,
-          "home_team_matches": 40,
-          "away_team_matches": 2,
-          "is_next_matchday": true,
-          "home_form": "VVVVV",
-          "away_form": "PN",
-          "head_to_head": "Nessuno scontro diretto recente disponibile nei dati storici.",
-          "home_rest_days": 3,
-          "away_rest_days": 5,
-          "top_combined_markets": [
-            {
-              "market": "1_over_1.5",
-              "probability": 0.7618
-            },
-            {
-              "market": "1_btts_no",
-              "probability": 0.7235
-            },
-            {
-              "market": "1_over_2.5",
-              "probability": 0.5781
-            }
-          ],
-          "injuries": [],
-          "explanation": "Il modello stima una probabilità del 89.3% per questo esito, basandosi su 40 partite storiche della squadra di casa e 2 della squadra in trasferta. La quota reale (1.2) implica invece una probabilità del 83.3% secondo il mercato — una differenza di +6.0 punti percentuali. Forma recente (dalla più vecchia alla più recente): casa VVVVV, trasferta PN (V=vittoria, N=pareggio, P=sconfitta). Riposo dall'ultima partita: casa 3 giorni e trasferta 5 giorni. ⚠️ Nota: una delle due squadre ha giocato pochissimi giorni fa — possibile affaticamento non pienamente catturato dal modello statistico. Mercati combinati sulla stessa partita più probabili secondo il modello (stima, non verificata su una quota reale): 1_over_1.5 (76.2%), 1_btts_no (72.4%), 1_over_2.5 (57.8%). ⚠️ Affidabilità BASSA: almeno una delle due squadre ha pochissime partite storiche (probabile neopromossa o inizio stagione). Un vantaggio stimato in questa condizione va preso con molta cautela — potrebbe riflettere un limite del modello più che un'opportunità reale.",
-          "reliability": "bassa"
-        }
-      ],
-      "n_legs": 2,
-      "combined_odd": 1.896,
-      "combined_true_probability": 0.7013,
-      "combined_implied_probability": 0.5274,
-      "combined_edge": 0.1739,
-      "in_range": false,
-      "distance_from_range": 0.096,
-      "simulation": {
-        "probability_reach_target": 0.7046,
-        "probability_bust": 0.2954,
-        "probability_stuck_in_between": 0.0,
-        "avg_bets_if_successful": 1.0,
-        "median_final_capital": 66.36,
-        "mean_final_capital": 46.76
-      },
-      "progression": [
-        {
-          "step": 1,
-          "capital_before": 35.0,
-          "stake": 35.0,
-          "winnings": 31.36,
-          "capital_after": 66.36,
-          "remaining_to_target": 0,
-          "target_reached": true
-        }
-      ]
-    },
-    {
-      "legs": [
-        {
-          "league": "La Liga",
-          "league_code": "PD",
-          "league_emblem": "https://crests.football-data.org/PD.png",
-          "match": "Real Madrid CF vs Málaga CF",
-          "home_crest": "https://crests.football-data.org/86.png",
-          "away_crest": "https://crests.football-data.org/84.png",
-          "date": "2026-08-30",
-          "market": "1x2",
-          "outcome": "1",
-          "model_probability": 0.8929,
-          "real_odd": 1.2,
-          "n_bookmakers": 20,
-          "implied_probability": 0.8333,
-          "edge": 0.0596,
-          "home_team_matches": 40,
-          "away_team_matches": 2,
-          "is_next_matchday": true,
-          "home_form": "VVVVV",
-          "away_form": "PN",
-          "head_to_head": "Nessuno scontro diretto recente disponibile nei dati storici.",
-          "home_rest_days": 3,
-          "away_rest_days": 5,
-          "top_combined_markets": [
-            {
-              "market": "1_over_1.5",
-              "probability": 0.7618
-            },
-            {
-              "market": "1_btts_no",
-              "probability": 0.7235
-            },
-            {
-              "market": "1_over_2.5",
-              "probability": 0.5781
-            }
-          ],
-          "injuries": [],
-          "explanation": "Il modello stima una probabilità del 89.3% per questo esito, basandosi su 40 partite storiche della squadra di casa e 2 della squadra in trasferta. La quota reale (1.2) implica invece una probabilità del 83.3% secondo il mercato — una differenza di +6.0 punti percentuali. Forma recente (dalla più vecchia alla più recente): casa VVVVV, trasferta PN (V=vittoria, N=pareggio, P=sconfitta). Riposo dall'ultima partita: casa 3 giorni e trasferta 5 giorni. ⚠️ Nota: una delle due squadre ha giocato pochissimi giorni fa — possibile affaticamento non pienamente catturato dal modello statistico. Mercati combinati sulla stessa partita più probabili secondo il modello (stima, non verificata su una quota reale): 1_over_1.5 (76.2%), 1_btts_no (72.4%), 1_over_2.5 (57.8%). ⚠️ Affidabilità BASSA: almeno una delle due squadre ha pochissime partite storiche (probabile neopromossa o inizio stagione). Un vantaggio stimato in questa condizione va preso con molta cautela — potrebbe riflettere un limite del modello più che un'opportunità reale.",
-          "reliability": "bassa"
-        },
-        {
-          "league": "Serie A",
-          "league_code": "SA",
-          "league_emblem": "https://crests.football-data.org/SA.png",
-          "match": "SS Lazio vs Genoa CFC",
-          "home_crest": "https://crests.football-data.org/110.png",
-          "away_crest": "https://crests.football-data.org/107.png",
-          "date": "2026-08-30",
-          "market": "over_under",
-          "outcome": "under_2.5",
-          "model_probability": 0.6666,
-          "real_odd": 1.64,
-          "n_bookmakers": 11,
-          "implied_probability": 0.6098,
-          "edge": 0.0568,
-          "home_team_matches": 39,
-          "away_team_matches": 39,
-          "is_next_matchday": true,
-          "home_form": "VPPVV",
-          "away_form": "NNPPP",
-          "head_to_head": "SS Lazio 3-2 Genoa CFC (2026-01-30) · Genoa CFC 0-3 SS Lazio (2025-09-29)",
-          "home_rest_days": 6,
-          "away_rest_days": 8,
-          "top_combined_markets": [
-            {
-              "market": "1_under_3.5",
-              "probability": 0.3732
-            },
-            {
-              "market": "1_btts_no",
-              "probability": 0.3093
-            },
-            {
-              "market": "1_over_1.5",
-              "probability": 0.2895
-            }
-          ],
-          "injuries": [],
-          "explanation": "Il modello stima una probabilità del 66.7% per questo esito, basandosi su 39 partite storiche della squadra di casa e 39 della squadra in trasferta. La quota reale (1.64) implica invece una probabilità del 61.0% secondo il mercato — una differenza di +5.7 punti percentuali. Forma recente (dalla più vecchia alla più recente): casa VPPVV, trasferta NNPPP (V=vittoria, N=pareggio, P=sconfitta). Scontri diretti recenti: SS Lazio 3-2 Genoa CFC (2026-01-30) · Genoa CFC 0-3 SS Lazio (2025-09-29). Riposo dall'ultima partita: casa 6 giorni e trasferta 8 giorni. Mercati combinati sulla stessa partita più probabili secondo il modello (stima, non verificata su una quota reale): 1_under_3.5 (37.3%), 1_btts_no (30.9%), 1_over_1.5 (28.9%). ✓ Affidabilità ALTA: entrambe le squadre hanno uno storico sufficiente per una stima solida.",
-          "reliability": "alta"
-        }
-      ],
-      "n_legs": 2,
-      "combined_odd": 1.968,
-      "combined_true_probability": 0.5952,
-      "combined_implied_probability": 0.5081,
-      "combined_edge": 0.0871,
-      "in_range": false,
-      "distance_from_range": 0.168,
-      "simulation": {
-        "probability_reach_target": 0.5961,
-        "probability_bust": 0.4039,
-        "probability_stuck_in_between": 0.0,
-        "avg_bets_if_successful": 1.0,
-        "median_final_capital": 68.88,
-        "mean_final_capital": 41.06
-      },
-      "progression": [
-        {
-          "step": 1,
-          "capital_before": 35.0,
-          "stake": 35.0,
-          "winnings": 33.88,
-          "capital_after": 68.88,
+          "step": 2,
+          "capital_before": 60.9,
+          "stake": 60.9,
+          "winnings": 45.07,
+          "capital_after": 105.97,
           "remaining_to_target": 0,
           "target_reached": true
         }
@@ -1032,11 +262,11 @@
           "date": "2026-08-31",
           "market": "1x2",
           "outcome": "2",
-          "model_probability": 0.6661,
+          "model_probability": 0.666,
           "real_odd": 1.65,
           "n_bookmakers": 23,
           "implied_probability": 0.6061,
-          "edge": 0.06,
+          "edge": 0.0599,
           "home_team_matches": 39,
           "away_team_matches": 39,
           "is_next_matchday": true,
@@ -1062,71 +292,521 @@
           "injuries": [],
           "explanation": "Il modello stima una probabilità del 66.6% per questo esito, basandosi su 39 partite storiche della squadra di casa e 39 della squadra in trasferta. La quota reale (1.65) implica invece una probabilità del 60.6% secondo il mercato — una differenza di +6.0 punti percentuali. Forma recente (dalla più vecchia alla più recente): casa VPVVV, trasferta VVVVV (V=vittoria, N=pareggio, P=sconfitta). Scontri diretti recenti: AS Roma 1-0 US Lecce (2026-03-22) · US Lecce 0-2 AS Roma (2026-01-06). Riposo dall'ultima partita: casa 8 giorni e trasferta 6 giorni. Mercati combinati sulla stessa partita più probabili secondo il modello (stima, non verificata su una quota reale): 2_over_1.5 (49.7%), 2_under_3.5 (49.2%), 2_btts_no (46.3%). ✓ Affidabilità ALTA: entrambe le squadre hanno uno storico sufficiente per una stima solida.",
           "reliability": "alta"
-        },
-        {
-          "league": "La Liga",
-          "league_code": "PD",
-          "league_emblem": "https://crests.football-data.org/PD.png",
-          "match": "Real Madrid CF vs Málaga CF",
-          "home_crest": "https://crests.football-data.org/86.png",
-          "away_crest": "https://crests.football-data.org/84.png",
-          "date": "2026-08-30",
-          "market": "1x2",
-          "outcome": "1",
-          "model_probability": 0.8929,
-          "real_odd": 1.2,
-          "n_bookmakers": 20,
-          "implied_probability": 0.8333,
-          "edge": 0.0596,
-          "home_team_matches": 40,
-          "away_team_matches": 2,
-          "is_next_matchday": true,
-          "home_form": "VVVVV",
-          "away_form": "PN",
-          "head_to_head": "Nessuno scontro diretto recente disponibile nei dati storici.",
-          "home_rest_days": 3,
-          "away_rest_days": 5,
-          "top_combined_markets": [
-            {
-              "market": "1_over_1.5",
-              "probability": 0.7618
-            },
-            {
-              "market": "1_btts_no",
-              "probability": 0.7235
-            },
-            {
-              "market": "1_over_2.5",
-              "probability": 0.5781
-            }
-          ],
-          "injuries": [],
-          "explanation": "Il modello stima una probabilità del 89.3% per questo esito, basandosi su 40 partite storiche della squadra di casa e 2 della squadra in trasferta. La quota reale (1.2) implica invece una probabilità del 83.3% secondo il mercato — una differenza di +6.0 punti percentuali. Forma recente (dalla più vecchia alla più recente): casa VVVVV, trasferta PN (V=vittoria, N=pareggio, P=sconfitta). Riposo dall'ultima partita: casa 3 giorni e trasferta 5 giorni. ⚠️ Nota: una delle due squadre ha giocato pochissimi giorni fa — possibile affaticamento non pienamente catturato dal modello statistico. Mercati combinati sulla stessa partita più probabili secondo il modello (stima, non verificata su una quota reale): 1_over_1.5 (76.2%), 1_btts_no (72.4%), 1_over_2.5 (57.8%). ⚠️ Affidabilità BASSA: almeno una delle due squadre ha pochissime partite storiche (probabile neopromossa o inizio stagione). Un vantaggio stimato in questa condizione va preso con molta cautela — potrebbe riflettere un limite del modello più che un'opportunità reale.",
-          "reliability": "bassa"
         }
       ],
-      "n_legs": 2,
-      "combined_odd": 1.98,
-      "combined_true_probability": 0.5948,
-      "combined_implied_probability": 0.5051,
-      "combined_edge": 0.0897,
-      "in_range": false,
-      "distance_from_range": 0.18,
+      "n_legs": 1,
+      "combined_odd": 1.65,
+      "combined_true_probability": 0.666,
+      "combined_implied_probability": 0.6061,
+      "combined_edge": 0.0599,
+      "in_range": true,
+      "distance_from_range": 0.0,
       "simulation": {
-        "probability_reach_target": 0.6002,
-        "probability_bust": 0.3998,
+        "probability_reach_target": 0.4497,
+        "probability_bust": 0.5503,
         "probability_stuck_in_between": 0.0,
-        "avg_bets_if_successful": 1.0,
-        "median_final_capital": 69.3,
-        "mean_final_capital": 41.59
+        "avg_bets_if_successful": 2.0,
+        "median_final_capital": 0.0,
+        "mean_final_capital": 42.85
       },
       "progression": [
         {
           "step": 1,
           "capital_before": 35.0,
           "stake": 35.0,
-          "winnings": 34.3,
-          "capital_after": 69.3,
+          "winnings": 22.75,
+          "capital_after": 57.75,
+          "remaining_to_target": 7.25,
+          "target_reached": false
+        },
+        {
+          "step": 2,
+          "capital_before": 57.75,
+          "stake": 57.75,
+          "winnings": 37.54,
+          "capital_after": 95.29,
+          "remaining_to_target": 0,
+          "target_reached": true
+        }
+      ]
+    },
+    {
+      "legs": [
+        {
+          "league": "Serie A",
+          "league_code": "SA",
+          "league_emblem": "https://crests.football-data.org/SA.png",
+          "match": "SS Lazio vs Genoa CFC",
+          "home_crest": "https://crests.football-data.org/110.png",
+          "away_crest": "https://crests.football-data.org/107.png",
+          "date": "2026-08-30",
+          "market": "over_under",
+          "outcome": "under_2.5",
+          "model_probability": 0.6668,
+          "real_odd": 1.64,
+          "n_bookmakers": 11,
+          "implied_probability": 0.6098,
+          "edge": 0.057,
+          "home_team_matches": 39,
+          "away_team_matches": 39,
+          "is_next_matchday": true,
+          "home_form": "VPPVV",
+          "away_form": "NNPPP",
+          "head_to_head": "SS Lazio 3-2 Genoa CFC (2026-01-30) · Genoa CFC 0-3 SS Lazio (2025-09-29)",
+          "home_rest_days": 6,
+          "away_rest_days": 8,
+          "top_combined_markets": [
+            {
+              "market": "1_under_3.5",
+              "probability": 0.3732
+            },
+            {
+              "market": "1_btts_no",
+              "probability": 0.3093
+            },
+            {
+              "market": "1_over_1.5",
+              "probability": 0.2894
+            }
+          ],
+          "injuries": [],
+          "explanation": "Il modello stima una probabilità del 66.7% per questo esito, basandosi su 39 partite storiche della squadra di casa e 39 della squadra in trasferta. La quota reale (1.64) implica invece una probabilità del 61.0% secondo il mercato — una differenza di +5.7 punti percentuali. Forma recente (dalla più vecchia alla più recente): casa VPPVV, trasferta NNPPP (V=vittoria, N=pareggio, P=sconfitta). Scontri diretti recenti: SS Lazio 3-2 Genoa CFC (2026-01-30) · Genoa CFC 0-3 SS Lazio (2025-09-29). Riposo dall'ultima partita: casa 6 giorni e trasferta 8 giorni. Mercati combinati sulla stessa partita più probabili secondo il modello (stima, non verificata su una quota reale): 1_under_3.5 (37.3%), 1_btts_no (30.9%), 1_over_1.5 (28.9%). ✓ Affidabilità ALTA: entrambe le squadre hanno uno storico sufficiente per una stima solida.",
+          "reliability": "alta"
+        }
+      ],
+      "n_legs": 1,
+      "combined_odd": 1.64,
+      "combined_true_probability": 0.6668,
+      "combined_implied_probability": 0.6098,
+      "combined_edge": 0.057,
+      "in_range": true,
+      "distance_from_range": 0.0,
+      "simulation": {
+        "probability_reach_target": 0.4502,
+        "probability_bust": 0.5498,
+        "probability_stuck_in_between": 0.0,
+        "avg_bets_if_successful": 2.0,
+        "median_final_capital": 0.0,
+        "mean_final_capital": 42.38
+      },
+      "progression": [
+        {
+          "step": 1,
+          "capital_before": 35.0,
+          "stake": 35.0,
+          "winnings": 22.4,
+          "capital_after": 57.4,
+          "remaining_to_target": 7.6,
+          "target_reached": false
+        },
+        {
+          "step": 2,
+          "capital_before": 57.4,
+          "stake": 57.4,
+          "winnings": 36.74,
+          "capital_after": 94.14,
+          "remaining_to_target": 0,
+          "target_reached": true
+        }
+      ]
+    }
+  ],
+  "extended_results": [
+    {
+      "legs": [
+        {
+          "league": "La Liga",
+          "league_code": "PD",
+          "league_emblem": "https://crests.football-data.org/PD.png",
+          "match": "CA Osasuna vs Getafe CF",
+          "home_crest": "https://crests.football-data.org/79.png",
+          "away_crest": "https://crests.football-data.org/82.png",
+          "date": "2026-08-31",
+          "market": "over_under",
+          "outcome": "under_2.5",
+          "model_probability": 0.7854,
+          "real_odd": 1.58,
+          "n_bookmakers": 4,
+          "implied_probability": 0.6329,
+          "edge": 0.1525,
+          "home_team_matches": 40,
+          "away_team_matches": 40,
+          "is_next_matchday": true,
+          "home_form": "PPPNV",
+          "away_form": "VPVPV",
+          "head_to_head": "Getafe CF 1-0 CA Osasuna (2026-05-23) · CA Osasuna 2-1 Getafe CF (2025-10-03)",
+          "home_rest_days": 3,
+          "away_rest_days": 8,
+          "top_combined_markets": [
+            {
+              "market": "1_under_3.5",
+              "probability": 0.3885
+            },
+            {
+              "market": "1_btts_no",
+              "probability": 0.3383
+            },
+            {
+              "market": "X_under_2.5",
+              "probability": 0.3255
+            }
+          ],
+          "injuries": [],
+          "explanation": "Il modello stima una probabilità del 78.5% per questo esito, basandosi su 40 partite storiche della squadra di casa e 40 della squadra in trasferta. La quota reale (1.58) implica invece una probabilità del 63.3% secondo il mercato — una differenza di +15.2 punti percentuali. Forma recente (dalla più vecchia alla più recente): casa PPPNV, trasferta VPVPV (V=vittoria, N=pareggio, P=sconfitta). Scontri diretti recenti: Getafe CF 1-0 CA Osasuna (2026-05-23) · CA Osasuna 2-1 Getafe CF (2025-10-03). Riposo dall'ultima partita: casa 3 giorni e trasferta 8 giorni. ⚠️ Nota: una delle due squadre ha giocato pochissimi giorni fa — possibile affaticamento non pienamente catturato dal modello statistico. Mercati combinati sulla stessa partita più probabili secondo il modello (stima, non verificata su una quota reale): 1_under_3.5 (38.9%), 1_btts_no (33.8%), X_under_2.5 (32.6%). ✓ Affidabilità ALTA: entrambe le squadre hanno uno storico sufficiente per una stima solida.",
+          "reliability": "alta"
+        }
+      ],
+      "n_legs": 1,
+      "combined_odd": 1.58,
+      "combined_true_probability": 0.7854,
+      "combined_implied_probability": 0.6329,
+      "combined_edge": 0.1525,
+      "in_range": true,
+      "distance_from_range": 0.0,
+      "simulation": {
+        "probability_reach_target": 0.6105,
+        "probability_bust": 0.3895,
+        "probability_stuck_in_between": 0.0,
+        "avg_bets_if_successful": 2.0,
+        "median_final_capital": 87.37,
+        "mean_final_capital": 53.34
+      },
+      "progression": [
+        {
+          "step": 1,
+          "capital_before": 35.0,
+          "stake": 35.0,
+          "winnings": 20.3,
+          "capital_after": 55.3,
+          "remaining_to_target": 9.7,
+          "target_reached": false
+        },
+        {
+          "step": 2,
+          "capital_before": 55.3,
+          "stake": 55.3,
+          "winnings": 32.07,
+          "capital_after": 87.37,
+          "remaining_to_target": 0,
+          "target_reached": true
+        }
+      ]
+    },
+    {
+      "legs": [
+        {
+          "league": "Premier League",
+          "league_code": "PL",
+          "league_emblem": "https://crests.football-data.org/PL.png",
+          "match": "Manchester United FC vs Ipswich Town FC",
+          "home_crest": "https://crests.football-data.org/66.png",
+          "away_crest": "https://crests.football-data.org/349.png",
+          "date": "2026-08-30",
+          "market": "over_under",
+          "outcome": "over_2.5",
+          "model_probability": 0.6911,
+          "real_odd": 1.69,
+          "n_bookmakers": 13,
+          "implied_probability": 0.5917,
+          "edge": 0.0994,
+          "home_team_matches": 39,
+          "away_team_matches": 1,
+          "is_next_matchday": true,
+          "home_form": "VNVVP",
+          "away_form": "V",
+          "head_to_head": "Nessuno scontro diretto recente disponibile nei dati storici.",
+          "home_rest_days": 8,
+          "away_rest_days": 8,
+          "top_combined_markets": [
+            {
+              "market": "1_over_1.5",
+              "probability": 0.4372
+            },
+            {
+              "market": "1_over_2.5",
+              "probability": 0.3786
+            },
+            {
+              "market": "1_btts_si",
+              "probability": 0.3066
+            }
+          ],
+          "injuries": [],
+          "explanation": "Il modello stima una probabilità del 69.1% per questo esito, basandosi su 39 partite storiche della squadra di casa e 1 della squadra in trasferta. La quota reale (1.69) implica invece una probabilità del 59.2% secondo il mercato — una differenza di +9.9 punti percentuali. Forma recente (dalla più vecchia alla più recente): casa VNVVP, trasferta V (V=vittoria, N=pareggio, P=sconfitta). Riposo dall'ultima partita: casa 8 giorni e trasferta 8 giorni. Mercati combinati sulla stessa partita più probabili secondo il modello (stima, non verificata su una quota reale): 1_over_1.5 (43.7%), 1_over_2.5 (37.9%), 1_btts_si (30.7%). ⚠️ Affidabilità BASSA: almeno una delle due squadre ha pochissime partite storiche (probabile neopromossa o inizio stagione). Un vantaggio stimato in questa condizione va preso con molta cautela — potrebbe riflettere un limite del modello più che un'opportunità reale.",
+          "reliability": "bassa"
+        }
+      ],
+      "n_legs": 1,
+      "combined_odd": 1.69,
+      "combined_true_probability": 0.6911,
+      "combined_implied_probability": 0.5917,
+      "combined_edge": 0.0994,
+      "in_range": true,
+      "distance_from_range": 0.0,
+      "simulation": {
+        "probability_reach_target": 0.478,
+        "probability_bust": 0.522,
+        "probability_stuck_in_between": 0.0,
+        "avg_bets_if_successful": 2.0,
+        "median_final_capital": 0.0,
+        "mean_final_capital": 47.78
+      },
+      "progression": [
+        {
+          "step": 1,
+          "capital_before": 35.0,
+          "stake": 35.0,
+          "winnings": 24.15,
+          "capital_after": 59.15,
+          "remaining_to_target": 5.85,
+          "target_reached": false
+        },
+        {
+          "step": 2,
+          "capital_before": 59.15,
+          "stake": 59.15,
+          "winnings": 40.81,
+          "capital_after": 99.96,
+          "remaining_to_target": 0,
+          "target_reached": true
+        }
+      ]
+    },
+    {
+      "legs": [
+        {
+          "league": "Bundesliga",
+          "league_code": "BL1",
+          "league_emblem": "https://crests.football-data.org/BL1.png",
+          "match": "Borussia Dortmund vs Hamburger SV",
+          "home_crest": "https://crests.football-data.org/4.png",
+          "away_crest": "https://crests.football-data.org/7.png",
+          "date": "2026-08-29",
+          "market": "over_under",
+          "outcome": "under_3.5",
+          "model_probability": 0.6693,
+          "real_odd": 1.71,
+          "n_bookmakers": 5,
+          "implied_probability": 0.5848,
+          "edge": 0.0845,
+          "home_team_matches": 34,
+          "away_team_matches": 34,
+          "is_next_matchday": true,
+          "home_form": "PVPVV",
+          "away_form": "PPVVN",
+          "head_to_head": "Borussia Dortmund 3-2 Hamburger SV (2026-03-21) · Hamburger SV 1-1 Borussia Dortmund (2025-11-08)",
+          "home_rest_days": 105,
+          "away_rest_days": 105,
+          "top_combined_markets": [
+            {
+              "market": "1_over_1.5",
+              "probability": 0.5963
+            },
+            {
+              "market": "1_over_2.5",
+              "probability": 0.4633
+            },
+            {
+              "market": "1_under_3.5",
+              "probability": 0.4433
+            }
+          ],
+          "injuries": [],
+          "explanation": "Il modello stima una probabilità del 66.9% per questo esito, basandosi su 34 partite storiche della squadra di casa e 34 della squadra in trasferta. La quota reale (1.71) implica invece una probabilità del 58.5% secondo il mercato — una differenza di +8.5 punti percentuali. Forma recente (dalla più vecchia alla più recente): casa PVPVV, trasferta PPVVN (V=vittoria, N=pareggio, P=sconfitta). Scontri diretti recenti: Borussia Dortmund 3-2 Hamburger SV (2026-03-21) · Hamburger SV 1-1 Borussia Dortmund (2025-11-08). Riposo dall'ultima partita: casa 105 giorni e trasferta 105 giorni. Mercati combinati sulla stessa partita più probabili secondo il modello (stima, non verificata su una quota reale): 1_over_1.5 (59.6%), 1_over_2.5 (46.3%), 1_under_3.5 (44.3%). ✓ Affidabilità ALTA: entrambe le squadre hanno uno storico sufficiente per una stima solida.",
+          "reliability": "alta"
+        }
+      ],
+      "n_legs": 1,
+      "combined_odd": 1.71,
+      "combined_true_probability": 0.6693,
+      "combined_implied_probability": 0.5848,
+      "combined_edge": 0.0845,
+      "in_range": true,
+      "distance_from_range": 0.0,
+      "simulation": {
+        "probability_reach_target": 0.4426,
+        "probability_bust": 0.5574,
+        "probability_stuck_in_between": 0.0,
+        "avg_bets_if_successful": 2.0,
+        "median_final_capital": 0.0,
+        "mean_final_capital": 45.3
+      },
+      "progression": [
+        {
+          "step": 1,
+          "capital_before": 35.0,
+          "stake": 35.0,
+          "winnings": 24.85,
+          "capital_after": 59.85,
+          "remaining_to_target": 5.15,
+          "target_reached": false
+        },
+        {
+          "step": 2,
+          "capital_before": 59.85,
+          "stake": 59.85,
+          "winnings": 42.49,
+          "capital_after": 102.34,
+          "remaining_to_target": 0,
+          "target_reached": true
+        }
+      ]
+    },
+    {
+      "legs": [
+        {
+          "league": "Bundesliga",
+          "league_code": "BL1",
+          "league_emblem": "https://crests.football-data.org/BL1.png",
+          "match": "1. FC Union Berlin vs Eintracht Frankfurt",
+          "home_crest": "https://crests.football-data.org/28.png",
+          "away_crest": "https://crests.football-data.org/19.png",
+          "date": "2026-08-29",
+          "market": "over_under",
+          "outcome": "over_2.5",
+          "model_probability": 0.6401,
+          "real_odd": 1.74,
+          "n_bookmakers": 13,
+          "implied_probability": 0.5747,
+          "edge": 0.0654,
+          "home_team_matches": 34,
+          "away_team_matches": 34,
+          "is_next_matchday": true,
+          "home_form": "PPNVV",
+          "away_form": "PNPPN",
+          "head_to_head": "1. FC Union Berlin 1-1 Eintracht Frankfurt (2026-02-06) · Eintracht Frankfurt 3-4 1. FC Union Berlin (2025-09-21)",
+          "home_rest_days": 105,
+          "away_rest_days": 105,
+          "top_combined_markets": [
+            {
+              "market": "1_over_1.5",
+              "probability": 0.3402
+            },
+            {
+              "market": "2_over_1.5",
+              "probability": 0.3077
+            },
+            {
+              "market": "1_over_2.5",
+              "probability": 0.2874
+            }
+          ],
+          "injuries": [],
+          "explanation": "Il modello stima una probabilità del 64.0% per questo esito, basandosi su 34 partite storiche della squadra di casa e 34 della squadra in trasferta. La quota reale (1.74) implica invece una probabilità del 57.5% secondo il mercato — una differenza di +6.5 punti percentuali. Forma recente (dalla più vecchia alla più recente): casa PPNVV, trasferta PNPPN (V=vittoria, N=pareggio, P=sconfitta). Scontri diretti recenti: 1. FC Union Berlin 1-1 Eintracht Frankfurt (2026-02-06) · Eintracht Frankfurt 3-4 1. FC Union Berlin (2025-09-21). Riposo dall'ultima partita: casa 105 giorni e trasferta 105 giorni. Mercati combinati sulla stessa partita più probabili secondo il modello (stima, non verificata su una quota reale): 1_over_1.5 (34.0%), 2_over_1.5 (30.8%), 1_over_2.5 (28.7%). ✓ Affidabilità ALTA: entrambe le squadre hanno uno storico sufficiente per una stima solida.",
+          "reliability": "alta"
+        }
+      ],
+      "n_legs": 1,
+      "combined_odd": 1.74,
+      "combined_true_probability": 0.6401,
+      "combined_implied_probability": 0.5747,
+      "combined_edge": 0.0654,
+      "in_range": true,
+      "distance_from_range": 0.0,
+      "simulation": {
+        "probability_reach_target": 0.4103,
+        "probability_bust": 0.5897,
+        "probability_stuck_in_between": 0.0,
+        "avg_bets_if_successful": 2.0,
+        "median_final_capital": 0.0,
+        "mean_final_capital": 43.48
+      },
+      "progression": [
+        {
+          "step": 1,
+          "capital_before": 35.0,
+          "stake": 35.0,
+          "winnings": 25.9,
+          "capital_after": 60.9,
+          "remaining_to_target": 4.1,
+          "target_reached": false
+        },
+        {
+          "step": 2,
+          "capital_before": 60.9,
+          "stake": 60.9,
+          "winnings": 45.07,
+          "capital_after": 105.97,
+          "remaining_to_target": 0,
+          "target_reached": true
+        }
+      ]
+    },
+    {
+      "legs": [
+        {
+          "league": "Serie A",
+          "league_code": "SA",
+          "league_emblem": "https://crests.football-data.org/SA.png",
+          "match": "US Lecce vs AS Roma",
+          "home_crest": "https://crests.football-data.org/5890.png",
+          "away_crest": "https://crests.football-data.org/100.png",
+          "date": "2026-08-31",
+          "market": "1x2",
+          "outcome": "2",
+          "model_probability": 0.666,
+          "real_odd": 1.65,
+          "n_bookmakers": 23,
+          "implied_probability": 0.6061,
+          "edge": 0.0599,
+          "home_team_matches": 39,
+          "away_team_matches": 39,
+          "is_next_matchday": true,
+          "home_form": "VPVVV",
+          "away_form": "VVVVV",
+          "head_to_head": "AS Roma 1-0 US Lecce (2026-03-22) · US Lecce 0-2 AS Roma (2026-01-06)",
+          "home_rest_days": 8,
+          "away_rest_days": 6,
+          "top_combined_markets": [
+            {
+              "market": "2_over_1.5",
+              "probability": 0.4967
+            },
+            {
+              "market": "2_under_3.5",
+              "probability": 0.4924
+            },
+            {
+              "market": "2_btts_no",
+              "probability": 0.4633
+            }
+          ],
+          "injuries": [],
+          "explanation": "Il modello stima una probabilità del 66.6% per questo esito, basandosi su 39 partite storiche della squadra di casa e 39 della squadra in trasferta. La quota reale (1.65) implica invece una probabilità del 60.6% secondo il mercato — una differenza di +6.0 punti percentuali. Forma recente (dalla più vecchia alla più recente): casa VPVVV, trasferta VVVVV (V=vittoria, N=pareggio, P=sconfitta). Scontri diretti recenti: AS Roma 1-0 US Lecce (2026-03-22) · US Lecce 0-2 AS Roma (2026-01-06). Riposo dall'ultima partita: casa 8 giorni e trasferta 6 giorni. Mercati combinati sulla stessa partita più probabili secondo il modello (stima, non verificata su una quota reale): 2_over_1.5 (49.7%), 2_under_3.5 (49.2%), 2_btts_no (46.3%). ✓ Affidabilità ALTA: entrambe le squadre hanno uno storico sufficiente per una stima solida.",
+          "reliability": "alta"
+        }
+      ],
+      "n_legs": 1,
+      "combined_odd": 1.65,
+      "combined_true_probability": 0.666,
+      "combined_implied_probability": 0.6061,
+      "combined_edge": 0.0599,
+      "in_range": true,
+      "distance_from_range": 0.0,
+      "simulation": {
+        "probability_reach_target": 0.4407,
+        "probability_bust": 0.5593,
+        "probability_stuck_in_between": 0.0,
+        "avg_bets_if_successful": 2.0,
+        "median_final_capital": 0.0,
+        "mean_final_capital": 41.99
+      },
+      "progression": [
+        {
+          "step": 1,
+          "capital_before": 35.0,
+          "stake": 35.0,
+          "winnings": 22.75,
+          "capital_after": 57.75,
+          "remaining_to_target": 7.25,
+          "target_reached": false
+        },
+        {
+          "step": 2,
+          "capital_before": 57.75,
+          "stake": 57.75,
+          "winnings": 37.54,
+          "capital_after": 95.29,
           "remaining_to_target": 0,
           "target_reached": true
         }
